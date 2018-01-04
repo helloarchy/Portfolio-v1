@@ -4,26 +4,29 @@ My personal portfolio website.
 
 ## Home page ##
 
-* Details a visual list of my projects.
-* Click on any to view it.
-* View a live version [here](http://rarh.io).
+  * Details a visual list of my projects.
+  * Click on any image to view that projects page.
+  * View a live version at [rarh.io](http://rarh.io).
 
-### About me ###
-* Lorem ipsum.
+  ### About me ###
+  * Provides description about me in a small side page.
 
-### CV ###
-* Lorem ipsum.
+  ### CV ###
+  * A fully downloadable and rendered PDF of my current up-to-date CV.
 
-### Contact ###
-* Lorem ipsum.
+  ### Contact ###
+  * Provides my contact details, along with an integrated message system.
 
 ## Workings ##
-
-* Lorem ipsum.
+Available via link on homepage. Alternatively at [rarh.io/workings](http://rarh.io/workings/)
+* A web app for generating assembly instructions for roman blinds.
+* For use by traditional craftsman of hand made soft furnishings.
+* Inputs are entered into a sidebar, which are used to generate an
+ image onto an A4 page, formatted and ready to print via a print dialog.
 
 ## Super Tappy Packet ##
-
-* Lorem ipsum.
+Available via link on homepage. Alternatively at [rarh.io/superTappyPacket](http://rarh.io/superTappyPacket/)
+* A web based game scripted in Phaser.io
 
 ## Decider ##
 
