@@ -1,0 +1,571 @@
+/* COLOUR SCHEME =======================================\V/ */
+.blue {
+    color: #18121E;
+}
+
+.metal {
+    color: #233237;
+}
+
+.red {
+    color: #984B43;
+}
+
+.yellow {
+    color: #EAC67A;
+}
+
+.yellowHL {
+    color: #E9C893;
+}
+
+/* =====================================================/\
+*/
+
+/* GRID SYSTEM ========================================\V/
+/* Ensures all elements are responsive to grid
+http://www.w3schools.com/css/css3_box-sizing.asp */
+* {
+    box-sizing: border-box;
+}
+
+/* For MOBILE all columns span full width */
+[class*="col-"] {
+    width: 100%;
+}
+
+/* IF display wider than X then use col system */
+@media only screen and (min-width: 600px) {
+    /* For tablets: */
+    .col-t-1 {
+        width: 8.33%;
+    }
+
+    .col-t-2 {
+        width: 16.66%;
+    }
+
+    .col-t-3 {
+        width: 25%;
+    }
+
+    .col-t-4 {
+        width: 33.33%;
+    }
+
+    .col-t-5 {
+        width: 41.66%;
+    }
+
+    .col-t-6 {
+        width: 50%;
+    }
+
+    .col-t-7 {
+        width: 58.33%;
+    }
+
+    .col-t-8 {
+        width: 66.66%;
+    }
+
+    .col-t-9 {
+        width: 75%;
+    }
+
+    .col-t-10 {
+        width: 83.33%;
+    }
+
+    .col-t-11 {
+        width: 91.66%;
+    }
+
+    .col-t-12 {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    /* For desktops: */
+    .col-d-1 {
+        width: 8.33%;
+    }
+
+    .col-d-2 {
+        width: 16.66%;
+    }
+
+    .col-d-3 {
+        width: 25%;
+    }
+
+    .col-d-4 {
+        width: 33.33%;
+    }
+
+    .col-d-5 {
+        width: 41.66%;
+    }
+
+    .col-d-6 {
+        width: 50%;
+    }
+
+    .col-d-7 {
+        width: 58.33%;
+    }
+
+    .col-d-8 {
+        width: 66.66%;
+    }
+
+    .col-d-9 {
+        width: 75%;
+    }
+
+    .col-d-10 {
+        width: 83.33%;
+    }
+
+    .col-d-11 {
+        width: 91.66%;
+    }
+
+    .col-d-12 {
+        width: 100%;
+    }
+}
+
+/* Clears flow stopping following items losing column style */
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* =====================================================/\
+*/
+
+/* PORTRAIT OR LANDSCAPE FUNCTION ========================\V/
+IF screen wider than it is high, then: */
+body {
+    background: #ffffff; /* narrow background */
+}
+
+/* Otherwise screen is wide, therefor */
+@media only screen and (orientation: landscape) {
+    body {
+        background-color: #ffffff; /* wide background */
+    }
+}
+
+/* =====================================================/\
+*/
+
+/* NAVIGATION MENU's ====================================\V/
+START Navigation menu */
+ul.nav-menu li.title {
+    font-size: xx-large;
+    text-align: center;
+    padding: 20px 20px 0 20px;
+    font-family: "Playfair Display", serif;
+}
+
+ul.nav-menu {
+    font-family: "Segoe UI Light", serif;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 20%;
+    background-color: #ffffff;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    transition: all 0.5s;
+}
+
+/* Side nav */
+ul.nav-menu li a {
+    display: block;
+    color: #000;
+    padding: 8px 18px;
+    text-decoration: none;
+    width: auto;
+    text-align: right;
+}
+
+ul.nav-menu li a.active {
+    color: lightgray;
+}
+
+.portfolioImages {
+    margin-left: 0 !important;
+    margin-right: 10px !important;
+    padding-right: 0 !important;
+}
+
+.titleBig:after {
+    content: 'Robert A. R. Hardy';
+}
+
+/*ul.nav-menu li a:hover:not(.active) {
+    color: white;
+    transition: 0.5s;
+}*/ /* Adjust for different viewport sizes */
+/* TOP STRIP TABLET */
+@media screen and (max-width: 900px) {
+    div.nav-banner {
+        width: 100%;
+        height: auto;
+        position: relative;
+        background-color: #ffffff;
+        padding-left: 35px;
+    }
+
+    ul.nav-menu {
+        width: 365px;
+        height: auto;
+        position: relative;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    ul.nav-menu li a {
+        float: left;
+        text-align: center;
+        padding: 15px;
+    }
+
+    /*Title box*/
+    div.title {
+        margin: 0 0 0 10px !important;
+        width: 100%;
+    }
+
+    #portfolio img {
+        margin-left: 10px;
+    }
+
+    .portfolioImages {
+        margin-left: 10px !important;
+        margin-right: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    body {
+        margin-right: 10px !important;
+    }
+
+    .titleCasual {
+        margin-top: -5px !important;
+    }
+}
+
+/* FULL WIDTH MOBILE */
+/* Was 400, but has to be 432+ due to button widths sum */
+@media screen and (max-width: 432px) {
+    .titleBig:after {
+        content: '';
+    }
+
+    .title {
+        padding-top: 15px;
+    }
+
+    .titleCasual {
+        font-size: 28px !important;
+    }
+
+    li.mobile-title:after {
+        content: "Robert A. R. Hardy";
+        font-family: "Playfair Display", serif;
+        font-size: 43px;
+    }
+
+    ul.nav-menu li a {
+        padding: 6px;
+        width: auto;
+        text-align: center;
+        float: none;
+    }
+
+    div.nav-banner {
+        padding: 5px 0 10px 0;
+    }
+}
+
+/* Nav menu BUTTONS */
+.button {
+    border: none;
+    text-align: center;
+    padding: 3px;
+    width: 80px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 2px;
+}
+
+.button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -5px;
+    transition: 0.5s;
+}
+
+.button:hover span {
+    padding-right: 12px;
+    transition: 0.5s;
+    color: lightgray;
+}
+
+.button:hover span:after {
+    opacity: 1;
+    right: 0;
+    color: lightgray;
+}
+
+/* END nav menu buttons */
+/* ========================================================/\
+*/
+
+/* TITLE BANNER ==============================================\V/
+*/
+div.title {
+    margin: 10px 10px 0 20%;
+    width: auto;
+    text-align: center;
+    background-color: lightgray;
+}
+
+.titleCasual {
+    font-family: "Dancing Script", serif;
+    font-size: 32px;
+    padding: 0;
+}
+
+.titleBig {
+    padding: 0;
+    margin: 0;
+    text-space: 0;
+    font-family: "Playfair Display", serif;
+    font-size: 72px;
+    font-weight: normal;
+}
+
+/* =======================================================/\
+*/
+
+/* PORTFOLIO IMAGES ======================================\V/
+https://css-tricks.com/seamless-responsive-photo-grid/
+START Seamless IMAGES portfolio collage
+Get viewport size for different sorting */
+.portfolioImages {
+    position: relative;
+    background: no-repeat 50% / 100%;
+    margin: 10px 0 0 10px;
+    cursor: pointer;
+}
+
+.portfolioImages > img {
+    vertical-align: top;
+    width: 100%; /* max width */
+    opacity: 0; /* make it transparent */
+}
+
+.portfolioInner {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+    height: 100%;
+    width: 100%;
+    transition: 0.5s;
+}
+
+.portfolioInner:hover {
+    padding-right: 12px;
+    transition: 0.5s;
+    background-color: rgba(255, 255, 255, 0);
+    /*color: white;*/
+    /*text-shadow: 0 0 2px black, 0 0 2px black;*/
+    /*transition: 0.5s;*/
+}
+
+.portfolioInnerInner {
+    align-self: center;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0), white 30%, white 70%, rgba(0, 0, 0, 0));
+}
+
+.portfolioInnerInner h2 {
+    text-align: center;
+    font-family: "Segoe UI Light", serif;
+    font-size: 32px;
+    font-weight: normal;
+    font-style: italic;
+    text-space: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.portfolioInnerInner h2:after {
+    content: '\00bb';
+    opacity: 0;
+    top: 0;
+    right: -5px;
+    transition: 0.5s;
+}
+
+.portfolioInner:hover h2:after {
+    opacity: 1;
+    right: 0;
+    /*color: white;*/
+}
+
+.portfolioInnerInner p {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+    font-size: 16px;
+    list-style: disc;
+    text-align: center;
+    font-family: "Segoe UI Light", serif;
+    padding: 0 15px 15px 15px;
+}
+
+#portfolio {
+    /* Prevent vertical gaps */
+    /*line-height: 0;*/
+    -webkit-column-count: 5;
+    -webkit-column-gap: 0;
+    -moz-column-count: 5;
+    -moz-column-gap: 0;
+    column-count: 5;
+    column-gap: 0;
+}
+
+#portfolio .catImages {
+    /* Just in case there are inline attributes */
+    width: 100% !important;
+    height: auto !important;
+    padding: 10px 10px 0 0;
+    opacity: 0.7;
+    transition: 0.5s;
+}
+
+#portfolio .catImages:hover {
+    opacity: 1;
+    transition: 0.5s;
+}
+
+@media (max-width: 3840px) {
+    #portfolio {
+        margin-left: 20%;
+        -moz-column-count: 5;
+        -webkit-column-count: 5;
+        column-count: 5;
+    }
+}
+
+@media (max-width: 2400px) {
+    #portfolio {
+        margin-left: 20%;
+        -moz-column-count: 4;
+        -webkit-column-count: 4;
+        column-count: 4;
+    }
+}
+
+@media (max-width: 1600px) {
+    #portfolio {
+        margin-left: 20%;
+        -moz-column-count: 3;
+        -webkit-column-count: 3;
+        column-count: 3;
+    }
+}
+
+@media (max-width: 1200px) {
+    #portfolio {
+        margin-left: 20%;
+        -moz-column-count: 2;
+        -webkit-column-count: 2;
+        column-count: 2;
+    }
+}
+
+@media (max-width: 900px) {
+    #portfolio {
+        margin-left: 0;
+        -moz-column-count: 2;
+        -webkit-column-count: 2;
+        column-count: 2;
+    }
+}
+
+@media (max-width: 640px) {
+    #portfolio {
+        margin-left: 0;
+        -moz-column-count: 1;
+        -webkit-column-count: 1;
+        column-count: 1;
+    }
+}
+
+@media (max-width: 400px) {
+    #portfolio {
+        margin-left: 0;
+        -moz-column-count: 1;
+        -webkit-column-count: 1;
+        column-count: 1;
+    }
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* END Portfolio images */
+/* =======================================================/\
+*/
+
+/* TOP BUTTON ===========================================\V/
+*/
+.back-to-top {
+    background: none #ff9000;
+    margin: 0;
+    position: fixed;
+    float: right;
+    bottom: 0;
+    right: 0;
+    width: 70px;
+    height: 70px;
+    z-index: 100;
+    display: none;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.back-to-top i {
+    font-size: 60px;
+}
+
+/* =======================================================/\
+*/
+a {
+    text-decoration: none !important;
+}

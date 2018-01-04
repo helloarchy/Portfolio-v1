@@ -1,0 +1,94 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+#headerBox {
+    background-color: lightgray;
+    position: relative;
+    margin-top: 0;
+    top: 0;
+    left: 0;
+    text-align: center;
+}
+.container {
+    top: 0;
+    left: 0;
+    height: auto;
+    width: 100%;
+}
+.inner {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding-bottom: 0px;
+}
+
+h1 {
+    font-family: "Great Vibes";
+    font-size: 120px;
+    font-style: normal;
+    text-space: 0;
+    margin: 5px 0px 0px 5px;
+    padding: 0;
+    display: inline-block;
+    text-align: center;
+}
+
+p.subTitle {
+    text-space: 0;
+    margin: -40px auto 0px auto;
+    padding: 0;
+    padding-bottom: 5px;
+    font-family: "Dancing Script";
+    font-size: 20px;
+}
+
+h2 {
+    font-family: "Great Vibes";
+    font-size: 36px;
+    font-style: normal;
+    text-space: 0;
+    margin: 15px 50px 0px 0px;
+    padding: 0;
+}
+
+.pdfobject-container {
+    height: 500px;
+}
+.pdfobject {
+    border: 0px solid #666;
+}
+
+
+.footer {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 60px;
+    background-color: lightgray;
+    text-align: center;
+}
+a {
+    text-decoration: none;
+}
+.signature {
+    font-family: "Dancing Script";
+    font-size: 20px;
+
+}
+#selfTitle {
+    font-family: "Playfair Display";
+    font-size: 20px;
+}
+#webPlug {
+    font-family: "Playfair Display";
+    font-size: 20px;
+    color: black;
+    transition: 0.5s;
+}
+#webPlug:hover {
+    color: white;
+    transition: 0.5s;
+}

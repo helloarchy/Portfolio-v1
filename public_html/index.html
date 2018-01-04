@@ -1,0 +1,126 @@
+<html>
+<head>
+    <title>Robert Hardy</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel=stylesheet type="text/css" href="home/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+        </script>
+    <link rel=”stylesheet” id=”font-awesome-css”
+          href=”http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css”
+          type=”text/css” media=”screen”>
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Playfair+Display'
+          rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Josefin+Sans'
+          rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Dancing+Script'
+          rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script"
+          rel="stylesheet">
+</head>
+
+<body id="0"> <!-- ID zero for jumping back to top -->
+
+<!-- NAVIGATION MENU
+responsive to size, side bar, top menu and stack -->
+<div class="nav-banner">
+    <ul class="nav-menu">
+        <li class="mobile-title"></li>
+        <li><a class="active button" href="#portfolio"><span>Portfolio</span></a></li>
+        <li><a class="button" href="home/CV/index.html"><span>CV</span></a></li>
+        <li><a class="button" href="#about"><span>About Me</span></a></li>
+        <li><a class="button" href="#contact"><span>Contact</span></a></li>
+    </ul>
+</div>
+
+<!-- Pitiful self title -->
+<div class="title">
+    <h1 class="titleBig"></h1>
+    <p class="titleCasual" style="margin: -15px auto 0px auto;
+    padding-bottom: 10px">portfolio website</p>
+</div>
+
+<!-- PORTFOLIO IMAGES -->
+<section id="portfolio">
+
+    <!-- WORKINGS -->
+    <div class="portfolioImages" onclick="location.href='workings/index.html';"
+         style="background: url('home/images/workings.png') 50% / 100%;">
+        <img src="home/images/workings.png">
+        <div class="portfolioInner">
+            <div class="portfolioInnerInner">
+                <h2>Workings</h2>
+                <p>A web app for a soft furnishings company. Used to calculate
+                    fabric requirements and manufacturing dimensions.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- DECIDER -->
+    <div class="portfolioImages" onclick="location.href='decider';"
+         style="background: url('home/images/decider.png') 50% / 100%;">
+        <img src="home/images/decider.png">
+        <div class="portfolioInner">
+            <div class="portfolioInnerInner">
+                <h2>Decider</h2>
+                <p>A web app for decision making. Add multiple choices and
+                one will be picked at random.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUPER TAPPY PACKET -->
+    <div class="portfolioImages" onclick="location.href='superTappyPacket';"
+         style="background: url('home/images/superTappy.png') 50% / 100%;">
+        <img src="home/images/superTappy.png">
+        <div class="portfolioInner">
+            <div class="portfolioInnerInner">
+                <h2>Super Tappy Packet</h2>
+                <p>A Maltesers themed web game based on Flappy Bird, made for
+                    a college project in game development.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- AMAZON ORDER HISTORY -->
+    <div class="portfolioImages" onclick="location.href='amazon';"
+         style="background: url('home/images/amazon.png') 50% / 100%;">
+        <img src="home/images/amazon.png">
+        <div class="portfolioInner">
+            <div class="portfolioInnerInner">
+                <h2>Amazon Order Page</h2>
+                <p>A web page illustrating use of PHP and MySQL to query a database
+                full of user order histories.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- PEP/8 -->
+
+
+<!-- TOP BUTTON -->
+<div class="back-to-top">
+    <a href="#0">Back to Top</a>
+</div>
+
+<!-- Generate a bunch of cat pics to use as place holders. -->
+<script>
+    function getRandomSize(min, max) {
+        return Math.round(Math.random() * (max - min) + min);
+    }
+    var PICS = 5; // number of place holder pics to add.
+    var allImages = "";
+    for (var i = 0; i < PICS; i++) {
+        var width = getRandomSize(200, 400);
+        var height =  getRandomSize(200, 400);
+        allImages += '<img class="catImages" src="https://placekitten.com/'+width+'/'+height+'"' +
+            ' alt="pretty kitty">';
+    }
+    $('#portfolio').append(allImages);
+</script>
+</body>
+</html>

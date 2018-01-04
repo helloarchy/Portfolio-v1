@@ -1,0 +1,62 @@
+<html>
+<head>
+    <title>Decider by Robert Hardy</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel=stylesheet type="text/css" href="style.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+    </script>
+    <script type="text/javascript" src="script.js"></script>
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Playfair+Display|Josefin+Sans|
+    |Dancing+Script|Cookie|Great+Vibes|Kaushan+Script|Playball|Satisfy|Pacifico'
+          rel='stylesheet' type='text/css'>
+</head>
+
+<body id="0"> <!-- ID zero for jumping back to top -->
+<div id="headerBox">
+    <h1>Decider</h1>
+    <p class="subTitle">A web app for decision making. Add multiple choices and
+        one will be picked at random.</p>
+</div>
+
+<div class="container">
+    <div class="inner">
+
+        <img src="images/decorationTop.png">
+
+        <h2>Your choices:</h2>
+        <div id='textBoxGroup'>
+            <div id="TextBoxDiv">
+                <label>#0 </label><input type='text' id='textbox0'><br>
+                <label>#1 </label><input type='text' id='textbox1'><br>
+            </div>
+        </div>
+        <div id="buttons">
+            <input class='arrowButtons' type='button' value='↺' id='resetButton' title="Reset">
+            <input class='arrowButtons' type='button' value='↧' id='addButton' title="Add">
+            <input class='arrowButtons' type='button' value='↥' id='removeButton' title="Remove"><br>
+
+            <input class='decideButton' type='button' value='Decide' id='decideButton'
+                   alt="Make decision">
+        </div>
+        <div id="choiceBox">
+            <h2 id="decisionHeader"></h2>
+            <p id="decisionAnswer"></p>
+            <p id="decisionSub"></p>
+        </div>
+
+        <img src="images/decorationBottom.png">
+
+    </div>
+</div>
+
+<footer class="footer">
+    <span class="signature">By </span><span id="selfTitle">Robert A. R. Hardy</span><br>
+    <span class="signature">View other works at: </span>
+    <a href="index.html.html"><span id="webPlug">RARH.io</span></a>
+</footer>
+
+</body>
+</html>

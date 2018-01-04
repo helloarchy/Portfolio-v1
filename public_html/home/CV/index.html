@@ -1,0 +1,47 @@
+<html>
+<head>
+    <title>CV Robert Hardy</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel=stylesheet type="text/css" href="style.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+    </script>
+    <script type="text/javascript" src="script.js"></script>
+    <script src="../../_assets/PDFObject-master/pdfobject.js"></script>
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Playfair+Display|Josefin+Sans|
+    |Dancing+Script|Cookie|Great+Vibes|Kaushan+Script|Playball|Satisfy|Pacifico'
+          rel='stylesheet' type='text/css'>
+</head>
+
+<body id="0"> <!-- ID zero for jumping back to top -->
+<div id="headerBox">
+    <h1>Curriculum Vitae</h1>
+    <p class="subTitle">My CV as an embedded PDF document.</p>
+</div>
+
+<div class="container">
+    <div class="inner">
+        <!-- PDF CV embedded here by script -->
+        <div id="pdfEmbed"></div>
+    </div>
+</div>
+
+<footer class="footer">
+    <span class="signature">By </span><span id="selfTitle">Robert A. R. Hardy</span><br>
+    <span class="signature">View my works at: </span>
+    <a href="../../index.html"><span id="webPlug">RARH.io</span></a>
+</footer>
+
+<!--<script src='/path-to-your-javascript-file/pdfobject.js'></script>-->
+<script src='\dirCV\CV_script.js'></script>
+<script>
+    //Be sure your document contains an element with the CSS selector "#pdfEmbed"
+
+</script>
+
+</body>
+</html>
+
+

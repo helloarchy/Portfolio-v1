@@ -1,0 +1,161 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+#headerBox {
+    background-color: whitesmoke;
+    position: relative;
+    margin-top: -5px;
+    top: 0;
+    left: 0;
+    border-bottom: double 3px grey;
+}
+.container {
+    top: 0;
+    left: 0;
+    height: auto;
+    width: 100%;
+}
+.inner {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding-bottom: 75px;
+}
+
+img {
+    width: 250px;
+    padding: 10px;
+}
+
+h1 {
+    font-family: "Great Vibes";
+    text-align: center;
+    font-size: 120px;
+    font-style: normal;
+    text-space: 0;
+    margin: 5px auto 0px auto;
+    padding: 0;
+}
+
+p.subTitle {
+    text-space: 0;
+    text-align: center;
+    margin: -35px auto 0px auto;
+    width: 350px;
+    padding-bottom: 10px;
+    font-family: "Dancing Script";
+    font-size: 20px;
+}
+
+h2 {
+    font-family: "Great Vibes";
+    font-size: 36px;
+    font-style: normal;
+    text-space: 0;
+    margin: 15px 50px 0px 0px;
+    padding: 0;
+}
+
+input[type="text"] {
+    width: 150px;
+    height: 25px;
+    margin: 3px;
+    font-family: "Dancing Script";
+    font-size: 20px;
+    transition: 1s;
+}
+
+label {
+    font-family: "Great Vibes";
+    font-size: large;
+    width: 30px;
+    display: inline-block;
+}
+
+#buttons {
+    text-align: center;
+}
+
+.arrowButtons {
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    margin: 3px;
+    padding: 0;
+    font-size: x-large;
+    font-space: 0;
+    vertical-align: middle;
+    text-align: center;
+}
+.decideButton {
+    border-radius: 10%;
+    height: 45px;
+    width: 112px;
+    margin: 3px;
+    padding: 0;
+    font-size: 36px;
+    font-space: 0;
+    vertical-align: middle;
+    text-align: center;
+    font-family: "Great Vibes";
+}
+
+#decisionAnswer {
+    font-family: "Dancing Script";
+    font-size: 20px;
+    padding: 0;
+    margin: 0;
+    background-color: lightsalmon;
+    color: white;
+    transition: 2s;
+}
+
+#decisionHeader {
+    transition: 2s;
+}
+
+#decisionSub {
+    text-space: 0;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    font-family: "Dancing Script";
+    font-size: 20px;
+    text-align: center;
+}
+
+.footer {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 60px;
+    background-color: whitesmoke;
+    text-align: center;
+    border-top: double 3px grey;
+}
+a {
+    text-decoration: none;
+}
+.signature {
+    font-family: "Dancing Script";
+    font-size: 20px;
+
+}
+#selfTitle {
+    font-family: "Playfair Display";
+    font-size: 20px;
+}
+#webPlug {
+    font-family: "Playfair Display";
+    font-size: 20px;
+    color: black;
+    transition: 0.5s;
+}
+#webPlug:hover {
+    color: white;
+    transition: 0.5s;
+}
