@@ -37,11 +37,11 @@ window.onload = function () {
         // Preload
         preload: function () {
             game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
-            game.load.image('background', '../../superTappyPacket/assets/backgrounds.png');
-            game.load.image('tappyPacket', '../../superTappyPacket/assets/tappyPacket.png');
-            //game.load.image('particles', '../_RARH_OngoingWIP/superTappyPacket/assets/star.png');
-            game.load.image('maltBroke', '../../superTappyPacket/assets/malt_broke.png');
-            game.load.image('maltWhole', '../../superTappyPacket/assets/malt_whole.png');
+            game.load.image('background', 'assets/background.png');
+            game.load.image('tappyPacket', 'assets/tappyPacket.png');
+            //game.load.image('particles', 'assets/star.png');
+            game.load.image('maltBroke', 'assets/malt_broke.png');
+            game.load.image('maltWhole', 'assets/malt_whole.png');
         },
 
         // ----------------------------------------------------------
@@ -429,21 +429,23 @@ window.onload = function () {
         },
 
 
+        /*
         // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX                 (Uncomment to view collision boxes)
         // ------------- DEBUGGING -----------------
-        //render: function() {
+        render: function() {
         // Displays the collision box for debug
-        //game.debug.body(tappyPacket);
+        game.debug.body(tappyPacket);
 
         // Extracts each member of the obstacle group and submits for debug
-        //this.obstacleGroup.forEachAlive(this.renderGroup, this);
-        //},
+        this.obstacleGroup.forEachAlive(this.renderGroup, this);
+        },
 
         // Renders the submitted obstacles
-        //renderGroup: function(member) {
-        //game.debug.body(member);
-        //}
+        renderGroup: function(member) {
+        game.debug.body(member);
+        }
         // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        */
 
     }
     // END: Play State ------------------------------------------------------------------------------------------ /\
