@@ -512,15 +512,23 @@ BLINDS DRAWING BOX (end) ------------------------ /\
 
 
 /*
-PRINT SETTINGS (start) ------------------------ \/
+PRINT SETTINGS: Get rid of all shadows etc to prepare for printing, hide all and show only what is set for printing.
  */
 @media print {
     body * {
         visibility: hidden;
+        background: transparent !important;
+        color: black !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+        filter: none !important;
+        -ms-filter: none !important;
     }
+
     #section-to-print, #section-to-print * {
         visibility: visible;
     }
+
     #section-to-print {
         position: absolute;
         left: 0;
@@ -528,14 +536,10 @@ PRINT SETTINGS (start) ------------------------ \/
     }
 }
 
-
 /*@page {
     size: A4 portrait;
     margin: 2cm;
 }*/
-/*
-PRINT SETTINGS (end) ------------------------ /\
- */
 
 
 
