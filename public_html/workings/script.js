@@ -809,25 +809,29 @@ function generateBlinds() {
     // -- Add sections to drawing --
 
     /* VELCRO/HEAD RAIL STRIP:
-    Add left to drawing, then use loop to add middles and spots, then ultimately right. */
-    blindTable.append("<tr id='velcro'><td>" + window.velcroLEFT + "</td>");
+    Add first but of vertical dimension line.*/
+    blindTable.append("<tr id='velcro'><td>" + window.arrowUP + "</td>");
+
+    /*Add left to drawing, then use loop to add middles and spots, then ultimately right. */
+    var velcroRow = $("#velcro");
+    velcroRow.append("<td>" + window.velcroLEFT + "</td>");
     var h = blind.ringsCount; // Velcro width counter
     var labelCounter = 1; // Determines mid section to add label to.
     for (h; h > 0; h--) {
         // If more than one ring, add ring plus spacer. Else add final ring and right edge.
         if (h > 1) {
             if (labelCounter > 0) {
-                $("#velcro").append("<td>" + window.velcroMIDDLE + "</td>" + "<td class='labelImg'>"
+                velcroRow.append("<td>" + window.velcroMIDDLE + "</td>" + "<td class='labelImg'>"
                     + window.velcroMIDDLE + "<span class='lblImgSmall'>" + round1DP(stackSizes.pop())
                     + "</span></td>");
                 labelCounter--;
             } else {
-                $("#velcro").append("<td>" + window.velcroMIDDLE + "</td>" +
+                velcroRow.append("<td>" + window.velcroMIDDLE + "</td>" +
                     "<td>" + window.velcroMIDDLE + "</td>");
             }
         } else {
             // Draw velcro on right edge
-            $("#velcro").append("<td>" + window.velcroMIDDLE + "</td>" + "<td>" + window.velcroRIGHT
+            velcroRow.append("<td>" + window.velcroMIDDLE + "</td>" + "<td>" + window.velcroRIGHT
                 + "</td></tr>");
         }
     }
@@ -848,17 +852,20 @@ function generateBlinds() {
         /* BLANK PRE-FOLD:
         Add left to drawing, then use loop to add middles and spots, then ultimately right. */
         if (j > 0) {
-            blindTable.append("<tr id='blankA" + j + "'><td>" + window.blankLEFT + "</td>");
+            // Add dimension line first, then rest.
+            blindTable.append("<tr id='blankA" + j + "'><td>" + window.lineVERTICAL + "</td>");
+            var blankAnJ = $("#blankA" + j);
+            blankAnJ.append("<td>" + window.blankLEFT + "</td>");
             k = widthCount; // set width counter
             for (k; k > 0; k--) {
                 // If more than one ring, add ring plus spacer.
                 // Else add final ring and right edge.
                 if (k > 1) {
-                    $("#blankA" + j).append("<td>" + window.blankMIDDLE + "</td>" +
+                    blankAnJ.append("<td>" + window.blankMIDDLE + "</td>" +
                         "<td>" + window.blankMIDDLE + "</td>");
                 } else {
                     // Draw velcro on right edge
-                    $("#blankA" + j).append("<td>" + window.blankMIDDLE + "</td>" +
+                    blankAnJ.append("<td>" + window.blankMIDDLE + "</td>" +
                         "<td>" + window.blankRIGHT + "</td></tr>");
                 }
             }
@@ -868,8 +875,10 @@ function generateBlinds() {
         /* FOLD:
         Add left to drawing, then use loop to add middles and spots, then ultimately right. */
         if (l > 0) {
-            blindTable.append("<tr id='fold" + l + "'>" +
-                "<td>" + window.foldLEFT + "</td>");
+            // Add dimension line first, then rest.
+            blindTable.append("<tr id='fold" + l + "'>" + "<td>" + window.lineVERTICAL + "</td>");
+            var foldL = $("#fold" + l);
+            foldL.append("<td>" + window.foldLEFT + "</td>");
             k = widthCount; // set width counter
             labelCounter = 1;
             for (k; k > 0; k--) {
@@ -877,17 +886,17 @@ function generateBlinds() {
                 // middles if still middle, if end add one plus right edge.
                 if (k > 1) {
                     if (labelCounter > 0) {
-                        $("#fold" + l).append("<td class='labelImg'>" + window.blankMIDDLE +
+                        foldL.append("<td class='labelImg'>" + window.blankMIDDLE +
                             "<span>" + round1DP(stackSizes.pop()) + "</span></td><td>" + window.blankMIDDLE +
                             "</td>");
                         labelCounter--;
                     } else {
-                        $("#fold" + l).append("<td>" + window.foldMIDDLE + "</td><td>"
+                        foldL.append("<td>" + window.foldMIDDLE + "</td><td>"
                             + window.foldMIDDLE + "</td>");
                     }
                 } else {
                     // Draw fold on right edge
-                    $("#fold" + l).append("<td>" + window.foldMIDDLE + "</td>" +
+                    foldL.append("<td>" + window.foldMIDDLE + "</td>" +
                         "<td>" + window.foldRIGHT + "</td></tr>");
                 }
             }
@@ -897,18 +906,20 @@ function generateBlinds() {
         /* BLANK POST-FOLD:
         Add left to drawing, then use loop to add middles, then ultimately right. */
         if (m > 0) {
-            blindTable.append("<tr id='blankB" + m + "'>" +
-                "<td>" + window.blankLEFT + "</td>");
+            // Add dimension line first, then rest.
+            blindTable.append("<tr id='blankB" + m + "'>" + "<td>" + window.lineVERTICAL + "</td>");
+            var blankBnM = $("#blankB" + m);
+            blankBnM.append("<td>" + window.blankLEFT + "</td>");
             k = widthCount; // set width counter
             for (k; k > 0; k--) {
                 // Determine amount of middle elements by ring count. Add two
                 // middles if still middle, if end add one plus right edge.
                 if (k > 1) {
-                    $("#blankB" + m).append("<td>" + window.blankMIDDLE + "</td>" +
+                    blankBnM.append("<td>" + window.blankMIDDLE + "</td>" +
                         "<td>" + window.blankMIDDLE + "</td>");
                 } else {
                     // Draw blank on right edge
-                    $("#blankB" + m).append("<td>" + window.blankMIDDLE + "</td>" +
+                    blankBnM.append("<td>" + window.blankMIDDLE + "</td>" +
                         "<td>" + window.blankRIGHT + "</td></tr>");
                 }
             }
@@ -916,8 +927,12 @@ function generateBlinds() {
         }
 
         /* POCKETS:
-        Add left to drawing, then use loop to add middles and spots, then ultimately right. */
-        blindTable.append("<tr id='pocket" + i + "'><td>" + window.pocketLEFT + "</td>");
+        Add dimension line first, then rest.*/
+        blindTable.append("<tr id='pocket" + i + "'><td>" + window.lineVERTICAL + "</td>");
+
+        /*Add left to drawing, then use loop to add middles and spots, then ultimately right. */
+        var pocketI = $("#pocket" + i);
+        pocketI.append("<td>" + window.pocketLEFT + "</td>");
         k = widthCount; // set width counter
         labelCounter = 1;
         for (k; k > 0; k--) {
@@ -925,17 +940,17 @@ function generateBlinds() {
             // Else add final ring and right edge.
             if (k > 1) {
                 if (labelCounter > 0) {
-                    $("#pocket" + i).append("<td>" + window.pocketRINGSPOT + "</td>" +
+                    pocketI.append("<td>" + window.pocketRINGSPOT + "</td>" +
                         "<td class='labelImg'>" + window.pocketMIDDLE + "<span class='lblImgSmall'>" +
                         round1DP(stackSizes.pop()) + "</span></td>");
                     labelCounter--;
                 } else {
-                    $("#pocket" + i).append("<td>" + window.pocketRINGSPOT + "</td>" +
+                    pocketI.append("<td>" + window.pocketRINGSPOT + "</td>" +
                         "<td>" + window.pocketMIDDLE + "</td>");
                 }
             } else {
                 // Draw pocket on right edge
-                $("#pocket" + i).append("<td>" + window.pocketRINGSPOT + "</td>" +
+                pocketI.append("<td>" + window.pocketRINGSPOT + "</td>" +
                     "<td>" + window.pocketRIGHT + "</td></tr>");
             }
         }
@@ -944,8 +959,12 @@ function generateBlinds() {
     // -- Finally, add bottom pleat --
 
     /* BLANK SINGLE:
-    Add left to drawing, then use loop to add middles, then ultimately right. */
-    blindTable.append("<tr id='blankSingle'><td>" + window.blankLEFT + "</td>");
+    Add dimension line first, then rest.*/
+    blindTable.append("<tr id='blankSingle'><td>" + window.lineVERTICAL + "</td>");
+
+    /*Add left to drawing, then use loop to add middles, then ultimately right. */
+    var blankSingle = $("#blankSingle");
+    blankSingle.append("<td>" + window.blankLEFT + "</td>");
     k = widthCount; // set width counter
     labelCounter = 1;
     for (k; k > 0; k--) {
@@ -953,23 +972,27 @@ function generateBlinds() {
         // middles if still middle, if end add one plus right edge.
         if (k > 1) {
             if (labelCounter > 0) {
-                $("#blankSingle").append("<td class='labelImg'>" + window.blankMIDDLE + "<span>" +
+                blankSingle.append("<td class='labelImg'>" + window.blankMIDDLE + "<span>" +
                     round1DP(stackSizes.pop()) + "</span></td><td>" + window.blankMIDDLE + "</td>");
                 labelCounter--;
             } else {
-                $("#blankSingle").append("<td>" + window.blankMIDDLE + "</td>" +
+                blankSingle.append("<td>" + window.blankMIDDLE + "</td>" +
                     "<td>" + window.blankMIDDLE + "</td>");
             }
         } else {
             // Draw blank on right edge
-            $("#blankSingle").append("<td>" + window.blankMIDDLE + "</td>" +
+            blankSingle.append("<td>" + window.blankMIDDLE + "</td>" +
                 "<td>" + window.blankRIGHT + "</td></tr>");
         }
     }
 
     /* HEM/BOTTOM BAR:
-    Add left to drawing, then use loop to add middles, then ultimately right. */
-    blindTable.append("<tr id='hem'><td>" + window.hemLEFT + "</td>");
+    Add dimension line first, then rest.*/
+    blindTable.append("<tr id='hem'><td>" + window.arrowDOWN + "</td>");
+
+    /*Add left to drawing, then use loop to add middles, then ultimately right. */
+    var hem = $("#hem");
+    hem.append("<td>" + window.hemLEFT + "</td>");
     k = widthCount; // set width counter
     labelCounter = 1;
     for (k; k > 0; k--) {
@@ -977,17 +1000,38 @@ function generateBlinds() {
         // middles if still middle, if end add one plus right edge.
         if (k > 1) {
             if (labelCounter > 0) {
-                $("#hem").append("<td>" + window.hemMIDDLE + "</td><td class='labelImg'>" +
+                hem.append("<td>" + window.hemMIDDLE + "</td><td class='labelImg'>" +
                     window.hemMIDDLE + "<span class='lblImgSmall'>" + round1DP(stackSizes.pop()) +
                     "</span></td>");
                 labelCounter--;
             } else {
-                $("#hem").append("<td>" + window.hemMIDDLE + "</td><td>" + window.hemMIDDLE +
+                hem.append("<td>" + window.hemMIDDLE + "</td><td>" + window.hemMIDDLE +
                     "</td>");
             }
         } else {
             // Draw blank single on right edge
-            $("#hem").append("<td>" + window.hemMIDDLE + "</td><td>" + window.hemRIGHT +
+            hem.append("<td>" + window.hemMIDDLE + "</td><td>" + window.hemRIGHT +
+                "</td></tr>");
+        }
+    }
+
+    /* DIMENSIONS HORIZONTAL:
+    Add dimension line first, then rest.*/
+    blindTable.append("<tr id='dimBottom'><td></td><td>" + window.arrowLEFT + "</td>");
+
+    /*Add left to drawing, then use loop to add middles, then ultimately right. */
+    var dimBottom = $("#dimBottom");
+    dimBottom.append("<td>" + window.lineHORIZONTAL + "</td>");
+    k = widthCount; // set width counter, skip first image.
+    for (k; k > 0; k--) {
+        // Determine amount of middle elements by ring count. Add two
+        // middles if still middle, if end add one plus right edge.
+        if (k > 1) {
+            dimBottom.append("<td>" + window.lineHORIZONTAL + "</td><td>" + window.lineHORIZONTAL +
+                "</td>");
+        } else {
+            // Draw blank single on right edge
+            dimBottom.append("<td>" + window.arrowRIGHT +
                 "</td></tr>");
         }
     }
