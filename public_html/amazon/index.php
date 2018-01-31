@@ -10,12 +10,12 @@
 </head>
 <body>
 <?php
-require_once("../../application/config/dbconnect.php");
+require_once ("../../application/config/dbconnect.php");
 ?>
 
 <!-- Generate a list of User ID's to the console, for the user to view and try -->
 <script>
-    console.log("Below are some user ID's to try:")
+    console.log("Below are some user ID's to try:");
 </script>
 <?php
 $queryUserPrompt = "SELECT UserID FROM orders;";
@@ -27,7 +27,7 @@ while ($rowUserPrompt = mysqli_fetch_array($resultUserPrompt)) {
 }
 ?>
 <script>
-    console.log("Above are some user ID's to try.")
+    console.log("Above are some user ID's to try.");
 </script>
 
 <div title="mainBody" style="max-width: 710px">
@@ -105,7 +105,7 @@ while ($rowUserPrompt = mysqli_fetch_array($resultUserPrompt)) {
                     echo "<tr style='border-bottom: 1px solid lightcyan;'><td style='height: 7px'></td></tr>";
                     echo "<tr><td style='height: 7px'></td></tr>";
 
-                    echo "<tr style='backgrounds-color: lightgrey;'>";
+                    echo "<tr style='background-color: lightgrey;'>";
                     echo "<td>Order placed</br>" . $rowOrderStrip['Year'] . "</td>";
                     echo "<td>Total</br>£" . $rowOrderStrip['Totalpay'] . "</td>";
                     // Check if any discount was given before displaying the discount.

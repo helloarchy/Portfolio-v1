@@ -134,6 +134,7 @@ BLINDS FORM:
 
 #submitButtons {
     float: right;
+    margin-right: 5px;
 }
 
 
@@ -148,10 +149,10 @@ input {
     font-style: italic;
 }
 input[type="text"] {
-    width: 166px;
+    width: 163px;
 }
 input[type="number"] {
-    width: 110px;
+    width: 106px;
 }
 input[type="range"] {
     width: 145px;
@@ -162,11 +163,33 @@ input[type="button"], input[type="submit"], input[type="reset"], legend {
     cursor: pointer;
 }
 #selectStack {
-    width: 170px;
+    width: 166px;
 }
 .unitsSelect {
     width:50px;
 }
+
+.buttonIncrement {
+    background-color: #E4DACE;
+    transition: 0.25s;
+    margin: 0 4px 0 0;
+    padding: 3px 6px 3px 6px;
+    border: none;
+    border-radius: 2px;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: bold;
+    font-family: "Playfair Display", serif;
+    /*box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2), 0 2px 2px 0 rgba(0,0,0,0.19);*/
+}
+
+.buttonIncrement:hover {
+    background-color: #C0B283;
+    /*font-style: italic;*/
+    color: #F4F4F4;
+}
+
+
 
 .button {
     background-color: #E4DACE;
@@ -187,6 +210,10 @@ input[type="button"], input[type="submit"], input[type="reset"], legend {
 }
 
 
+
+
+
+
 legend {
     font-family: 'Cookie', cursive;
     font-size: 32px;
@@ -203,7 +230,7 @@ legend {
 label {
     font-family: 'Playfair Display', serif;
     font-size: medium;
-    width: 75px;
+    width: 80px;
     text-align: right;
     display: inline-block;
     text-transform: lowercase;

@@ -15,6 +15,7 @@
 
         <link rel=stylesheet type="text/css" href="style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="script.js"></script>
 
         <!-- Fonts -->
         <link href='https://fonts.googleapis.com/css?family=Cookie|Playfair+Display|Raleway|Josefin+Sans|Dancing+Script|Cookie|Great+Vibes|Kaushan+Script|Playball|Satisfy|Pacifico|Lato'
@@ -25,6 +26,7 @@
 
         <!-- BLINDS FORM -->
         <form id="formBlinds">
+            <!-- WORKINGS Header (Not really part of the form, just at top of it) -->
             <div id="header">
                 <div id="headerDroppedCap">W</div>
                 <div id="headerText">orkings</div>
@@ -59,6 +61,13 @@
                     <br><label>Reference:</label>
                     <input id="referenceTextBox" type="text" name="jobReferenceText"
                            placeholder="Kids room">
+                    <!-- NUMBER OF BLINDS -->
+                    <br><label>No. Blinds:</label>
+                    <input id="numOfBlinds" type="number" name="jobNumOfBlinds" placeholder="1">
+                    <input id="numBlindsPlus" class="buttonIncrement" type="button"
+                           name="jobNumBlindsPlus" value="+" style="margin-left: 2px">
+                    <input id="numBlindsMinus" class="buttonIncrement" type="button"
+                           name="jobNumBlindsMinus" value="&minus;">
                 </div>
             </fieldset>
 
@@ -86,6 +95,13 @@
                         <option value="mm">mm</option>
                         <option value="cm" selected disabled>cm</option>
                     </select>
+                    <!-- NUMBER OF WIDTHS -->
+                    <br><label>No. Widths:</label>
+                    <input id="numOfWidths" type="number" name="jobNumOfWidths" placeholder="1">
+                    <input id="numWidthsPlus" class="buttonIncrement" type="button"
+                           name="jobNumWidthsPlus" value="+" style="margin-left: 2px">
+                    <input id="numWidthsMinus" class="buttonIncrement" type="button"
+                           name="jobNumWidthsMinus" value="&minus;">
                 </div>
             </fieldset>
 
@@ -158,7 +174,7 @@
                 <div class="fieldContent">
                     <!-- TYPE -->
                     <label>Type:</label>
-                    <input id="railingType" name="railingType" placeholder="Baton"
+                    <input id="railingType" type="text" name="railingType" placeholder="Baton"
                            list="railingDataList">
                     <datalist id="railingDataList">
                         <option value="Baton">
