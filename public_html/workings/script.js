@@ -3,52 +3,95 @@
  * A roman blind dimension calculator. Used for generating the various measurements needed to make
  * a roman blind, as per the various input parameters. Has many extra options for fine tuning the
  * output blind.
- * Created: 30/01/2017
- * Last modified: 16/08/2017
+ * Created: 2017/01/30
+ * Last modified: 2018/01/31
  * @author Robert Hardy
  * @version 1.2.1
  */
 
+
+
+/* GLOBAL VARIABLES/CONSTANTS (not declared with var to make auto global
+* Initialised on page load with values, see below onPageLoad(). */
+/*var bT = document.getElementById("blindTable"); //Table used for produced blind drawing.*/
+/*var stackChoice = $("#selectStack"); // Determines generated stack type.*/
 var blind; // blind object
 var foldsManualOverwrite = false; // Used for auto calculating values unless user declares.
 var ringsManualOverwrite = false;
-/*var bT = document.getElementById("blindTable"); //Table used for produced blind drawing.*/
-/*var stackChoice = $("#selectStack"); // Determines generated stack type.*/
-
-/*GLOBAL CONSTANTS*/
 var DEFAULT_DETAILS_PLACEHOLDER = "________________________";
-var DEFAULT_FAB_CUT_WIDTH = 123.5; //cm
-var DEFAULT_FAB_REPEAT = 23.45; //CM
-var DEFAULT_RAIL_BATON = 6; //cm
-var DEFAULT_RAIL_EVANS = 6; //cm
-var DEFAULT_RAIL_HALLIS = 4; //cm
-var DEFAULT_WATERFALL_INCREMENT = 2.5; //cm
-var DEFAULT_SHOWING_HEM = 2.5; //cm
+var DEFAULT_FAB_CUT_WIDTH = 123.5; // cm
+var DEFAULT_CUT_WIDTH = 134; // cm
+var DEFAULT_FAB_REPEAT = 23.45; // cm
+var DEFAULT_RAIL_BATON = 6; // cm
+var DEFAULT_RAIL_EVANS = 6; // cm
+var DEFAULT_RAIL_HALLIS = 4; // cm
+var DEFAULT_WATERFALL_INCREMENT = 2.5; // cm
+var DEFAULT_SHOWING_HEM = 2.5; // cm
 var DEFAULT_RAILING_TYPE = "Railing";
-var DEFAULT_RAILING_DEPTH = 6; //cm
-var DEFAULT_POCKET_DEPTH = 3; //cm Half of full pocket (6 cm)
-var DEFAULT_RING_MARGIN = 10.5; //cm
-
+var DEFAULT_RAILING_DEPTH = 6; // cm
+var DEFAULT_POCKET_DEPTH = 3; // cm Half of full pocket (6 cm)
+var DEFAULT_RING_MARGIN = 10.5; // cm
 
 /*
  * ON PAGE LOAD:
  */
-$(document).ready(function(){
+$(document).ready(function () {
+});
+
+
+/**
+ * Collapsible Arrows:
+ * Changing the collapse arrow directions on blind input fields.
+ */
+$(function () {
+    /* Trigger all initial page load functions (normally handled by document ready, but need to be able
+    * to recall the function again on reset. */
+    onPageLoad();
+
+    $("legend").click(function () {
+        $(this).parent().find(".fieldContent").slideToggle("slow");
+        $(this).children(".arrowDown").toggle();
+        $(this).children(".arrowUp").toggle();
+    });
+});
+
+
+$(function onPageLoad() {
+    /* GLOBAL VARIABLES/CONSTANTS (not declared with var to make auto global */
+    foldsManualOverwrite = false; // Used for auto calculating values unless user declares.
+    ringsManualOverwrite = false;
+    DEFAULT_DETAILS_PLACEHOLDER = "________________________";
+    DEFAULT_FAB_CUT_WIDTH = 123.5; // cm
+    DEFAULT_CUT_WIDTH = 134; // cm
+    DEFAULT_FAB_REPEAT = 23.45; // cm
+    DEFAULT_RAIL_BATON = 6; // cm
+    DEFAULT_RAIL_EVANS = 6; // cm
+    DEFAULT_RAIL_HALLIS = 4; // cm
+    DEFAULT_WATERFALL_INCREMENT = 2.5; // cm
+    DEFAULT_SHOWING_HEM = 2.5; // cm
+    DEFAULT_RAILING_TYPE = "Railing";
+    DEFAULT_RAILING_DEPTH = 6; // cm
+    DEFAULT_POCKET_DEPTH = 3; // cm Half of full pocket (6 cm)
+    DEFAULT_RING_MARGIN = 10.5; // cm
+
     // send values to functions to update initial values.
     foldsChange($("#sliderFoldsCount").val());
     ringsCountChange($("#ringsCount").val());
 
     // hide drawing elements
-    $("#jobDetails").hide("fast", function (){});
-    $("#measureDetails").hide("fast", function (){});
-    $("#disclaimer").hide("fast", function (){});
+    $("#jobDetails").hide("fast", function () {
+    });
+    $("#measureDetails").hide("fast", function () {
+    });
+    $("#disclaimer").hide("fast", function () {
+    });
 
-    // initialise blind object.
-    blind = new Blind();
+    // Initialise new blind with values.
+    blind = new Blind(); // blind object
 
     /**
      * SUBMIT BUTTON CLICK:
-      */
+     */
     $("#formBlinds").on("submit", function (e) {
         // Stop submit from refreshing page
         e.preventDefault();
@@ -66,14 +109,18 @@ $(document).ready(function(){
         $("#initCalcsResultFig").html("");
 
 
-
-        $("#placeHolder").hide("fast", function(){});
-        $("#centrePlaceHolder").hide("slow", function(){});
+        $("#placeHolder").hide("fast", function () {
+        });
+        $("#centrePlaceHolder").hide("slow", function () {
+        });
 
         // Un-hide drawing elements
-        $("#jobDetails").show("fast", function (){});
-        $("#measureDetails").show("fast", function (){});
-        $("#disclaimer").show("fast", function (){});
+        $("#jobDetails").show("fast", function () {
+        });
+        $("#measureDetails").show("fast", function () {
+        });
+        $("#disclaimer").show("fast", function () {
+        });
 
         // Write client details to drawing:
         writeJobDetails();
@@ -93,18 +140,11 @@ $(document).ready(function(){
         // Reset rings manual overwrite
         ringsManualOverwrite = false;
     });
-});
 
 
-/**
- * Collapsible Arrows:
- * Changing the collapse arrow directions on blind input fields.
- */
-$(function(){
-    $("legend").click(function(){
-        $(this).parent().find(".fieldContent").slideToggle("slow");
-        $(this).children(".arrowDown").toggle();
-        $(this).children(".arrowUp").toggle();
+    $("#resetButton").on("click", function () {
+        onPageLoad();
+        reset();
     });
 });
 
@@ -116,6 +156,7 @@ $(function(){
 function foldsChange(value) {
     $("#foldsValueText").text(value);
 }
+
 function ringsCountChange(value) {
     $("#ringsCountText").text(value);
 }
@@ -125,6 +166,7 @@ function ringsCountChange(value) {
  * Clears the additional stack options if they are on show
  */
 function reset() {
+    onPageLoad();
     $("#waterfall").slideUp("slow");
     $("#showingHem").slideUp("slow");
     blind = new Blind(); // reset blind values
@@ -270,7 +312,7 @@ $(function () {
             width.val(round1DP(widthNew /= 10));
         }
         console.log("Blind width unit change: " + widthOld + this.value + "'s changed to " +
-        widthNew + "cm's.");
+            widthNew + "cm's.");
 
         // Reset CM as the selected value, update blind width to reflect new value, update console.
         $("#widthUnit").val("cm");
@@ -498,9 +540,6 @@ $(function () {
     });
 
 
-
-
-
     // Folds count
     $("#sliderFoldsCount").change(function () {
         blind.stackFolds = this.value;
@@ -564,7 +603,7 @@ $(function () {
  * @param inputVal, the user input given.
  * @param DEFAULT, the value to default back to if input is blank.
  */
-function textBoxValidation (text, toSet, inputVal, DEFAULT) {
+function textBoxValidation(text, toSet, inputVal, DEFAULT) {
     if (!(inputVal === "")) {
         toSet = inputVal;
         console.log(text + " change: " + toSet);
@@ -673,7 +712,7 @@ function writeInitialCalcs() {
     // Railing
     $("#initCalcsVelcroFig").append(
         "<td>- " + round1DP(+blind.railingDepth) + "</td><td class='initCalcsLabels'>" +
-        blind.railingType+ "</td>"
+        blind.railingType + "</td>"
     );
     // Add additional calculations if the blind has showing hem, if not, don't show it.
     if (blind.stackType === "showingHem") {
@@ -684,13 +723,13 @@ function writeInitialCalcs() {
         $("#initCalcsResultFig").append(
             "<td id='initCalcsResult'>" + round1DP(+blind.height -
             (+blind.railingDepth + +blind.showingHemSize)) + "</td><td id='initCalcsLabelsResult'>"
-            + blind.heightUnit +"</td>"
+            + blind.heightUnit + "</td>"
         );
     } else {
         // Result
         $("#initCalcsResultFig").append(
             "<td id='initCalcsResult'>" + round1DP(+blind.height - +blind.railingDepth) +
-            "</td><td id='initCalcsLabelsResult'>" + blind.heightUnit +"</td>"
+            "</td><td id='initCalcsLabelsResult'>" + blind.heightUnit + "</td>"
         );
     }
 }
@@ -773,12 +812,12 @@ function generateBlinds() {
         /* BLANK PRE-FOLD:
         Add left to drawing, then use loop to add middles and spots, then ultimately right. */
         if (j > 0) {
-            blindTable.append("<tr id='blankA" + j +"'><td>" + window.blankLEFT + "</td>");
+            blindTable.append("<tr id='blankA" + j + "'><td>" + window.blankLEFT + "</td>");
             k = widthCount; // set width counter
             for (k; k > 0; k--) {
                 // If more than one ring, add ring plus spacer.
                 // Else add final ring and right edge.
-                if(k > 1){
+                if (k > 1) {
                     $("#blankA" + j).append("<td>" + window.blankMIDDLE + "</td>" +
                         "<td>" + window.blankMIDDLE + "</td>");
                 } else {
@@ -793,14 +832,14 @@ function generateBlinds() {
         /* FOLD:
         Add left to drawing, then use loop to add middles and spots, then ultimately right. */
         if (l > 0) {
-            blindTable.append("<tr id='fold" + l +"'>" +
+            blindTable.append("<tr id='fold" + l + "'>" +
                 "<td>" + window.foldLEFT + "</td>");
             k = widthCount; // set width counter
             labelCounter = 1;
             for (k; k > 0; k--) {
                 // Determine amount of middle elements by ring count. Add two
                 // middles if still middle, if end add one plus right edge.
-                if(k > 1){
+                if (k > 1) {
                     if (labelCounter > 0) {
                         $("#fold" + l).append("<td class='labelImg'>" + window.blankMIDDLE +
                             "<span>" + round1DP(stackSizes.pop()) + "</span></td><td>" + window.blankMIDDLE +
@@ -822,13 +861,13 @@ function generateBlinds() {
         /* BLANK POST-FOLD:
         Add left to drawing, then use loop to add middles, then ultimately right. */
         if (m > 0) {
-            blindTable.append("<tr id='blankB" + m +"'>" +
+            blindTable.append("<tr id='blankB" + m + "'>" +
                 "<td>" + window.blankLEFT + "</td>");
             k = widthCount; // set width counter
             for (k; k > 0; k--) {
                 // Determine amount of middle elements by ring count. Add two
                 // middles if still middle, if end add one plus right edge.
-                if(k > 1){
+                if (k > 1) {
                     $("#blankB" + m).append("<td>" + window.blankMIDDLE + "</td>" +
                         "<td>" + window.blankMIDDLE + "</td>");
                 } else {
@@ -848,7 +887,7 @@ function generateBlinds() {
         for (k; k > 0; k--) {
             // If more than one ring, add ring plus spacer.
             // Else add final ring and right edge.
-            if(k > 1){
+            if (k > 1) {
                 if (labelCounter > 0) {
                     $("#pocket" + i).append("<td>" + window.pocketRINGSPOT + "</td>" +
                         "<td class='labelImg'>" + window.pocketMIDDLE + "<span class='lblImgSmall'>" +
@@ -876,7 +915,7 @@ function generateBlinds() {
     for (k; k > 0; k--) {
         // Determine amount of middle elements by ring count. Add two
         // middles if still middle, if end add one plus right edge.
-        if(k > 1){
+        if (k > 1) {
             if (labelCounter > 0) {
                 $("#blankSingle").append("<td class='labelImg'>" + window.blankMIDDLE + "<span>" +
                     round1DP(stackSizes.pop()) + "</span></td><td>" + window.blankMIDDLE + "</td>");
@@ -900,7 +939,7 @@ function generateBlinds() {
     for (k; k > 0; k--) {
         // Determine amount of middle elements by ring count. Add two
         // middles if still middle, if end add one plus right edge.
-        if(k > 1){
+        if (k > 1) {
             if (labelCounter > 0) {
                 $("#hem").append("<td>" + window.hemMIDDLE + "</td><td class='labelImg'>" +
                     window.hemMIDDLE + "<span class='lblImgSmall'>" + round1DP(stackSizes.pop()) +
