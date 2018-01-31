@@ -56,23 +56,9 @@ $(function () {
 });
 
 
-$(function onPageLoad() {
-    /* GLOBAL VARIABLES/CONSTANTS (not declared with var to make auto global */
-    foldsManualOverwrite = false; // Used for auto calculating values unless user declares.
-    ringsManualOverwrite = false;
-    DEFAULT_DETAILS_PLACEHOLDER = "________________________";
-    DEFAULT_FAB_CUT_WIDTH = 123.5; // cm
-    DEFAULT_CUT_WIDTH = 134; // cm
-    DEFAULT_FAB_REPEAT = 23.45; // cm
-    DEFAULT_RAIL_BATON = 6; // cm
-    DEFAULT_RAIL_EVANS = 6; // cm
-    DEFAULT_RAIL_HALLIS = 4; // cm
-    DEFAULT_WATERFALL_INCREMENT = 2.5; // cm
-    DEFAULT_SHOWING_HEM = 2.5; // cm
-    DEFAULT_RAILING_TYPE = "Railing";
-    DEFAULT_RAILING_DEPTH = 6; // cm
-    DEFAULT_POCKET_DEPTH = 3; // cm Half of full pocket (6 cm)
-    DEFAULT_RING_MARGIN = 10.5; // cm
+function onPageLoad() {
+    // Listen for form changes
+    formValues();
 
     // send values to functions to update initial values.
     foldsChange($("#sliderFoldsCount").val());
@@ -109,18 +95,23 @@ $(function onPageLoad() {
         $("#initCalcsResultFig").html("");
 
 
+        // Hide placeholder
         $("#placeHolder").hide("fast", function () {
         });
         $("#centrePlaceHolder").hide("slow", function () {
         });
 
+
         // Un-hide drawing elements
         $("#jobDetails").show("fast", function () {
+        });
+        $("#blindDrawing").show("fast", function () {
         });
         $("#measureDetails").show("fast", function () {
         });
         $("#disclaimer").show("fast", function () {
         });
+
 
         // Write client details to drawing:
         writeJobDetails();
@@ -141,12 +132,34 @@ $(function onPageLoad() {
         ringsManualOverwrite = false;
     });
 
+    $("#resetButton").click(function () {
+        $("#waterfall").slideUp("slow");
+        $("#showingHem").slideUp("slow");
 
-    $("#resetButton").on("click", function () {
+        // Show the placeholder
+        $("#placeHolder").show("fast", function () {
+        });
+        $("#centrePlaceHolder").show("slow", function () {
+        });
+
+        // Hide the existing drawing.
+        $("#jobDetails").hide("fast", function () {
+        });
+        $("#measureDetails").hide("fast", function () {
+        });
+        $("#disclaimer").hide("fast", function () {
+        });
+        $("#blindDrawing").hide("fast", function () {
+        });
+
+        // Change all values back to defaults.
+        // Reset manual overwrites
+        foldsManualOverwrite = false;
+        ringsManualOverwrite = false;
+        formValues();
         onPageLoad();
-        reset();
     });
-});
+}
 
 
 /**
@@ -160,19 +173,6 @@ function foldsChange(value) {
 function ringsCountChange(value) {
     $("#ringsCountText").text(value);
 }
-
-
-/**
- * Clears the additional stack options if they are on show
- */
-function reset() {
-    onPageLoad();
-    $("#waterfall").slideUp("slow");
-    $("#showingHem").slideUp("slow");
-    blind = new Blind(); // reset blind values
-    $("#formBlinds").reset();
-}
-
 
 /**
  * Stack type list:
@@ -232,7 +232,6 @@ function Blind() {
     this.stackType = "normal";
     this.waterfallIncrement = DEFAULT_WATERFALL_INCREMENT; //cm
     this.showingHemSize = DEFAULT_SHOWING_HEM; //cm
-    /*this.stackReveal = 2.5; //cm*/ //todo: am I needed? wtf do I do? What am I used for?
     this.stackFolds = 4;
 
     // POCKETS:
@@ -257,7 +256,7 @@ function Blind() {
  * FORM VALUES
  * Defaults, replaced and updated every time users changed them.
  */
-$(function () {
+function formValues() {
     // DETAILS
     // Client
     $("#clientTextBox").change(function () {
@@ -593,7 +592,7 @@ $(function () {
         // Manual overwrite, else value auto generated
         ringsManualOverwrite = true;
     })
-});
+}
 
 
 /**

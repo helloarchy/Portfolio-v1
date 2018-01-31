@@ -22,8 +22,6 @@
               rel='stylesheet' type='text/css'>
     </head>
     <body>
-
-
         <!-- BLINDS FORM -->
         <form id="formBlinds">
             <!-- WORKINGS Header (Not really part of the form, just at top of it) -->
@@ -236,7 +234,7 @@
                     <!-- FOLDS -->
                     <label>Folds:</label>
                     <input id="sliderFoldsCount" type="range" name="foldsCount"
-                           min="1" max="7" step="1"
+                           class="slider" min="1" max="7" step="1"
                            oninput="foldsChange(this.value);">
                     <output id="foldsValueText"><!--Value set by function--></output>
                 </div>
@@ -295,8 +293,7 @@
             <!-- SUBMIT BUTTONS -->
             <div id="submitButtons">
                 <!-- RESET BUTTON -->
-                <input class="button" type="button" name="resetButton" value="Reset"
-                       onclick="reset()">
+                <input class="button" type="reset" name="resetButton" value="Reset" id="resetButton">
                 <!-- GENERATE/SUBMIT BUTTON -->
                 <input class="button" type="submit" name="submit" value="Generate">
                 <!-- PRINT BUTTON -->
