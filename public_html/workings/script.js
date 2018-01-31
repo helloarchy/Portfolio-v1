@@ -1241,6 +1241,14 @@ function initImgVars() {
     window.hemLEFT = "<img src=images/blind_img/hem_LEFT_2.png " + imageSizeStyle + ">";
     window.hemMIDDLE = "<img src=images/blind_img/hem_MIDDLE_2.png " + imageSizeStyle + ">";
     window.hemRIGHT = "<img src=images/blind_img/hem_RIGHT_2.png " + imageSizeStyle + ">";
+    // DIMENSIONS: Vertical
+    window.arrowUP = "<img src=images/blind_img/arrow_up.png " + imageSizeStyle + ">";
+    window.lineVERTICAL = "<img src=images/blind_img/line_vertical.png " + imageSizeStyle + ">";
+    window.arrowDOWN = "<img src=images/blind_img/arrow_down.png " + imageSizeStyle + ">";
+    // DIMENSIONS: Horizontal
+    window.arrowLEFT = "<img src=images/blind_img/arrow_left.png " + imageSizeStyle + ">";
+    window.lineHORIZONTAL = "<img src=images/blind_img/line_horizontal.png " + imageSizeStyle + ">";
+    window.arrowRIGHT = "<img src=images/blind_img/arrow_right.png " + imageSizeStyle + ">";
 }
 
 
