@@ -133,6 +133,11 @@ function onPageLoad() {
     });
 
     $("#resetButton").click(function () {
+        // Write to console
+        console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+        console.log("RESET ALL");
+        console.log("`````````");
+
         $("#waterfall").slideUp("slow");
         $("#showingHem").slideUp("slow");
 
@@ -153,11 +158,19 @@ function onPageLoad() {
         });
 
         // Change all values back to defaults.
+        $("#sliderFoldsCount").val(4);
+        $("#foldsValueText").val(4);
+
+
+
         // Reset manual overwrites
-        foldsManualOverwrite = false;
-        ringsManualOverwrite = false;
+        /*foldsManualOverwrite = false;
+        ringsManualOverwrite = false;*/
+
+
         formValues();
-        onPageLoad();
+
+        blind = new Blind();
     });
 }
 
@@ -416,13 +429,17 @@ function formValues() {
         } else {
             /*None of the above so use manually entered value if there is one, otherwise use
             default.*/
-            console.log("No railing type chosen so using manual value or default.");
             if (!(this.value === "")) {
-                blind.railingDepth = +this.value;
-                console.log("Railing depth change: " + blind.railingDepth);
+                blind.railingType = this.value;
+                console.log("Railing type change: " + blind.railingDepth);
             } else {
-                blind.railingDepth = DEFAULT_RAILING_DEPTH;
-                console.log("Railing depth change, using default (" + DEFAULT_RAILING_DEPTH + ")");
+                blind.railingType = DEFAULT_RAILING_TYPE;
+                // If the railing depth text box is empty, assign default value, otherwise keep what it is.
+                if (depthText.val() === "") {
+                    blind.railingDepth = DEFAULT_RAILING_DEPTH;
+                    depthText.val(DEFAULT_RAILING_DEPTH);
+                }
+                console.log("Railing type change, using default (" + DEFAULT_RAILING_TYPE + ")");
             }
         }
     });
@@ -434,8 +451,28 @@ function formValues() {
             blind.railingDepth = +this.value;
             console.log("Railing depth change: " + blind.railingDepth);
         } else {
-            blind.railingDepth = DEFAULT_RAILING_DEPTH;
-            console.log("Railing depth change, using default (" + DEFAULT_RAILING_DEPTH + ")");
+            /*Value entered deleted, so revert back to default. If existing railing type is not default, set it to
+            that types default value. Otherwise revert to standard default.*/
+            var depthText = $("#railingDepth");
+            if (blind.railingType !== DEFAULT_RAILING_TYPE) {
+                if (blind.railingType === "Baton") {
+                    blind.railingDepth = DEFAULT_RAIL_BATON;
+                    depthText.val(DEFAULT_RAIL_BATON);
+                    console.log("Railing depth deleted, reverting to BATON default " + DEFAULT_RAIL_BATON + " for depth.");
+                } else if (blind.railingType === "Evans") {
+                    blind.railingDepth = DEFAULT_RAIL_EVANS;
+                    depthText.val(DEFAULT_RAIL_EVANS);
+                    console.log("Railing depth deleted, reverting to EVANS default " + DEFAULT_RAIL_EVANS + " for depth.");
+                } else if (blind.railingType === "Hallis") {
+                    blind.railingDepth = DEFAULT_RAIL_HALLIS;
+                    depthText.val(DEFAULT_RAIL_HALLIS);
+                    console.log("Railing depth deleted, reverting to HALLIS default " + DEFAULT_RAIL_HALLIS + " for depth.");
+                }
+            } else {
+                blind.railingDepth = DEFAULT_RAILING_DEPTH;
+                depthText.val(DEFAULT_RAILING_DEPTH);
+                console.log("Railing depth change, using default (" + DEFAULT_RAILING_DEPTH + ")");
+            }
         }
         /**
          * ADD HANDLER FOR CM/INCH
