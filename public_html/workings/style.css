@@ -312,7 +312,7 @@ BLINDS DRAWING BOX: (A4 page)
     display: -webkit-flex;
     display: flex;
     width: 100%;
-    height: 3.4cm;
+    height: 3cm;
     font-family: Lato, sans-serif;
 }
 
@@ -321,23 +321,23 @@ BLINDS DRAWING BOX: (A4 page)
 }
 
 #drawingDetailsClient {
-    font-size: 32px;
-    padding: 10px;
+    font-size: 28px;
+    padding: 10px 0 0 10px;
     font-style: italic;
     font-weight: bold;
     width: 500px;
 }
 
 #drawingDetailsCustAndRef {
-    padding: 10px;
-    font-size: 24px;
+    padding: 0 0 10px 10px;
+    font-size: 22px;
 }
 
 #initialCalcs {
     float: right;
     width: 40%;
     display: flex;
-    padding: 8px;
+    padding: 10px 10px 5px 0; /* Extra padding on right */
     margin: 0;
     justify-content:flex-end;
     align-items:center;
@@ -350,7 +350,7 @@ BLINDS DRAWING BOX: (A4 page)
     padding: 0;
     text-align: right;
     font-family: Lato, sans-serif;
-    font-size: 20px;
+    font-size: 18px;
     font-style: italic;
 }
 
@@ -360,12 +360,12 @@ BLINDS DRAWING BOX: (A4 page)
     margin: 0;
     text-transform: lowercase;
     font-style: italic;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 #initCalcsResult {
     font-style: normal;
-    font-size: 24px;
+    font-size: 22px;
     border-top: 2px solid black;
 }
 
@@ -374,7 +374,7 @@ BLINDS DRAWING BOX: (A4 page)
     padding: 0 0 0 5px;
     margin: 0;
     text-transform: lowercase;
-    font-size: 24px;
+    font-size: 22px;
     font-style: normal;
     border-top: 2px solid black;
 }
@@ -462,7 +462,7 @@ table, th, td, img {
     font-family: Lato, sans-serif;
     font-size: 22px;
     margin-top: 5px;
-    padding: 10px 75px 0 75px;
+    padding: 0 75px 0 75px;
 }
 
 #measureDetails div {
@@ -511,7 +511,6 @@ table, th, td, img {
     font-style: italic;
     border-top: 1px solid black;
     background-color: #F4F4F4;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #disclaimer ul {

@@ -1366,8 +1366,8 @@ function initImgVars() {
     var MAX_WIDTH = 21.6; // size of table on page in cm (page width = 21.6cm)
     var MAX_HEIGHT = 20; // (page height = 27.94cm)
     var MAX_IMG_SIZE = 1.5; // natural image size in cm, to avoid stretching.
-    var gridNumWidth = (blind.ringsCount * 2) + 1;
-    var gridNumHeight = (blind.stackFolds * 4) + 3;
+    var gridNumWidth = (blind.ringsCount * 2) + 1 + 1; // +1 for initial edge, +1 again for dimension lines
+    var gridNumHeight = (blind.stackFolds * 4) + 3 + 1; // +3 for 2 bottom pieces and velcro, +1 again for dimensions.
     console.log("Grid width: " + gridNumWidth); //Debug
     console.log("Grid height: " + gridNumHeight);
 
