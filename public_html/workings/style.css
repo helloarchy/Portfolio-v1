@@ -420,6 +420,7 @@ BLINDS DRAWING BOX: (A4 page)
     font-size: 75%;
     left: 0;
     font-style: italic;
+    /*background: radial-gradient(circle, #F4F4F4 40%, rgba(0,0,0,0) 50%);*/
 }
 
 

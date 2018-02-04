@@ -170,7 +170,7 @@ function onPageLoad() {
         widthsManualOverwrite = false;*/
 
         // Re-establish values from the forms.
-        formValues();
+        /*formValues();*/ // Caused double firing of inputs (inc/dec buttons).
 
         // Wide previous blind values and reinitialise with new values (forces use of defaults if none given).
         blind = new Blind();
@@ -319,6 +319,42 @@ function formValues() {
             blind.noOfBlinds = DEFAULT_NO_BLINDS;
             console.log("Details no. blinds change, using default (" + blind.noOfBlinds + ")");
         }
+    });
+    // Number of Blinds: plus button
+    $("#numBlindsPlus").click(function () {
+        var numBlinds = $("#numOfBlinds");
+        if (numBlinds.val() === "") {
+            blind.noOfBlinds = 2; // Already assumed to be 1, then add 1.
+            numBlinds.val(blind.noOfBlinds);
+        } else {
+            var currVal = parseInt(numBlinds.val());
+            numBlinds.val(currVal + 1);
+            blind.noOfBlinds = +numBlinds.val();
+        }
+        console.log("Number of Blinds change: " + blind.noOfBlinds);
+        // Enable minus button again now value must be greater than 1.
+        $("#numBlindsMinus").attr("disabled", false);
+    });
+    // Number of Blinds: minus button
+    $("#numBlindsMinus").click(function () {
+        var numBlinds = $("#numOfBlinds");
+        if (numBlinds.val() === "") {
+            blind.noOfBlinds = 1; // Already assumed to be 1, then cant reduce any more.
+            numBlinds.val(blind.noOfBlinds);
+        } else {
+            var currVal = parseInt(numBlinds.val());
+            // Only subtract if more than 1.
+            if (currVal > 1) {
+                currVal = currVal - 1;
+                numBlinds.val(currVal);
+                blind.noOfBlinds = +numBlinds.val();
+                // If current value is now 1, then disable button (re-enabled by plus).
+                if (currVal === 1) {
+                    $("#numBlindsMinus").attr("disabled", true);
+                }
+            }
+        }
+        console.log("Number of Blinds change: " + blind.noOfBlinds);
     });
 
     // DIMENSIONS
