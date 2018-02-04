@@ -389,6 +389,47 @@ function formValues() {
         // Enable manual overwrite now user has interacted
         widthsManualOverwrite = true;
     });
+    // Number of Widths: plus button
+    $("#numWidthsPlus").click(function () {
+        var numWidths = $("#numOfWidths");
+        if (numWidths.val() === "") {
+            blind.noOfWidths = 2; // Already assumed to be 1, then add 1.
+            numWidths.val(blind.noOfWidths);
+        } else {
+            var currVal = parseInt(numWidths.val());
+            numWidths.val(currVal + 1);
+            blind.noOfWidths = +numWidths.val();
+        }
+        console.log("Number of Widths change: " + blind.noOfWidths);
+        // Enable manual overwrite now user has interacted.
+        widthsManualOverwrite = true;
+
+        // Enable minus button again now value must be greater than 1.
+        $("#numWidthsMinus").attr("disabled", false);
+    });
+    // Number of Widths: minus button
+    $("#numWidthsMinus").click(function () {
+        var numWidths = $("#numOfWidths");
+        if (numWidths.val() === "") {
+            blind.noOfWidths = 1; // Already assumed to be 1, then cant reduce any more.
+            numWidths.val(blind.noOfWidths);
+        } else {
+            var currVal = parseInt(numWidths.val());
+            // Only subtract if more than 1.
+            if (currVal > 1) {
+                currVal = currVal - 1;
+                numWidths.val(currVal);
+                blind.noOfWidths = +numWidths.val();
+                // If current value is now 1, then disable button (re-enabled by plus).
+                if (currVal === 1) {
+                    $("#numWidthsMinus").attr("disabled", true);
+                }
+            }
+        }
+        console.log("Number of Widths change: " + blind.noOfWidths);
+        // Enable manual overwrite now user has interacted.
+        widthsManualOverwrite = true
+    });
 
     // FABRIC
     // Cut width
