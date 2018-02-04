@@ -20,7 +20,6 @@ var foldsManualOverwrite = false; // Used for auto calculating values unless use
 var ringsManualOverwrite = false;
 var DEFAULT_DETAILS_PLACEHOLDER = "________________________";
 var DEFAULT_FAB_CUT_WIDTH = 123.5; // cm
-var DEFAULT_CUT_WIDTH = 134; // cm
 var DEFAULT_FAB_REPEAT = 23.45; // cm
 var DEFAULT_RAIL_BATON = 6; // cm
 var DEFAULT_RAIL_EVANS = 6; // cm
@@ -31,6 +30,11 @@ var DEFAULT_RAILING_TYPE = "Railing";
 var DEFAULT_RAILING_DEPTH = 6; // cm
 var DEFAULT_POCKET_DEPTH = 3; // cm Half of full pocket (6 cm)
 var DEFAULT_RING_MARGIN = 10.5; // cm
+// Feb 2018 update:
+var DEFAULT_NO_BLINDS = 1; // Typically one blind per job sheet
+var DEFAULT_NO_WIDTHS = 1; // Typically a blind is a single width
+var DEFAULT_CUT_WIDTH = 132; // cm. Used to establish how many widths on a blind.
+var widthsManualOverwrite = false; // Used for auto calculating number of widths.
 
 /*
  * ON PAGE LOAD:
@@ -125,18 +129,17 @@ function onPageLoad() {
         // Write measure details to drawing:
         writeMeasureDetails();
 
-        // Reset folds manual overwrite
+        // Reset manual overwrites
         foldsManualOverwrite = false;
-
-        // Reset rings manual overwrite
         ringsManualOverwrite = false;
+        widthsManualOverwrite = false;
     });
 
     $("#resetButton").click(function () {
         // Write to console
         console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-        console.log("RESET ALL");
-        console.log("`````````");
+        console.log("RESET ALL:");
+        console.log("---------");
 
         $("#waterfall").slideUp("slow");
         $("#showingHem").slideUp("slow");
@@ -161,15 +164,15 @@ function onPageLoad() {
         $("#sliderFoldsCount").val(4);
         $("#foldsValueText").val(4);
 
-
-
         // Reset manual overwrites
         /*foldsManualOverwrite = false;
-        ringsManualOverwrite = false;*/
+        ringsManualOverwrite = false;
+        widthsManualOverwrite = false;*/
 
-
+        // Re-establish values from the forms.
         formValues();
 
+        // Wide previous blind values and reinitialise with new values (forces use of defaults if none given).
         blind = new Blind();
     });
 }
@@ -220,12 +223,14 @@ function Blind() {
     this.detailsClient = DEFAULT_DETAILS_PLACEHOLDER;
     this.detailsCustomer = DEFAULT_DETAILS_PLACEHOLDER;
     this.detailsReference = DEFAULT_DETAILS_PLACEHOLDER;
+    this.noOfBlinds = DEFAULT_NO_BLINDS;
 
     // DIMENSIONS:
     this.width = 0; //cm
     this.widthUnit = "cm";
     this.height = 0; //cm
     this.heightUnit = "cm";
+    this.noOfWidths = DEFAULT_NO_WIDTHS;
 
     // FABRIC:
     this.fabricCutWidth = DEFAULT_FAB_CUT_WIDTH;
@@ -304,6 +309,17 @@ function formValues() {
             console.log("Details reference change, using default (" + DEFAULT_DETAILS_PLACEHOLDER + ")");
         }
     });
+    // Number of Blinds:
+    $("#numOfBlinds").change(function () {
+        /*Use manually entered value if there is one, otherwise use default.*/
+        if (!(this.value === "")) {
+            blind.noOfBlinds = +this.value;
+            console.log("Details no. blinds change: " + blind.noOfBlinds);
+        } else {
+            blind.noOfBlinds = DEFAULT_NO_BLINDS;
+            console.log("Details no. blinds change, using default (" + blind.noOfBlinds + ")");
+        }
+    });
 
     // DIMENSIONS
     // Width
@@ -358,6 +374,20 @@ function formValues() {
         blind.heightUnit = this.value;
         blind.height = +heightNew;
         console.log("Blind height change: " + blind.height + blind.heightUnit + "'s.");
+    });
+
+    // Number of Widths
+    $("#numOfWidths").change(function () {
+        /*Use manually entered value if there is one, otherwise use default.*/
+        if (!(this.value === "")) {
+            blind.noOfWidths = +this.value;
+            console.log("Number of Widths change: " + blind.noOfWidths);
+        } else {
+            blind.noOfWidths = DEFAULT_NO_WIDTHS;
+            console.log("Number of Widths change, using default (" + blind.noOfWidths + ")");
+        }
+        // Enable manual overwrite now user has interacted
+        widthsManualOverwrite = true;
     });
 
     // FABRIC
@@ -726,6 +756,18 @@ function autoCalcRingsCount() {
 
 
 /**
+ * WIDTHS AUTO GENERATOR
+ * Value can be overwritten by manual input. If none, then value auto generated here.
+ */
+function autoCalcNoWidths() {
+    // Divide blind width by cut width and round up to nearest whole number.
+    var autoNoWidths = Math.ceil(blind.width / DEFAULT_CUT_WIDTH);
+    $("#numOfWidths").val(autoNoWidths);
+    console.log("Number of widths (auto): " + autoNoWidths);
+    return autoNoWidths;
+}
+
+/**
  * Write Details:
  * Add customer details to the printable drawing.
  */
@@ -780,12 +822,15 @@ function writeInitialCalcs() {
 function generateBlinds() {
     var blindTable = $("#blindTable"); // Cache call for optimisation
 
-    // Check if rings and folds have user specified values, if not, auto generate them.
+    // Check if rings, folds, and num of widths have user specified values, if not, auto generate them.
     if (ringsManualOverwrite === false) {
         blind.ringsCount = autoCalcRingsCount();
     }
     if (foldsManualOverwrite === false) {
         blind.stackFolds = autoCalcFoldCount();
+    }
+    if (widthsManualOverwrite === false) {
+        blind.noOfWidths = autoCalcNoWidths();
     }
 
     // Initialise images for blind drawing.
