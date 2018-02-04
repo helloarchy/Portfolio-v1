@@ -563,6 +563,10 @@ PRINT SETTINGS: Get rid of all shadows etc to prepare for printing, hide all and
         left: 0;
         top: 0;
     }
+
+    .labelImgDimensions span {
+        background: #F4F4F4 !important;
+    }
 }
 
 /*@page {
