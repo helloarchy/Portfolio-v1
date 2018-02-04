@@ -69,12 +69,12 @@ function onPageLoad() {
     ringsCountChange($("#ringsCount").val());
 
     // hide drawing elements
-    $("#jobDetails").hide("fast", function () {
-    });
-    $("#measureDetails").hide("fast", function () {
-    });
-    $("#disclaimer").hide("fast", function () {
-    });
+    $("#blindDrawing").hide("fast", function () {});
+    $("#jobDetails").hide("fast", function () {});
+    $("#measureDetails").hide("fast", function () {});
+    $("#disclaimer").hide("fast", function () {});
+    $("#numWidthsInfo").hide("fast", function () {});
+
 
     // Initialise new blind with values.
     blind = new Blind(); // blind object
@@ -83,13 +83,18 @@ function onPageLoad() {
      * SUBMIT BUTTON CLICK:
      */
     $("#formBlinds").on("submit", function (e) {
+        // Cache duplicate selectors
+        var numWidths = $("#numWidthsInfo");
+
         // Stop submit from refreshing page
         e.preventDefault();
 
         // Clear the canvas for new drawing
         $("#blindTable").html("");
         $("#fabricMeasures").html("");
+        /*$("#innerLiningMeasures").html("");*/
         $("#liningMeasures").html("");
+        numWidths.html("");
         $("#drawingDetailsClient").html("");
         $("#drawingDetailsCustAndRef").html("");
         /*$("#initialCalcs").html("");*/
@@ -100,21 +105,16 @@ function onPageLoad() {
 
 
         // Hide placeholder
-        $("#placeHolder").hide("fast", function () {
-        });
-        $("#centrePlaceHolder").hide("slow", function () {
-        });
+        $("#placeHolder").hide("fast", function () {});
+        $("#centrePlaceHolder").hide("slow", function () {});
 
 
         // Un-hide drawing elements
-        $("#jobDetails").show("fast", function () {
-        });
-        $("#blindDrawing").show("fast", function () {
-        });
-        $("#measureDetails").show("fast", function () {
-        });
-        $("#disclaimer").show("fast", function () {
-        });
+        $("#blindDrawing").show("fast", function () {});
+        $("#jobDetails").show("fast", function () {});
+        $("#measureDetails").show("fast", function () {});
+        $("#disclaimer").show("fast", function () {});
+        numWidths.show("fast", function () {});
 
 
         // Write client details to drawing:
@@ -128,6 +128,9 @@ function onPageLoad() {
 
         // Write measure details to drawing:
         writeMeasureDetails();
+
+        // Write number of blinds and cuts explanation
+        writeNumWidthsInfo();
 
         // Reset manual overwrites
         foldsManualOverwrite = false;
@@ -151,14 +154,11 @@ function onPageLoad() {
         });
 
         // Hide the existing drawing.
-        $("#jobDetails").hide("fast", function () {
-        });
-        $("#measureDetails").hide("fast", function () {
-        });
-        $("#disclaimer").hide("fast", function () {
-        });
-        $("#blindDrawing").hide("fast", function () {
-        });
+        $("#blindDrawing").hide("fast", function () {});
+        $("#jobDetails").hide("fast", function () {});
+        $("#measureDetails").hide("fast", function () {});
+        $("#disclaimer").hide("fast", function () {});
+        $("#numWidthsInfo").hide("fast", function () {});
 
         // Change all values back to defaults.
         $("#sliderFoldsCount").val(4);
@@ -1440,6 +1440,39 @@ function writeMeasureDetails() {
         + round1DP(blind.pocketsTotalLength) + "</li><li class='cutSum'>" +
         round1DP(+blind.cutLengthFabInner + +blind.pocketsTotalLength) + " " + blind.widthUnit +
         "<span class='cutSumCalc'> (" + round2DP(blind.cutLengthLining) + ")</span></li></ul>");
+}
+
+/**
+ * Write Number of Blinds and Widths
+ * Write the info for number of blinds and widths per blind.
+ */
+function writeNumWidthsInfo() {
+    var numWidthsText = $("#numWidthsInfo");
+    var numWidths = +blind.noOfWidths;
+    var numBlinds = +blind.noOfBlinds;
+
+    numWidthsText.append(numBlinds + " \327 ");
+
+    // Determine read-friendly way of expressing number of widths.
+    if (numWidths === 1) {
+        numWidthsText.append("SWB"); // SWB = Single-Width Blind
+    } else if (numWidths === 2) {
+        numWidthsText.append("DWB"); // DWB = Double-wide blind
+    } else {
+        numWidthsText.append(numWidths + "-width blinds");
+    }
+
+    // Total cuts needed is number of blinds times number of widths per blind.
+    var totalCuts = numBlinds * numWidths;
+    if (totalCuts > 1) {
+        numWidthsText.append(" = " + totalCuts + " cuts total");
+        // Elaborate if more than 1 blind.
+        if (numBlinds > 1) {
+            numWidthsText.append(" (" + numWidths + " per blind).");
+        }
+    } else {
+        numWidthsText.append(" = " + totalCuts + " cut total");
+    }
 }
 
 
