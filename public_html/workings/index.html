@@ -41,7 +41,7 @@
                     <!-- CLIENT -->
                     <label>Client:</label>
                     <input id="clientTextBox" type="text" list="clientDataList"
-                           placeholder="Rob Interiors">
+                           placeholder="Rob Interiors" onfocus="this.select()">
                     <!-- Updated 2017-07-04 to reflect new clients. -->
                     <datalist id="clientDataList">
                         <option value="Blinds n' Blessings">
@@ -54,14 +54,15 @@
                     <!-- CUSTOMER -->
                     <br><label>Customer:</label>
                     <input id="customerTextBox" type="text" name="jobCustomerText"
-                           placeholder="Joe Bloggs">
+                           placeholder="Joe Bloggs" onfocus="this.select()">
                     <!-- REFERENCE -->
                     <br><label>Reference:</label>
                     <input id="referenceTextBox" type="text" name="jobReferenceText"
-                           placeholder="Kids room">
+                           placeholder="Kids room" onfocus="this.select()">
                     <!-- NUMBER OF BLINDS -->
                     <br><label>No. Blinds:</label>
-                    <input id="numOfBlinds" type="number" name="jobNumOfBlinds" placeholder="1" min="1" step="1">
+                    <input id="numOfBlinds" type="number" name="jobNumOfBlinds" placeholder="1"
+                           min="1" step="1" onfocus="this.select()">
                     <input id="numBlindsPlus" class="buttonIncrement" type="button"
                            name="jobNumBlindsPlus" value="+" style="margin-left: 2px">
                     <input id="numBlindsMinus" class="buttonIncrement" type="button"
@@ -77,8 +78,8 @@
                 <div class="fieldContent">
                     <!-- WIDTH -->
                     <label>Width:</label>
-                    <input id="width" type="number" name="sizeWidth"
-                           placeholder="123.45" step="0.01" min="26" max="269.99" required>
+                    <input id="width" type="number" name="sizeWidth" placeholder="123.45"
+                           step="0.01" min="26" max="269.99" onfocus="this.select()" required>
                     <select class="unitsSelect" id="widthUnit">
                         <option value="in">in</option>
                         <option value="mm">mm</option>
@@ -87,7 +88,7 @@
                     <!-- HEIGHT -->
                     <br><label>Height:</label>
                     <input id="height" type="number" name="sizeHeight" placeholder="123.45"
-                           step="0.01" min="40" max="279.99" required>
+                           step="0.01" min="40" max="279.99" onfocus="this.select()" required>
                     <select class="unitsSelect" id="heightUnit">
                         <option value="in">in</option>
                         <option value="mm">mm</option>
@@ -95,7 +96,8 @@
                     </select>
                     <!-- NUMBER OF WIDTHS -->
                     <br><label>No. Widths:</label>
-                    <input id="numOfWidths" type="number" name="jobNumOfWidths" placeholder="1" min="1" step="1">
+                    <input id="numOfWidths" type="number" name="jobNumOfWidths" placeholder="1"
+                           min="1" step="1" onfocus="this.select()">
                     <input id="numWidthsPlus" class="buttonIncrement" type="button"
                            name="jobNumWidthsPlus" value="+" style="margin-left: 2px">
                     <input id="numWidthsMinus" class="buttonIncrement" type="button"
@@ -173,7 +175,7 @@
                     <!-- TYPE -->
                     <label>Type:</label>
                     <input id="railingType" type="text" name="railingType" placeholder="Baton"
-                           list="railingDataList">
+                           list="railingDataList" onfocus="this.select()">
                     <datalist id="railingDataList">
                         <option value="Baton">
                         <option value="Evans">
@@ -183,7 +185,7 @@
                     <!-- DEPTH -->
                     <br><label>Depth:</label>
                     <input id="railingDepth" type="number" name="railingDepth"
-                           step="0.01" placeholder="6">
+                           step="0.01" placeholder="6" onfocus="this.select()">
                     <select class="unitsSelect" id="railingUnit">
                         <option value="in">in</option>
                         <option value="mm">mm</option>
