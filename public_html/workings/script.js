@@ -126,6 +126,9 @@ function onPageLoad() {
         // Generate drawing and calculations
         generateBlinds();
 
+        // Apply labels to dimensional rulers now table generated.
+        writeDimensionLabels();
+
         // Write measure details to drawing:
         writeMeasureDetails();
 
@@ -1363,7 +1366,7 @@ function initImgVars() {
     /* Calculate how many images needed by width and height. Width is simply the amount of rings,
     double, then plus the initial side image. Height is pockets count, tripled, then plus 3 for
     velcro and bottom pleat. */
-    var MAX_WIDTH = 21.6; // size of table on page in cm (page width = 21.6cm)
+    var MAX_WIDTH = 21; // size of table on page in cm (page width = 21.6cm)
     var MAX_HEIGHT = 19; // (page height = 27.94cm)
     var MAX_IMG_SIZE = 1.5; // natural image size in cm, to avoid stretching.
     var gridNumWidth = (blind.ringsCount * 2) + 1 + 1; // +1 for initial edge, +1 again for dimension lines
@@ -1419,6 +1422,49 @@ function initImgVars() {
 
 
 /**
+ * Write Labels on Dimensions
+ * Write the labels on the drawings dimensional guides now that the drawing is made.
+ */
+function writeDimensionLabels() {
+    // Pure JS allows table index searching.
+    var blindTable = document.getElementById("blindTable");
+
+    // Get the total rows and columns of the table
+    var totalRows = blindTable.rows.length;
+    var totalCols = blindTable.rows[0].cells.length;
+
+    // Pick middle cells.
+    var middleRow = Math.floor(totalRows / 2); // Always favour upper
+    var middleCol = Math.ceil(totalCols / 2);
+
+    // Save cell locations now found.
+    var cellVertical = blindTable.rows[middleRow].cells[0];
+    var cellHorizontal = blindTable.rows[totalRows - 1].cells[middleCol]; // last row
+
+    // Update class of existing TD's for CSS styling.
+    cellVertical.classList.add("labelImg");
+    cellVertical.classList.add("labelImgDimensions");
+    cellVertical.innerHTML = window.lineVERTICAL + "<span>" + blind.height + "</span>";
+
+    cellHorizontal.classList.add("labelImg");
+    cellHorizontal.classList.add("labelImgDimensions");
+    cellHorizontal.innerHTML = window.lineHORIZONTAL + "<span>" + blind.width + "</span>";
+
+
+    /*foldL.append("<td class='labelImg'>" + window.blankMIDDLE +
+        "<span>" + round1DP(stackSizes.pop()) + "</span></td><td>" + window.blankMIDDLE +
+        "</td>");*/
+
+
+    /*hem.append("<td>" + window.hemMIDDLE + "</td><td class='labelImg'>" +
+        window.hemMIDDLE + "<span class='lblImgSmall'>" + round1DP(stackSizes.pop()) +
+        "</span></td>");*/
+
+}
+
+
+
+/**
  * Write measure details:
  * Write cut length details at bottom of drawing.
  */
@@ -1436,10 +1482,10 @@ function writeMeasureDetails() {
             round1DP(blind.cutLengthFabInner) + " " + blind.widthUnit + "</li></ul>");
     }
     /* Outer Linings: */
-    $("#liningMeasures").append("Lining:<ul><li>" + round1DP(blind.cutLengthFabInner) + "</li><li>+"
-        + round1DP(blind.pocketsTotalLength) + "</li><li class='cutSum'>" +
-        round1DP(+blind.cutLengthFabInner + +blind.pocketsTotalLength) + " " + blind.widthUnit +
-        "<span class='cutSumCalc'> (" + round2DP(blind.cutLengthLining) + ")</span></li></ul>");
+    $("#liningMeasures").append("Lining:<ul><li>" + round1DP(blind.cutLengthFabInner) + "</li>" +
+        "<li>+" + round1DP(blind.pocketsTotalLength) + "</li><li class='cutSum'>" +
+        round1DP(+blind.cutLengthFabInner + +blind.pocketsTotalLength) + " " +
+        blind.widthUnit + "</li></ul>");
 }
 
 /**
