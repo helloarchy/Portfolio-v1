@@ -311,6 +311,7 @@ BLINDS DRAWING BOX: (A4 page)
 #jobDetails {
     display: -webkit-flex;
     display: flex;
+    align-items: center;
     width: 100%;
     height: 3cm;
     font-family: Lato, sans-serif;
@@ -329,7 +330,7 @@ BLINDS DRAWING BOX: (A4 page)
 }
 
 #drawingDetailsCustAndRef {
-    padding: 0 0 10px 10px;
+    padding: 0 0 10px 15px;
     font-size: 22px;
 }
 
@@ -385,7 +386,7 @@ BLINDS DRAWING BOX: (A4 page)
     /*width: auto;
     max-width: 100%;*/
     max-height: 20cm;
-    min-height: 20cm;
+    min-height: 19cm;
     table-layout: fixed;
     border-spacing: 0;
     margin: 0 auto 0 auto;
@@ -458,42 +459,42 @@ table, th, td, img {
     display: -webkit-flex;
     display: flex;
     width: auto;
-    height: 3cm;
+    height: 2.75cm;
     font-family: Lato, sans-serif;
-    font-size: 22px;
+    font-size: 20px;
     margin-top: 5px;
     padding: 0 75px 0 75px;
 }
 
 #measureDetails div {
     margin: auto;
-    font-size: 24px;
+    font-size: 22px;
 }
 
 #measureDetails ul {
-    height: 5.5cm;
+    /*height: 5.5cm;*/
     list-style-type: none;
     margin: 0;
     text-align: right;
-    font-size: 20px;
+    font-size: 18px;
     font-style: italic;
 }
 
 .cutSum {
     font-style: normal;
-    font-size: 24px;
+    font-size: 22px;
     border-top: 2px solid black;
 }
 
 .cutSumCalc {
-    font-size: 20px;
+    font-size: 18px;
     font-style: italic;
 }
 
 #numWidthsInfo {
     width: auto;
     font-family: Lato, sans-serif;
-    font-size: 22px;
+    font-size: 20px;
     padding: 10px 0 15px 0;
     background: #F4F4F4;
     text-align: center;
@@ -504,9 +505,9 @@ table, th, td, img {
     display: -webkit-flex;
     display: flex;
     width: auto;
-    height: 2cm;
+    height: 1.5cm;
     font-family: Lato, sans-serif;
-    font-size: 20px;
+    font-size: 18px;
     padding: 0 100px 0 100px;
     font-style: italic;
     border-top: 1px solid black;
@@ -514,7 +515,7 @@ table, th, td, img {
 }
 
 #disclaimer ul {
-    font-size: 16px;
+    font-size: 14px;
 }
 /*
 BLINDS DRAWING BOX (end) ------------------------ /\
