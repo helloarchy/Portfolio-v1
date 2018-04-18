@@ -4,7 +4,7 @@
  * a roman blind, as per the various input parameters. Has many extra options for fine tuning the
  * output blind.
  * Created: 2017/01/30
- * Last modified: 2018/01/31
+ * Last modified: 2018/04/18
  * @author Robert Hardy
  * @version 1.2.1
  */
@@ -23,7 +23,7 @@ var DEFAULT_FAB_CUT_WIDTH = 123.5; // cm
 var DEFAULT_FAB_REPEAT = 23.45; // cm
 var DEFAULT_RAIL_BATON = 6; // cm
 var DEFAULT_RAIL_EVANS = 6; // cm
-var DEFAULT_RAIL_HALLIS = 4; // cm
+var DEFAULT_RAIL_HALLIS = 5; // cm
 var DEFAULT_WATERFALL_INCREMENT = 2.5; // cm
 var DEFAULT_SHOWING_HEM = 2.5; // cm
 var DEFAULT_RAILING_TYPE = "Railing";
