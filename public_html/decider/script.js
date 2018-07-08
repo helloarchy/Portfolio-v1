@@ -82,7 +82,7 @@ function reset() {
     $('#textbox1').val("");
     document.getElementById("decisionHeader").innerHTML = "";
     document.getElementById("decisionAnswer").innerHTML = "";
-    $('#decideButton').val('Decide');
+    $('#decideButton').val('decide');
 
     $('#decisionAnswer').css('color', 'white');
     $('#decisionAnswer').css('font-size', '20px');
