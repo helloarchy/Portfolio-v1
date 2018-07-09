@@ -15,4 +15,10 @@ class Decide {
     public static choose(choices: Choice[]) {
         return choices[Math.floor(Math.random() * choices.length)];
     }
+
+
+    public static shortlist(initialList: List, shortlist: List, decidedChoice: Choice) {
+        initialList.remove(decidedChoice);
+        shortlist.addExisting(decidedChoice);
+    }
 }

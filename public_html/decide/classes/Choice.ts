@@ -9,19 +9,31 @@
  */
 class Choice {
     private _value: string;
-    private _shortlisted: boolean;
     private _decidable: boolean;
-
+    private readonly _ID: number;
+    private static globalID: number = 0;
+    private _field: Field;
 
     /**
      *
-     * @param {string} value
      */
-    constructor(value: string) {
-        this._value = value;
+    constructor(field: Field) {
+        this._ID = Choice.globalID;
+        Choice.globalID++;
+        this._field = field;
     }
 
 
+    /**
+     * Get the choices ID.
+     * @returns {number}
+     * @constructor
+     */
+    get ID(): number {
+        return this._ID;
+    }
+
+    
     /**
      *
      * @returns {boolean}
@@ -55,23 +67,5 @@ class Choice {
      */
     set value(value: string) {
         this._value = value;
-    }
-
-
-    /**
-     *
-     * @returns {boolean}
-     */
-    get shortlisted(): boolean {
-        return this._shortlisted;
-    }
-
-
-    /**
-     *
-     * @param {boolean} value
-     */
-    set shortlisted(value: boolean) {
-        this._shortlisted = value;
     }
 }
