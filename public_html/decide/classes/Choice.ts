@@ -10,6 +10,8 @@
 class Choice {
     private _value: string;
     private _shortlisted: boolean;
+    private _decidable: boolean;
+
 
     /**
      *
@@ -17,6 +19,24 @@ class Choice {
      */
     constructor(value: string) {
         this._value = value;
+    }
+
+
+    /**
+     *
+     * @returns {boolean}
+     */
+    get decidable(): boolean {
+        return this._decidable;
+    }
+
+
+    /**
+     *
+     * @param {boolean} value
+     */
+    set decidable(value: boolean) {
+        this._decidable = value;
     }
 
 

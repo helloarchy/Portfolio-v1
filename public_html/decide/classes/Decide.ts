@@ -7,7 +7,12 @@
  * Part of the rarh.io project.
  */
 class Decide {
-    public static choose(choices: string[]) {
+    /**
+     * Choose a random choice from a given list of Choice objects.
+     * @param {Choice[]} choices
+     * @returns {Choice} the Choice object at the random index.
+     */
+    public static choose(choices: Choice[]) {
         return choices[Math.floor(Math.random() * choices.length)];
     }
 }
