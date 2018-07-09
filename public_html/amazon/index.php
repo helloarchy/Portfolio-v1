@@ -10,7 +10,7 @@
 </head>
 <body>
 <?php
-require_once ("../../application/config/dbconnect.php");
+require_once("../../application/config/dbconnect.php");
 ?>
 
 <!-- Generate a list of User ID's to the console, for the user to view and try -->
@@ -22,8 +22,8 @@ $queryUserPrompt = "SELECT UserID FROM orders;";
 $resultUserPrompt = mysqli_query($conn, $queryUserPrompt);
 while ($rowUserPrompt = mysqli_fetch_array($resultUserPrompt)) {
     echo "<script>" .
-            "console.log(' - " . $rowUserPrompt['UserID'] . "')" .
-         "</script>";
+        "console.log(' - " . $rowUserPrompt['UserID'] . "')" .
+        "</script>";
 }
 ?>
 <script>
@@ -38,14 +38,16 @@ while ($rowUserPrompt = mysqli_fetch_array($resultUserPrompt)) {
 
     <table title="orderTable" width="710" cellspacing="0" style="border-collapse: collapse">
         <?php
-        /* On form submit, take text box value if not empty and produce order page, else display error message.*/
+        /* On form submit, take text box value if not empty and produce order
+        page, else display error message.*/
         if (isset($_POST['submit']) && !empty($_POST['userIDinput'])) {
             $userID = $_POST['userIDinput'];
             /*echo "<h1>You entered user ID:" . $userID . "</h1>";*/
 
             $queryGetUser = "SELECT * FROM users WHERE UserID = " . $userID . ";";
             $resultGetUser = mysqli_query($conn, $queryGetUser);
-            /*If number of rows in table is more than zero, display results, else display error message.*/
+            /*If number of rows in table is more than zero, display results,
+            else display error message.*/
             if (!(mysqli_num_rows($resultGetUser) == 0)) {
 
                 // Split user details row into array.
@@ -88,8 +90,10 @@ while ($rowUserPrompt = mysqli_fetch_array($resultUserPrompt)) {
                 echo "</tr>";
 
                 /* Orders Header Strip:
-                Detail the year of order placed, the total of the order, the discount price if any, and order id. */
-                $queryOrderStrip = "SELECT orders.Year, Totalpay, (sum(Unitprice * Quantity) - Totalpay) AS Discount, orders.OrderID
+                Detail the year of order placed, the total of the order, the discount price if any,
+                and order id. */
+                $queryOrderStrip = "SELECT orders.Year, Totalpay, (sum(Unitprice * Quantity) - Totalpay) 
+                                    AS Discount, orders.OrderID
                                     FROM orders, trans, books
                                     WHERE UserID = " . $userID . "
                                       AND orders.OrderID = trans.OrderID
@@ -102,7 +106,8 @@ while ($rowUserPrompt = mysqli_fetch_array($resultUserPrompt)) {
 
                 while ($rowOrderStrip = mysqli_fetch_array($resultOrderStrip)) {
                     // Pretty spacer between orders:
-                    echo "<tr style='border-bottom: 1px solid lightcyan;'><td style='height: 7px'></td></tr>";
+                    echo "<tr style='border-bottom: 1px solid lightcyan;'>
+                                            <td style='height: 7px'></td></tr>";
                     echo "<tr><td style='height: 7px'></td></tr>";
 
                     echo "<tr style='background-color: lightgrey;'>";
@@ -119,8 +124,9 @@ while ($rowUserPrompt = mysqli_fetch_array($resultUserPrompt)) {
 
                     /*
                      * Loop for every item within the order:
-                     * Create the query, get results, split into array for each row. Display contents of each row.
-                     * */
+                     * Create the query, get results, split into array for each row.
+                     * Display contents of each row.
+                     */
                     // Get details of each order.
                     $queryOrderItems = "SELECT * FROM orders, trans, books
                                         WHERE orders.OrderID = " . $rowOrderStrip['OrderID'] . "
@@ -156,7 +162,8 @@ while ($rowUserPrompt = mysqli_fetch_array($resultUserPrompt)) {
                         echo "<td>" . $rowOrderItems['Genre'] . "</td>";
 
                         // Total price for items, format number to two decimal places
-                        $priceQuantity = number_format(($rowOrderItems['Unitprice'] * $rowOrderItems['Quantity']),
+                        $priceQuantity = number_format(($rowOrderItems['Unitprice']
+                            * $rowOrderItems['Quantity']),
                             2, '.', '');
                         echo "<td>£" . $priceQuantity . "</td>";
 
@@ -171,8 +178,6 @@ while ($rowUserPrompt = mysqli_fetch_array($resultUserPrompt)) {
         }
         ?>
     </table>
-
-
     <div title="bannerBottom" style="width: auto">
         <img src="images/amazon_bottombanner.png">
     </div>
@@ -192,7 +197,6 @@ while ($rowUserPrompt = mysqli_fetch_array($resultUserPrompt)) {
             <input type="submit" name="submit" value="Submit" style="float: right; margin-right: 50px">
         </form>
     </div>
-
 </div>
 </body>
 </html>
