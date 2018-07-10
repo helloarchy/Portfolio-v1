@@ -30,7 +30,37 @@ class Field {
 
 
     private createHTML() {
+        /* Create a div with the field ID, and place it inside parent div. */
+        let parent = document.getElementById(this._parent.ID.toString());
+        let child = document.createElement('div');
+        child.setAttribute('id', 'field-' + this._ID);
+        parent.appendChild(child);
 
+        /* Place X (reject) button in the div  */
+        this.createButton(child,"X", "&times;");
+
+        /* Place left (demote (un-shortlist)) arrow button in the div */
+        this.createButton(child, "L", "&larr");
+
+        /* Place input text box (value field) in the div */
+        let text_box = document.createElement('input');
+        text_box.setAttribute('type', 'text');
+
+        /* Place right arrow (promote (shortlist)) button in the div */
+        this.createButton(child, "R", "&rarr");
+    }
+
+    /**
+     *
+     * @param parent
+     * @param {String} letter
+     * @param {String} symbol
+     */
+    private createButton(parent, letter: string, symbol: string) {
+        let button = document.createElement('button');
+        button.setAttribute('id', 'field-' + this._ID + '-' + letter);
+        button.innerHTML = symbol;
+        parent.appendChild(button);
     }
 
 

@@ -35,7 +35,11 @@ class List {
      *
      */
     private createHTML() {
-
+        /* Create a div with the list ID, and place it inside parent div. */
+        let parent = document.getElementById(this._parentID);
+        let child = document.createElement('div');
+        child.setAttribute('id', 'list-' + this._ID);
+        parent.appendChild(child);
 
     }
 
@@ -43,11 +47,14 @@ class List {
     /**
      * Delete List and all HTML
      */
-    public delete() {
+    public deleteList() {
+        // Delete html
         let parent = document.getElementById(this._parentID);
-        let child = document.getElementById("list" + this._ID);
-        document.getElementById("list" + this.ID).remove();
+        let child = document.getElementById("list-" + this._ID);
+        parent.removeChild(child); // IE friendly
 
+        // Remove self from previous list.
+        this._previousList.nextList = null;
     }
 
 
@@ -86,6 +93,10 @@ class List {
     public remove(field: Field) {
         this._fields.remove(field);
         field.delete();
+        // Delete the list if no fields left.
+        if (!(this._fields.length() > 0)) {
+            this.deleteList();
+        }
     }
 
 
