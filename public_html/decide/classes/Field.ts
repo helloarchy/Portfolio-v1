@@ -12,6 +12,10 @@ class Field {
     private static _globalID: number = 0;
     private _value: string;
     private _decidable: boolean;
+    private X_button;
+    private L_button;
+    private text_box;
+    private R_button;
 
     /**
      *
@@ -25,11 +29,17 @@ class Field {
         this._decidable = false;
 
         // Create html
+        this.createHTML();
 
+        // Test which buttons should be on display
+        this.showHideButtons();
     }
 
 
-    private createHTML() {
+    /**
+     *
+     */
+    public createHTML() {
         /* Create a div with the field ID, and place it inside parent div. */
         let parent = document.getElementById(this._parent.ID.toString());
         let child = document.createElement('div');
@@ -37,18 +47,35 @@ class Field {
         parent.appendChild(child);
 
         /* Place X (reject) button in the div  */
-        this.createButton(child,"X", "&times;");
+        this.X_button = this.createButton(child, "X", "&times;");
+        this.X_button.addEventListener('click', Move.reject(this, this._parent));
 
         /* Place left (demote (un-shortlist)) arrow button in the div */
-        this.createButton(child, "L", "&larr");
+        this.L_button = this.createButton(child, "L", "&larr");
+        this.L_button.addEventListener('click', Move.demote(this, this._parent));
 
-        /* Place input text box (value field) in the div */
-        let text_box = document.createElement('input');
-        text_box.setAttribute('type', 'text');
+        /* Place input text box (value field) in the div, set the value if exists */
+        this.text_box = document.createElement('input');
+        this.text_box.setAttribute('type', 'text');
+        this.text_box.addEventListener('onchange', this.valueChange());
+        if (this._value !== null || this._value !== "") {
+            this.text_box.value = this._value;
+        }
 
         /* Place right arrow (promote (shortlist)) button in the div */
-        this.createButton(child, "R", "&rarr");
+        this.R_button = this.createButton(child, "R", "&rarr");
+        this.R_button.addEventListener('click', Move.promote(this, this._parent))
     }
+
+
+    /**
+     *
+     * @returns
+     */
+    private valueChange(): any {
+        this._value = this.text_box.value;
+    }
+
 
     /**
      *
@@ -61,39 +88,7 @@ class Field {
         button.setAttribute('id', 'field-' + this._ID + '-' + letter);
         button.innerHTML = symbol;
         parent.appendChild(button);
-    }
-
-
-    /**
-     *
-     * @param {string} newParent
-     */
-    public transplant(newParent: List) {
-        // Get current container ID and new parent ID.
-        let thisNode = document.getElementById(this._ID.toString());
-        let newParentID = newParent.ID.toString();
-
-        // Move it as a child to new parent (transplant)
-        document.getElementById(newParentID).appendChild(thisNode);
-
-        // Set new parent.
-        this._parent = newParent;
-    }
-
-
-    /**
-     *
-     */
-    public hide() {
-
-    }
-
-
-    /**
-     *
-     */
-    public show() {
-
+        return button;
     }
 
 
@@ -101,7 +96,9 @@ class Field {
      *
      */
     public delete() {
-
+        let parent = document.getElementById('list-' + this._parent.ID.toString());
+        let child = document.getElementById('field-' + this._ID.toString());
+        parent.removeChild(child);
     }
 
 
@@ -148,5 +145,23 @@ class Field {
      */
     get ID(): number {
         return this._ID;
+    }
+
+
+    /**
+     *
+     * Note: named this way because of "lack call signature" bug.
+     * @param {List} value
+     */
+    public setParent(value: List) {
+        this._parent = value;
+    }
+
+
+    /**
+     * Determine which buttons should be on display for user to click/tap
+     */
+    private showHideButtons() {
+
     }
 }

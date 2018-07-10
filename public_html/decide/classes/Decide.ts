@@ -27,10 +27,11 @@ class Decide {
 
 
     /**
-     *
+     * TODO: Delete me
      * @param {List} initialList
      * @param {List} shortlist
      * @param {Field} decidedField
+     * @deprecated
      */
     public static shortlist(initialList: List, shortlist: List, decidedField: Field) {
         /* Check if there is an existing shortlist, otherwise create a new one. */

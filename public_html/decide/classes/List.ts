@@ -13,7 +13,6 @@ class List {
     private readonly _ID: number;
     private static _globalID: number = 0;
 
-
     /**
      *
      * @param parentID
@@ -53,7 +52,7 @@ class List {
         let child = document.getElementById("list-" + this._ID);
         parent.removeChild(child); // IE friendly
 
-        // Remove self from previous list.
+        // Remove self from previous list. (Cannot be called if a next List exists)
         this._previousList.nextList = null;
     }
 
@@ -81,7 +80,6 @@ class List {
      * @param {Field} field
      */
     public addExisting(field: Field) {
-        field.transplant(this);
         this._fields.add(field);
     }
 
@@ -91,8 +89,9 @@ class List {
      * @param {Field} field
      */
     public remove(field: Field) {
-        this._fields.remove(field);
+        // Delete field html, then remove field from list array
         field.delete();
+        this._fields.remove(field);
         // Delete the list if no fields left.
         if (!(this._fields.length() > 0)) {
             this.deleteList();
@@ -116,5 +115,23 @@ class List {
      */
     set nextList(value: List) {
         this._nextList = value;
+    }
+
+
+    /**
+     *
+     * @returns {List}
+     */
+    get previousList(): List {
+        return this._previousList;
+    }
+
+
+    /**
+     *
+     * @returns {List}
+     */
+    get nextList(): List {
+        return this._nextList;
     }
 }
