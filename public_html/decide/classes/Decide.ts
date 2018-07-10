@@ -9,20 +9,41 @@
 class Decide {
     /**
      * Choose a random choice from a given list of Field objects.
-     * @param {Field[]} fields
      * @returns {Field} the Choice object at the random index.
+     * @param list
      */
-    public static choose(fields: Field[]) {
-
-        // TODO: Iterate through list and write decidable fields to new list.
-
-
-        return fields[Math.floor(Math.random() * fields.length)];
+    public static choose(list: List) {
+        /* Create a new array with all of the fields which are decidable. */
+        let decidableFields: Field[] = null;
+        for (let f of list.fields.array ) {
+            if (f.decidable) {
+                decidableFields.push(f);
+            }
+        }
+        /* Choose a random item from the decidable list. */
+        let randomIndex = Math.floor(Math.random() * decidableFields.length);
+        return decidableFields[randomIndex];
     }
 
 
+    /**
+     *
+     * @param {List} initialList
+     * @param {List} shortlist
+     * @param {Field} decidedField
+     */
     public static shortlist(initialList: List, shortlist: List, decidedField: Field) {
+        /* Check if there is an existing shortlist, otherwise create a new one. */
+        if (shortlist !== null) {
+            shortlist.addExisting(decidedField);
+        } else {
+            /* Create a new list, set previous and next lists links accordingly,
+            and add the field to the new list. */
+            let newList: List = new List("grid-for-lists", initialList);
+            initialList.nextList = newList;
+            newList.addExisting(decidedField);
+        }
+        /* Remove the fields from its current list. */
         initialList.remove(decidedField);
-        shortlist.addExisting(decidedField);
     }
 }

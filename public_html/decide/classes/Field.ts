@@ -38,7 +38,7 @@ class Field {
      *
      * @param {string} newParent
      */
-    public reparent(newParent: List) {
+    public transplant(newParent: List) {
         // Get current container ID and new parent ID.
         let thisNode = document.getElementById(this._ID.toString());
         let newParentID = newParent.ID.toString();
