@@ -1,14 +1,16 @@
 /**
  * List.ts
- * This class defines a single list for containing Choices.
+ * This class defines a single list for containing Fields.
  * @author Robert Hardy
  * @since 2018-07-09
  * Part of the rarh.io project.
  */
 class List {
-    private _choices: ChoiceArray;
+    private _fields: FieldArray;
     private _counter: number;
     private _parent: string;
+    private readonly _ID: number;
+    private static _globalID: number = 0;
 
 
     /**
@@ -16,64 +18,85 @@ class List {
      * @param {string} parent
      */
     constructor(parent: string) {
-        this._choices = new ChoiceArray();
+        this._fields = new FieldArray();
         this._counter = 0;
         this._parent = parent;
+        this._ID = List._globalID;
+        List._globalID++;
+
+
+        // create HTML
+        this.createHTML()
     }
 
 
     /**
      *
-     * @returns {Choice[]}
      */
-    get choices(): Choice[] {
-        return this._choices.choiceArray;
+    private createHTML() {
+
     }
 
 
     /**
-     * Add an empty field for the user to add their choice to.
+     * Delete List and all HTML
+     */
+    public delete() {
+
+    }
+
+
+    /**
+     *
+     * @returns {Field[]}
+     */
+    get fields(): Field[] {
+        return this._fields.fieldArray;
+    }
+
+
+    /**
+     * Add an empty field for the user to add their field to.
      */
     public addEmpty() {
         this._counter++;
-        let choice: Choice = new Choice();
-        this._choices.add(choice);
+        let field: Field = new Field();
+        this._fields.add(field);
 
         // Now create the field
-        this.addField(choice);
+        this.addField(field);
 
     }
 
 
     /**
-     * Add an existing choice choice from another list, ie, a shortlisted choice.
-     * @param {Choice} choice
+     * Add an existing field field from another list, ie, a shortlisted field.
+     * @param {Field} field
      */
-    public addExisting(choice: Choice) {
+    public addExisting(field: Field) {
         this._counter++;
 
         // Now create the field
-        this.addField(choice);
+        this.addField(field);
     }
 
 
     /**
      *
+     * @param {Field} field
      */
-    public addField(choice: Choice) {
-        let ID: number = choice.ID;
-        /*
-        * TODO: Add code for adding html text input, on change update choice value, etc.
-        */
-    }
-
-
-    /**
-     *
-     * @param {Choice} choice
-     */
-    public remove(choice: Choice) {
+    public remove(field: Field) {
         this._counter--;
-        this._choices.remove(choice);
+        this._fields.remove(field);
+    }
+
+
+    /**
+     * Get the lists ID.
+     * @returns {number}
+     * @constructor
+     */
+    get ID(): number {
+        return this._ID;
     }
 }

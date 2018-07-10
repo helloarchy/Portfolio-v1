@@ -9,11 +9,25 @@ Part of the rarh.io project.
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
-
+<header>
+    <h1>Decider 2.0</h1>
+    <p>A (revised) tool for making decisions.</p>
+</header>
+<main>
+    <div id="description">
+        <p>Enter all of your choices below and one will be picked at random. You can
+            settle with this decision, or proceed to shortlist it and carry on deciding.
+            Finally, one can be picked from the shortlist(s) as the final decision.</p>
+    </div>
+    <div id="grid-for-lists">
+        <!-- All lists are placed here by script -->
+    </div>
+</main>
+<footer>
+    <a href="http://rarh.io">rarh.io</a>
+</footer>
 <script>
     /*
     * List intialList = new List("list0");
@@ -28,6 +42,5 @@ Part of the rarh.io project.
     * Decide.shortlist(initialList, shortList, decidedChoice);
     * */
 </script>
-
 </body>
 </html>

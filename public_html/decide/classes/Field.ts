@@ -7,9 +7,9 @@
  * Part of the rarh.io project.
  */
 class Field {
-    private _parent: string;
+    private _parent: List;
     private readonly _ID: number;
-    private static globalID: number = 0;
+    private static _globalID: number = 0;
     private _value: string;
     private _decidable: boolean;
 
@@ -17,10 +17,10 @@ class Field {
      *
      * @param {string} parent
      */
-    constructor(parent: string) {
+    constructor(parent: List) {
         this._parent = parent;
-        this._ID = Field.globalID;
-        Field.globalID++;
+        this._ID = Field._globalID;
+        Field._globalID++;
         this._value = null;
         this._decidable = false;
 
@@ -29,33 +29,94 @@ class Field {
     }
 
 
-    /* TODO: FINISH MOVING CHOICE TO ME AND THEN DELETE CHOICE.        /!\      <-------------------          /!\       */
-
-
-    public hide() {
+    private createHTML() {
 
     }
 
-    public show() {
-
-    }
-
-    public delete() {
-
-    }
 
     /**
      *
      * @param {string} newParent
      */
-    public reparent(newParent: string) {
-        // Get current container.
+    public reparent(newParent: List) {
+        // Get current container ID and new parent ID.
         let thisNode = document.getElementById(this._ID.toString());
+        let newParentID = newParent.ID.toString();
 
-        // Move it as a child to new parent.
-        document.getElementById(newParent).appendChild(thisNode);
+        // Move it as a child to new parent (transplant)
+        document.getElementById(newParentID).appendChild(thisNode);
 
         // Set new parent.
         this._parent = newParent;
+    }
+
+
+    /**
+     *
+     */
+    public hide() {
+
+    }
+
+
+    /**
+     *
+     */
+    public show() {
+
+    }
+
+
+    /**
+     *
+     */
+    public delete() {
+
+    }
+
+
+    /**
+     *
+     * @returns {string}
+     */
+    get value(): string {
+        return this._value;
+    }
+
+
+    /**
+     *
+     * @param {string} value
+     */
+    set value(value: string) {
+        this._value = value;
+    }
+
+
+    /**
+     *
+     * @returns {boolean}
+     */
+    get decidable(): boolean {
+        return this._decidable;
+    }
+
+
+    /**
+     *
+     * @param {boolean} value
+     */
+    set decidable(value: boolean) {
+        this._decidable = value;
+    }
+
+
+    /**
+     * Get the fields ID
+     * @returns {number}
+     * @constructor
+     */
+    get ID(): number {
+        return this._ID;
     }
 }
