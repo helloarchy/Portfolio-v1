@@ -9,13 +9,13 @@
  * Part of the rarh.io project.
  */
 class DynamicArray {
-    private _array: any[];
+    private _array: Array<any>;
 
     /**
      *
      */
     constructor() {
-        this._array = null;
+        this._array = [];
     }
 
 
@@ -25,7 +25,11 @@ class DynamicArray {
      */
     public add(value: any) {
         // if not unique reject!
-        this._array[this._array.length] = value;
+        if (this._array === null) {
+            this._array.push(value);
+        } else {
+            this._array[this._array.length] = value;
+        }
     }
 
 

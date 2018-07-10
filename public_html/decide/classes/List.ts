@@ -6,21 +6,24 @@
  * Part of the rarh.io project.
  */
 class List {
-    private _previousList: List;
+    private readonly _previousList: List;
     private _nextList: List;
     private readonly _fields: DynamicArray;
     private readonly _parentID: string;
     private readonly _ID: number;
     private static _globalID: number = 0;
+    private _title: string;
 
     /**
      *
      * @param parentID
      * @param previousList
+     * @param title
      */
-    constructor(parentID: string, previousList: List = null) {
-        this._previousList = previousList;
+    constructor(parentID: string, previousList: List = null, title: string) {
         this._parentID = parentID;
+        this._previousList = previousList;
+        this._title = title;
         this._fields = new DynamicArray();
         this._ID = List._globalID;
         List._globalID++;

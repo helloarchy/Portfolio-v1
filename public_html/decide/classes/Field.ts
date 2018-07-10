@@ -12,10 +12,10 @@ class Field {
     private static _globalID: number = 0;
     private _value: string;
     private _decidable: boolean;
-    private X_button;
-    private L_button;
-    private text_box;
-    private R_button;
+    private _X_button;
+    private _L_button;
+    private _text_box;
+    private _R_button;
 
     /**
      *
@@ -41,39 +41,34 @@ class Field {
      */
     public createHTML() {
         /* Create a div with the field ID, and place it inside parent div. */
-        let parent = document.getElementById(this._parent.ID.toString());
+        let parent = document.getElementById("list-" + this._parent.ID.toString());
+        /* DEBUG */
+        console.log("parent ID = list-" + this._parent.ID.toString());
         let child = document.createElement('div');
         child.setAttribute('id', 'field-' + this._ID);
         parent.appendChild(child);
 
         /* Place X (reject) button in the div  */
-        this.X_button = this.createButton(child, "X", "&times;");
-        this.X_button.addEventListener('click', Move.reject(this, this._parent));
+        this.createButton(this._X_button, child,"X", "&times;");
+        //this._X_button.addEventListener('click', Move.reject(this, this._parent));
+        document.getElementById('field-0-X').addEventListener('click', Move.reject(this, this._parent));
 
         /* Place left (demote (un-shortlist)) arrow button in the div */
-        this.L_button = this.createButton(child, "L", "&larr");
-        this.L_button.addEventListener('click', Move.demote(this, this._parent));
+        /*this._L_button = this.createButton(child, "L", "&larr");
+        this._L_button.addEventListener('click', Move.demote(this, this._parent));*/
 
         /* Place input text box (value field) in the div, set the value if exists */
-        this.text_box = document.createElement('input');
-        this.text_box.setAttribute('type', 'text');
-        this.text_box.addEventListener('onchange', this.valueChange());
+        /*this.text_box = document.createElement('input');
+        this._text_box.setAttribute('id', 'field-' + this._ID + '-text');
+        this._text_box.setAttribute('type', 'text');
+        this._text_box.addEventListener('onchange', this.valueChange());
         if (this._value !== null || this._value !== "") {
             this.text_box.value = this._value;
-        }
+        }*/
 
         /* Place right arrow (promote (shortlist)) button in the div */
-        this.R_button = this.createButton(child, "R", "&rarr");
-        this.R_button.addEventListener('click', Move.promote(this, this._parent))
-    }
-
-
-    /**
-     *
-     * @returns
-     */
-    private valueChange(): any {
-        this._value = this.text_box.value;
+        /*this._R_button = this.createButton(child, "R", "&rarr");
+        this._R_button.addEventListener('click', Move.promote(this, this._parent))*/
     }
 
 
@@ -83,13 +78,25 @@ class Field {
      * @param {String} letter
      * @param {String} symbol
      */
-    private createButton(parent, letter: string, symbol: string) {
-        let button = document.createElement('button');
-        button.setAttribute('id', 'field-' + this._ID + '-' + letter);
-        button.innerHTML = symbol;
-        parent.appendChild(button);
-        return button;
+    private createButton(param, parent, letter: string, symbol: string) {
+        param = document.createElement('button');
+        param.setAttribute('id', 'field-' + this._ID + '-' + letter);
+        param.innerHTML = symbol;
+        parent.appendChild(param);
+        //return button;
     }
+
+
+    /**
+     *
+     * @returns
+     */
+    private valueChange(): any {
+        this._value = this._text_box.value;
+    }
+
+
+
 
 
     /**
