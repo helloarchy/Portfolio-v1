@@ -8,57 +8,57 @@
  * @since 2018-07-09
  * Part of the rarh.io project.
  */
-class DynamicArray {
-    private _array: Array<any>;
+class FieldArray {
+    private _fieldArray: Array<Field>;
 
     /**
      *
      */
     constructor() {
-        this._array = [];
+        this._fieldArray = [];
     }
 
 
     /**
      *
-     * @param value
+     * @param field
      */
-    public add(value: any) {
+    public add(field: Field) {
         // if not unique reject!
-        if (this._array === null) {
-            this._array.push(value);
+        if (this._fieldArray === null) {
+            this._fieldArray.push(field);
         } else {
-            this._array[this._array.length] = value;
+            this._fieldArray[this._fieldArray.length] = field;
         }
     }
 
 
     /**
      *
-     * @returns {any[]}
+     * @returns {Field[]}
      */
-    get array(): any[] {
-        return this._array;
+    get array(): Array<Field> {
+        return this._fieldArray;
     }
 
 
     /**
      * Remove a given value from the dynamic array.
-     * @param value
+     * @param field
      */
-    public remove(value: any) {
+    public remove(field: Field) {
         let index: number = 0;
         // Find the choices index in the array, then delete it.
-        for (let val of this._array) {
-            index++;
-            if (val === value) {
-                console.log(this._array[index] + " removed!"); // DEBUG
-
+        for (let f of this._fieldArray) {
+            if (f.ID === field.ID) {
                 // TODO: Test for off-by-one error!
-                delete this._array[index];
+                this._fieldArray[index] = null;
+
+                console.log("Field-" + f.ID + " removed!"); // DEBUG
 
                 this.fixBlanks();
             }
+            index++;
         }
     }
 
@@ -68,11 +68,13 @@ class DynamicArray {
      * found to a new array, and replacing the array with the new once.
      */
     private fixBlanks() {
-        let newArray: any[] = [];
-        for (let val of this._array) {
-            newArray[newArray.length] = val;
+        let newArray: Array<Field> = [];
+        for (let f of this._fieldArray) {
+            if (f !== null) {
+                newArray.push(f);
+            }
         }
-        this._array = newArray;
+        this._fieldArray = newArray;
     }
 
 
@@ -81,6 +83,6 @@ class DynamicArray {
      * @returns {number}
      */
     public length() {
-        return this._array.length;
+        return this._fieldArray.length;
     }
 }

@@ -8,7 +8,7 @@
 class List {
     private readonly _previousList: List;
     private _nextList: List;
-    private readonly _fields: DynamicArray;
+    private _fields: FieldArray;
     private readonly _parentID: string;
     private readonly _ID: number;
     private static _globalID: number = 0;
@@ -24,7 +24,7 @@ class List {
         this._parentID = parentID;
         this._previousList = previousList;
         this._title = title;
-        this._fields = new DynamicArray();
+        this._fields = new FieldArray();
         this._ID = List._globalID;
         List._globalID++;
 
@@ -62,9 +62,9 @@ class List {
 
     /**
      *
-     * @returns {DynamicArray}
+     * @returns {FieldArray}
      */
-    get fields(): DynamicArray {
+    get fields(): FieldArray {
         return this._fields;
     }
 
@@ -74,7 +74,13 @@ class List {
      */
     public addEmpty() {
         let field: Field = new Field(this);
+
+        console.log("List-" + this.ID + " adding empty field-" + field.ID);
+        console.log("List-" + this.ID + " fields count = " + this._fields.length());
+
         this._fields.add(field);
+
+        console.log("List-" + this.ID + " fields count = " + this._fields.length());
     }
 
 
@@ -83,7 +89,13 @@ class List {
      * @param {Field} field
      */
     public addExisting(field: Field) {
+        // TODO: DEBUG
+        console.log("List-" + this.ID + " adding existing field-" + field.ID);
+        console.log("List-" + this.ID + " fields count = " + this._fields.length());
+
         this._fields.add(field);
+
+        console.log("List-" + this.ID + " fields count = " + this._fields.length());
     }
 
 
@@ -92,13 +104,17 @@ class List {
      * @param {Field} field
      */
     public remove(field: Field) {
-        // Delete field html, then remove field from list array
-        field.delete();
+        // TODO DEBUG
+        console.log("List-" + this.ID + " removing field-" + field.ID);
+        console.log("List-" + this.ID + " fields count = " + this._fields.length());
+
         this._fields.remove(field);
         // Delete the list if no fields left.
         if (!(this._fields.length() > 0)) {
             this.deleteList();
         }
+
+        console.log("List-" + this.ID + " fields count = " + this._fields.length());
     }
 
 

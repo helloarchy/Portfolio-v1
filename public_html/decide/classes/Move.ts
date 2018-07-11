@@ -65,20 +65,22 @@ class Move {
      * @param newList
      */
     private static transplant(field: Field, oldList: List, newList: List) {
-        /* Add the field to the new list */
-        newList.addExisting(field);
-
+        let field_copy = field;
+        // TODO: DEBUG
         console.log("Move: Transplanting field-" + field.ID +
             " from list-" + oldList.ID +
             " to list-" + newList.ID);
-        
+
+        /* Add the field to the new list */
+        newList.addExisting(field_copy);
+
         /* Move over HTML by re-parenting */
-        let child = document.getElementById('field-' + field.ID.toString());
+        let child = document.getElementById('field-' + field_copy.ID.toString());
         let newParent = "list-" + newList.ID.toString();
         document.getElementById(newParent).appendChild(child);
         
         /* Update Field parameters */
-        field.setParent(newList);
+        field_copy.setParent(newList);
         
         /* Delete field from old list */
         oldList.remove(field);
