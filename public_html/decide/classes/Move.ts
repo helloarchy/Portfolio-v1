@@ -17,11 +17,11 @@ class Move {
      */
     public static reject(field: Field, parent: List) : any {
         /* If in reject list, then delete, otherwise add to the reject list */
-        /*if (parent.previousList === null) {
+        if (parent.previousList === null) {
             field.delete();
         } else {
-            this.transplant(field, parent, this._rejectList); TODO: THIS IS KILLING OF THE WHOLE LIST FOR SOME REASON
-        }*/
+            this.transplant(field, parent, this._rejectList);
+        }
     }
 
 
@@ -62,16 +62,18 @@ class Move {
     private static transplant(field: Field, oldList: List, newList: List) {
         /* Add the field to the new list */
         newList.addExisting(field);
+
+        console.log("Why am I being fired when you haven't even clicked?!");
         
         /* Move over HTML by re-parenting */
-        let child = document.getElementById('field-' + field.ID.toString());
-        let newParent = "list-" + newList.ID.toString();
-        document.getElementById(newParent).appendChild(child);
+        //let child = document.getElementById('field-' + field.ID.toString());
+        //let newParent = "list-" + newList.ID.toString();
+        //document.getElementById(newParent).appendChild(child);
         
         /* Update Field parameters */
-        field.setParent(newList);
+        //field.setParent(newList);
         
         /* Delete field from old list */
-        oldList.remove(field);
+        //oldList.remove(field);
     }
 }

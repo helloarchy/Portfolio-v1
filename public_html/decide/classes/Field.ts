@@ -50,8 +50,11 @@ class Field {
 
         /* Place X (reject) button in the div  */
         this.createButton(this._X_button, child,"X", "&times;");
-        //this._X_button.addEventListener('click', Move.reject(this, this._parent));
-        document.getElementById('field-0-X').addEventListener('click', Move.reject(this, this._parent));
+        this._X_button = document.getElementById('field-' + this._ID + '-X');
+        //this._X_button.addEventListener("click", Move.reject(this, this._parent), true);
+        //this._X_button.on("click", Move.reject(this, this._parent));
+        this.attachEvents(this, this._X_button, this._L_button, this._X_button, this._R_button);
+
 
         /* Place left (demote (un-shortlist)) arrow button in the div */
         /*this._L_button = this.createButton(child, "L", "&larr");
@@ -71,9 +74,16 @@ class Field {
         this._R_button.addEventListener('click', Move.promote(this, this._parent))*/
     }
 
+    private attachEvents(field: Field, X_button, L_button, text_box, R_button) {
+        this._X_button.onclick = function() {
+            console.log("X button on click attached!");
+            Move.reject(field, X_button);
+        }
+    }
 
     /**
      *
+     * @param param
      * @param parent
      * @param {String} letter
      * @param {String} symbol
@@ -83,7 +93,6 @@ class Field {
         param.setAttribute('id', 'field-' + this._ID + '-' + letter);
         param.innerHTML = symbol;
         parent.appendChild(param);
-        //return button;
     }
 
 
