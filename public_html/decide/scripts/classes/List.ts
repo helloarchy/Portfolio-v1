@@ -41,8 +41,33 @@ class List {
         let parent = document.getElementById(this._parentID);
         let child = document.createElement('div');
         child.setAttribute('id', 'list-' + this._ID);
+        child.setAttribute('class', 'list');
         parent.appendChild(child);
 
+        /* Make title */
+        this.makeTitle(child);
+
+        /* Make fields container */
+        let fields_container = document.createElement('div');
+        fields_container.setAttribute('id',
+            'list-' + this.ID + '-fields-container');
+        child.appendChild(fields_container);
+
+        /* Make bottom buttons box */
+    }
+
+    private makeTitle(parent) {
+        /* Make and append containing div */
+        let title_box = document.createElement('div');
+        title_box.setAttribute('id', 'list-' + this.ID + '-title-box');
+        title_box.setAttribute('class', 'list-title-box');
+        parent.appendChild(title_box);
+
+        /* Make and append text */
+        let title_text = document.createElement('p');
+        title_text.setAttribute('id','list-' + this.ID + '-title-text');
+        title_text.innerHTML = this._title; // Set value to list title
+        title_box.appendChild(title_text);
     }
 
 

@@ -1,0 +1,18 @@
+/**
+list.css
+This stylesheet specifies the styling for the each list.
+@author Robert Hardy
+@since 2018-07-11
+Part of the rarh.io project.
+ */
+.list {
+    min-width: 300px;
+}
+
+.list-title-box {
+    /*float: top;*/
+}
+
+.list-title-box p {
+    font-size: large;
+}

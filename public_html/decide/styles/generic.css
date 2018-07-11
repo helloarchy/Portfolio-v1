@@ -1,0 +1,30 @@
+/**
+Generic.css
+This stylesheet specifies the styling for the whole page generally, covering the
+basic elements. Specific items the occur often or dynamically are styled in their
+own stylesheet.
+@author Robert Hardy
+@since 2018-07-11
+Part of the rarh.io project.
+ */
+body {
+    width: 100%;
+    height: 100%;
+}
+
+header {
+
+}
+
+main {
+
+}
+
+main #description {
+    width: ;
+
+}
+
+footer {
+
+}

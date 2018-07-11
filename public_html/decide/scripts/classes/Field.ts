@@ -41,11 +41,13 @@ class Field {
      */
     public createHTML() {
         /* Create a div with the field ID, and place it inside parent div. */
-        let parent = document.getElementById("list-" + this._parent.ID.toString());
+        let parent = document.getElementById("list-" +
+            this._parent.ID.toString() + "-fields-container");
         /* DEBUG */
         console.log("parent ID = list-" + this._parent.ID.toString());
         let child = document.createElement('div');
         child.setAttribute('id', 'field-' + this._ID);
+        child.setAttribute('class', 'field'); // Set the class
         parent.appendChild(child);
 
         /* Place X (reject) button in the div  */

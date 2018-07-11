@@ -1,0 +1,14 @@
+/**
+list-grid.css
+This stylesheet specifies the styling for the main list grid, using CSS's new
+grid ability. Each list is styled specifically in list.css.
+@author Robert Hardy
+@since 2018-07-11
+Part of the rarh.io project.
+ */
+#lists-container {
+    display: flex;
+    flex-direction: row; /* Stack sideways */
+    justify-content: center; /* Align horizontal*/
+    /*align-items: center; !* Align vertical *!*/
+}

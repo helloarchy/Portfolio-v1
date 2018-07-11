@@ -24,27 +24,4 @@ class Decide {
         let randomIndex = Math.floor(Math.random() * decidableFields.length);
         return decidableFields[randomIndex];
     }
-
-
-    /**
-     * TODO: Delete me
-     * @param {List} initialList
-     * @param {List} shortlist
-     * @param {Field} decidedField
-     * @deprecated
-     */
-    public static shortlist(initialList: List, shortlist: List, decidedField: Field) {
-        /* Check if there is an existing shortlist, otherwise create a new one. */
-        if (shortlist !== null) {
-            shortlist.addExisting(decidedField);
-        } else {
-            /* Create a new list, set previous and next lists links accordingly,
-            and add the field to the new list. */
-            let newList: List = new List("grid-for-lists", initialList);
-            initialList.nextList = newList;
-            newList.addExisting(decidedField);
-        }
-        /* Remove the fields from its current list. */
-        initialList.remove(decidedField);
-    }
 }

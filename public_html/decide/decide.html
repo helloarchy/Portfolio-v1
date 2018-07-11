@@ -7,16 +7,22 @@ Part of the rarh.io project.
 -->
 <html lang="en">
 <head>
+    <title>Decider 2.0</title>
     <meta charset="UTF-8">
 
     <!-- JavaScript Files -->
-    <script src="classes/Decide.js"></script>
-    <script src="classes/FieldArray.js"></script>
-    <script src="classes/Field.js"></script>
-    <script src="classes/List.js"></script>
-    <script src="classes/Move.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/classes/Decide.js"></script>
+    <script src="scripts/classes/FieldArray.js"></script>
+    <script src="scripts/classes/Field.js"></script>
+    <script src="scripts/classes/List.js"></script>
+    <script src="scripts/classes/Move.js"></script>
 
-    <title>Title</title>
+    <!-- CSS Files -->
+    <link rel="stylesheet" type="text/css" href="styles/generic.css">
+    <link rel="stylesheet" type="text/css" href="styles/specific/field.css">
+    <link rel="stylesheet" type="text/css" href="styles/specific/lists-container.css">
+    <link rel="stylesheet" type="text/css" href="styles/specific/list.css">
 </head>
 <body>
 <header>
@@ -29,7 +35,7 @@ Part of the rarh.io project.
             settle with this decision, or proceed to shortlist it and carry on deciding.
             Finally, one can be picked from the shortlist(s) as the final decision.</p>
     </div>
-    <div id="replaced-by-script">
+    <div id="lists-container">
         <!-- All lists are placed here by script -->
     </div>
 </main>
@@ -37,22 +43,7 @@ Part of the rarh.io project.
     <a href="http://rarh.io">rarh.io</a>
 </footer>
 <script>
-    /* Set up the parent container for all the Lists to generate to. */
-    let listParent = "grid-for-lists";
-    document.getElementById("replaced-by-script").setAttribute('id', listParent);
-
-    /* Create the reject list and set a reference for Move.js */
-    let rejectList = new List(listParent, null, "Rejects");
-    Move.setReject(rejectList);
-
-    /* Create the initial list, referencing the reject list as its previous list,
-     and create 3 empty Fields in it for the user to get started with. */
-    let initialList = new List(listParent, rejectList, "Initial List");
-    initialList.addEmpty();
-    initialList.addEmpty();
-    initialList.addEmpty();
-
-    //let testList = new List(listParent, initialList, "Test List");
+    main();
 </script>
 </body>
 </html>
