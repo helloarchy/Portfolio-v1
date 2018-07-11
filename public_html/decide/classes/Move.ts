@@ -15,7 +15,8 @@ class Move {
      * @param {List} parent
      * @returns {undefined}
      */
-    public static reject(field: Field, parent: List) : any {
+    public static reject(field: Field) : any {
+        let parent = field.parent;
         /* If in reject list, then delete, otherwise add to the reject list */
         if (parent.previousList === null) {
             field.delete();
@@ -25,6 +26,10 @@ class Move {
     }
 
 
+    /**
+     *
+     * @param {List} rejectList
+     */
     public static setReject(rejectList: List) {
         this._rejectList = rejectList;
     }
@@ -33,10 +38,10 @@ class Move {
     /**
      *
      * @param {Field} field
-     * @param {List} parent
      * @returns {undefined}
      */
-    public static demote(field: Field, parent: List) : any {
+    public static demote(field: Field) : any {
+        let parent = field.parent;
 
 
     }
@@ -45,10 +50,10 @@ class Move {
     /**
      *
      * @param {Field} field
-     * @param {List} parent
      * @returns {undefined}
      */
-    public static promote(field: Field, parent: List) : any {
+    public static promote(field: Field) : any {
+        let parent = field.parent;
 
     }
 
@@ -63,17 +68,19 @@ class Move {
         /* Add the field to the new list */
         newList.addExisting(field);
 
-        console.log("Why am I being fired when you haven't even clicked?!");
+        console.log("Move: Transplanting field-" + field.ID +
+            " from list-" + oldList.ID +
+            " to list-" + newList.ID);
         
         /* Move over HTML by re-parenting */
-        //let child = document.getElementById('field-' + field.ID.toString());
-        //let newParent = "list-" + newList.ID.toString();
-        //document.getElementById(newParent).appendChild(child);
+        let child = document.getElementById('field-' + field.ID.toString());
+        let newParent = "list-" + newList.ID.toString();
+        document.getElementById(newParent).appendChild(child);
         
         /* Update Field parameters */
-        //field.setParent(newList);
+        field.setParent(newList);
         
         /* Delete field from old list */
-        //oldList.remove(field);
+        oldList.remove(field);
     }
 }

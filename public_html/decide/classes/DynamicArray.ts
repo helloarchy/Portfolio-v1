@@ -68,7 +68,7 @@ class DynamicArray {
      * found to a new array, and replacing the array with the new once.
      */
     private fixBlanks() {
-        let newArray: any[] = null;
+        let newArray: any[] = [];
         for (let val of this._array) {
             newArray[newArray.length] = val;
         }

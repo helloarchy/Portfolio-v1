@@ -51,35 +51,42 @@ class Field {
         /* Place X (reject) button in the div  */
         this.createButton(this._X_button, child,"X", "&times;");
         this._X_button = document.getElementById('field-' + this._ID + '-X');
-        //this._X_button.addEventListener("click", Move.reject(this, this._parent), true);
-        //this._X_button.on("click", Move.reject(this, this._parent));
-        this.attachEvents(this, this._X_button, this._L_button, this._X_button, this._R_button);
 
 
         /* Place left (demote (un-shortlist)) arrow button in the div */
-        /*this._L_button = this.createButton(child, "L", "&larr");
-        this._L_button.addEventListener('click', Move.demote(this, this._parent));*/
+        this.createButton(this._L_button, child, "L", "&larr");
+        this._L_button = document.getElementById('field-' + this._ID + '-L');
 
         /* Place input text box (value field) in the div, set the value if exists */
-        /*this.text_box = document.createElement('input');
-        this._text_box.setAttribute('id', 'field-' + this._ID + '-text');
-        this._text_box.setAttribute('type', 'text');
-        this._text_box.addEventListener('onchange', this.valueChange());
-        if (this._value !== null || this._value !== "") {
-            this.text_box.value = this._value;
-        }*/
+        this.createTextBox(this._text_box, child);
+        this._text_box = document.getElementById('field-' + this._ID + '-text');
 
         /* Place right arrow (promote (shortlist)) button in the div */
-        /*this._R_button = this.createButton(child, "R", "&rarr");
-        this._R_button.addEventListener('click', Move.promote(this, this._parent))*/
+        this.createButton(this._R_button, child, "R", "&rarr");
+        this._R_button = document.getElementById('field-' + this._ID + '-R');
+
+        /* Attach event listeners */
+        this.attachEvents(this);
     }
 
-    private attachEvents(field: Field, X_button, L_button, text_box, R_button) {
-        this._X_button.onclick = function() {
-            console.log("X button on click attached!");
-            Move.reject(field, X_button);
+
+    /**
+     * Create the fields text box html and set the value if the field already
+     * has one.
+     * @param param
+     * @param parent
+     */
+    private createTextBox(param, parent) {
+        /* Place input text box (value field) in the div, set the value if exists */
+        param = document.createElement('input');
+        param.setAttribute('id', 'field-' + this._ID + '-text');
+        param.setAttribute('type', 'text');
+        parent.appendChild(param);
+        if (this._value !== null || this._value !== "") {
+            param = this._value;
         }
     }
+
 
     /**
      *
@@ -93,6 +100,35 @@ class Field {
         param.setAttribute('id', 'field-' + this._ID + '-' + letter);
         param.innerHTML = symbol;
         parent.appendChild(param);
+    }
+
+
+    /**
+     * Attach all event listeners to the fields HTML elements.
+     * @param {Field} field
+     */
+    private attachEvents(field: Field) {
+        let text_box = this._text_box;
+        // Add X Button click event
+        this._X_button.onclick = function() {
+            console.log("X button on click event fired!");
+            Move.reject(field);
+        };
+        // Add Left button click event
+        this._L_button.onclick = function() {
+            console.log("Left button on click event fired!");
+            Move.demote(field);
+        };
+        // Add text box value change event
+        this._text_box.onchange = function() {
+            console.log("Text box change event fired!");
+            field.value = text_box.value;
+        };
+        // Add Right button click event
+        this._R_button.onclick = function() {
+            console.log("Right button on click event fired!");
+            Move.reject(field);
+        };
     }
 
 
@@ -173,6 +209,14 @@ class Field {
         this._parent = value;
     }
 
+
+    get parent(): List {
+        return this._parent;
+    }
+
+    set parent(value: List) {
+        this._parent = value;
+    }
 
     /**
      * Determine which buttons should be on display for user to click/tap
