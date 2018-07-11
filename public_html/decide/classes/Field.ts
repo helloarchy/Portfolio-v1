@@ -49,12 +49,12 @@ class Field {
         parent.appendChild(child);
 
         /* Place X (reject) button in the div  */
-        this.createButton(this._X_button, child,"X", "&times;");
+        this.createButton(this._X_button, child, "X", "&times;");
         this._X_button = document.getElementById('field-' + this._ID + '-X');
 
 
         /* Place left (demote (un-shortlist)) arrow button in the div */
-        this.createButton(this._L_button, child, "L", "&larr");
+        this.createButton(this._L_button, child, "L", "&larr;");
         this._L_button = document.getElementById('field-' + this._ID + '-L');
 
         /* Place input text box (value field) in the div, set the value if exists */
@@ -62,7 +62,7 @@ class Field {
         this._text_box = document.getElementById('field-' + this._ID + '-text');
 
         /* Place right arrow (promote (shortlist)) button in the div */
-        this.createButton(this._R_button, child, "R", "&rarr");
+        this.createButton(this._R_button, child, "R", "&rarr;");
         this._R_button = document.getElementById('field-' + this._ID + '-R');
 
         /* Attach event listeners */
@@ -110,22 +110,22 @@ class Field {
     private attachEvents(field: Field) {
         let text_box = this._text_box;
         // Add X Button click event
-        this._X_button.onclick = function() {
+        this._X_button.onclick = function () {
             console.log("X button on click event fired!");
             Move.reject(field);
         };
         // Add Left button click event
-        this._L_button.onclick = function() {
+        this._L_button.onclick = function () {
             console.log("Left button on click event fired!");
             Move.demote(field);
         };
         // Add text box value change event
-        this._text_box.onchange = function() {
+        this._text_box.onchange = function () {
             console.log("Text box change event fired!");
             field.value = text_box.value;
         };
         // Add Right button click event
-        this._R_button.onclick = function() {
+        this._R_button.onclick = function () {
             console.log("Right button on click event fired!");
             Move.reject(field);
         };
@@ -139,9 +139,6 @@ class Field {
     private valueChange(): any {
         this._value = this._text_box.value;
     }
-
-
-
 
 
     /**
