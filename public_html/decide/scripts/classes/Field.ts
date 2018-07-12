@@ -37,6 +37,27 @@ class Field {
 
 
     /**
+     * Determine which buttons should be on display for user to click/tap
+     */
+    private showHideButtons() {
+        /* Determine which list this is based on what the previous list is */
+        if (this._parent.previousList === null) {
+            /* If in reject list, hide left arrow, show rest */
+            this._X_button.show();
+            this._L_button.hide();
+            this._R_button.show();
+        } else if (this._parent.previousList.ID === 1) {
+
+        }
+
+        /* If in initial list */
+
+        /* If in shortlist */
+
+    }
+
+
+    /**
      *
      */
     public createHTML() {
@@ -215,12 +236,5 @@ class Field {
 
     set parent(value: List) {
         this._parent = value;
-    }
-
-    /**
-     * Determine which buttons should be on display for user to click/tap
-     */
-    private showHideButtons() {
-
     }
 }

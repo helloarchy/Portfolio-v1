@@ -7,22 +7,44 @@ own stylesheet.
 @since 2018-07-11
 Part of the rarh.io project.
  */
+html {
+    /*width: 100%;*/
+    /*height: 100%;*/
+}
+
 body {
-    width: 100%;
-    height: 100%;
+    text-align: center;
 }
 
 header {
+    display: grid;
+    text-align: center;
+}
 
+header h1 {
+    -ms-grid-row: 1;
+    grid-row: 1;
+
+}
+
+header p {
+    grid-row: 2;
 }
 
 main {
-
+    display: grid;
 }
 
 main #description {
-    width: ;
+    grid-row: 1;
+    max-width: 300px;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+}
 
+main #lists-container {
+    grid-row: 2;
 }
 
 footer {

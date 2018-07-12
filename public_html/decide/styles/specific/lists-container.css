@@ -11,4 +11,5 @@ Part of the rarh.io project.
     flex-direction: row; /* Stack sideways */
     justify-content: center; /* Align horizontal*/
     /*align-items: center; !* Align vertical *!*/
+    overflow: auto;
 }

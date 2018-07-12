@@ -56,6 +56,11 @@ class List {
         /* Make bottom buttons box */
     }
 
+
+    /**
+     *
+     * @param parent
+     */
     private makeTitle(parent) {
         /* Make and append containing div */
         let title_box = document.createElement('div');
@@ -99,13 +104,7 @@ class List {
      */
     public addEmpty() {
         let field: Field = new Field(this);
-
-        console.log("List-" + this.ID + " adding empty field-" + field.ID);
-        console.log("List-" + this.ID + " fields count = " + this._fields.length());
-
         this._fields.add(field);
-
-        console.log("List-" + this.ID + " fields count = " + this._fields.length());
     }
 
 
@@ -114,13 +113,7 @@ class List {
      * @param {Field} field
      */
     public addExisting(field: Field) {
-        // TODO: DEBUG
-        console.log("List-" + this.ID + " adding existing field-" + field.ID);
-        console.log("List-" + this.ID + " fields count = " + this._fields.length());
-
         this._fields.add(field);
-
-        console.log("List-" + this.ID + " fields count = " + this._fields.length());
     }
 
 
@@ -129,17 +122,12 @@ class List {
      * @param {Field} field
      */
     public remove(field: Field) {
-        // TODO DEBUG
-        console.log("List-" + this.ID + " removing field-" + field.ID);
-        console.log("List-" + this.ID + " fields count = " + this._fields.length());
-
         this._fields.remove(field);
-        // Delete the list if no fields left.
-        if (!(this._fields.length() > 0)) {
+        // Delete the list if no fields left and list is a shortlist
+        if (!(this._fields.length() > 0) && this._ID >= 2) {
+            console.log("Deleting list-" + this._ID + " now that it is empty.");
             this.deleteList();
         }
-
-        console.log("List-" + this.ID + " fields count = " + this._fields.length());
     }
 
 
