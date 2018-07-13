@@ -9,12 +9,12 @@
 class Decide {
     /**
      * Choose a random choice from a given list of Field objects.
-     * @returns {Field} the Choice object at the random index.
      * @param list
+     * @param actionBox
      */
-    public static choose(list: List) {
+    public static choose(list: List, actionBox: ActionBox) {
         /* Create a new array with all of the fields which contain a value. */
-        let decidableFields: Field[] = null;
+        let decidableFields: Array<Field> = [];
         for (let f of list.fields.array) {
             if (f.value != null && f.value != "") {
                 decidableFields.push(f);
@@ -22,6 +22,6 @@ class Decide {
         }
         /* Choose a random item from the decidable list. */
         let randomIndex = Math.floor(Math.random() * decidableFields.length);
-        return decidableFields[randomIndex];
+        actionBox.displayDecision(decidableFields[randomIndex]);
     }
 }

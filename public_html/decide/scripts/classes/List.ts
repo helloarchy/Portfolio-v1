@@ -13,6 +13,7 @@ class List {
     private readonly _ID: number;
     private static _globalID: number = 0;
     private _title: string;
+    private _actionBox: ActionBox;
 
     /**
      *
@@ -53,13 +54,15 @@ class List {
             'list-' + this.ID + '-fields-container');
         child.appendChild(fields_container);
 
-        /* Make add empty field button if this list isn't the reject list */
+        // Check if list is a Reject List before adding add button and action box
         if (this.previousList != null) {
-            this.makeAddButton(child);
+            // Only initial list may have an add button
+            if (this.ID === 1) {
+                this.makeAddButton(child);
+            }
+            // Make action box - the box containing the decide button and decision
+            this._actionBox = new ActionBox(this);
         }
-
-        /* Make bottom buttons box */
-        let actionBox = new ActionBox(this);
     }
 
 
@@ -77,7 +80,7 @@ class List {
 
         /* Make add empty field button */
         let add_button = document.createElement('button');
-        add_button.setAttribute('id', 'list-' + this._ID + '-add-button');
+        add_button.setAttribute('id', 'add-button');
         add_button.innerHTML = "&plus;";
         add_container.appendChild(add_button);
 
@@ -142,7 +145,9 @@ class List {
     public addEmpty() {
         let field: Field = new Field(this);
         this._fields.add(field);
+        /* Update displayed buttons and content */
         this._fields.showHideButtons();
+        this._actionBox.showHide();
     }
 
 
@@ -153,7 +158,9 @@ class List {
     public addExisting(field: Field) {
         this._fields.add(field);
         field.setParent(this);
+        /* Update displayed buttons and content */
         this._fields.showHideButtons();
+        this._actionBox.showHide();
     }
 
 
@@ -169,7 +176,9 @@ class List {
         if (!(this._fields.length() > 0) && this._ID > 1) {
             this.deleteList();
         }
+        /* Update displayed buttons and content */
         this._fields.showHideButtons();
+        this._actionBox.showHide();
     }
 
 

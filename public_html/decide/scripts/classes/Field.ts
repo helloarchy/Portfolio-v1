@@ -86,7 +86,6 @@ class Field {
         this.createButton(this._X_button, child, "X", "&times;");
         this._X_button = document.getElementById('field-' + this._ID + '-X');
 
-
         /* Place left (demote (un-shortlist)) arrow button in the div */
         this.createButton(this._L_button, child, "L", "&larr;");
         this._L_button = document.getElementById('field-' + this._ID + '-L');
