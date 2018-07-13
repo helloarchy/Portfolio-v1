@@ -115,6 +115,7 @@ class List {
      */
     public addExisting(field: Field) {
         this._fields.add(field);
+        field.setParent(this);
         this._fields.showHideButtons();
     }
 

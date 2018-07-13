@@ -22,7 +22,13 @@ class Move {
         if (parent.previousList === null) {
             field.delete();
         } else {
-            this.transplant(field, parent, this._rejectList);
+            /* Check if only field left in list */
+            if (parent.fields.length() === 1) {
+
+            } else {
+                /* Transplant as normal */
+                this.transplant(field, parent, this._rejectList);
+            }
         }
     }
 
@@ -65,22 +71,21 @@ class Move {
      * @param newList
      */
     private static transplant(field: Field, oldList: List, newList: List) {
-        let field_copy = field;
         // TODO: DEBUG
         console.log("Move: Transplanting field-" + field.ID +
             " from list-" + oldList.ID +
             " to list-" + newList.ID);
 
         /* Add the field to the new list */
-        newList.addExisting(field_copy);
+        newList.addExisting(field);
 
         /* Move over HTML by re-parenting */
-        let child = document.getElementById('field-' + field_copy.ID.toString());
+        let child = document.getElementById('field-' + field.ID.toString());
         let newParent = "list-" + newList.ID.toString();
         document.getElementById(newParent).appendChild(child);
 
         /* Update Field parameters */
-        field_copy.setParent(newList);
+        field.setParent(newList);
 
         /* Delete field from old list */
         oldList.remove(field);

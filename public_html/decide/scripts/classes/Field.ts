@@ -37,6 +37,15 @@ class Field {
      * Determine which buttons should be on display for user to click/tap
      */
     public showHideButtons() {
+        // TODO: DEBUG
+        if (this._parent.previousList === null) {
+            console.log("Field: Show/hide, list ID is null!");
+        } else {
+            console.log("Field: Show/hide, list ID is " + this._parent.previousList.ID);
+        }
+
+
+
         /* Determine which list this is based on what the previous list is */
         if (this._parent.previousList === null) {
             console.log("Field-" + this.ID + " parent is reject list.");
@@ -50,7 +59,7 @@ class Field {
             this._X_button.classList.remove("hide");
             this._L_button.classList.add("hide");
             /* Allow shortlisting if there are at least 2 fields */
-            console.log(this.parent.fields.length());
+            console.log("Field length = " + this.parent.fields.length());
             if (this.parent.fields.length() > 1) {
                 this._R_button.classList.remove("hide");
             } else {
