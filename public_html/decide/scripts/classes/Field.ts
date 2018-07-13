@@ -30,24 +30,42 @@ class Field {
 
         // Create html
         this.createHTML();
-
-        // Test which buttons should be on display
-        this.showHideButtons();
     }
 
 
     /**
      * Determine which buttons should be on display for user to click/tap
      */
-    private showHideButtons() {
+    public showHideButtons() {
         /* Determine which list this is based on what the previous list is */
         if (this._parent.previousList === null) {
+            console.log("Field-" + this.ID + " parent is reject list.");
             /* If in reject list, hide left arrow, show rest */
-            this._X_button.show();
-            this._L_button.hide();
-            this._R_button.show();
-        } else if (this._parent.previousList.ID === 1) {
-
+            this._X_button.style.visibility = "visible";
+            this._L_button.style.visibility = "hidden";
+            this._R_button.style.visibility = "visible";
+        } else if (this._parent.previousList.ID === 0) {
+            console.log("Field-" + this.ID + " parent is initial list.");
+            /* Initial list, so hide left arrows and only show right if > 1 field */
+            this._X_button.style.visibility = "visible";
+            this._L_button.style.display = "none";
+            /* Allow shortlisting if there are at least 2 fields */
+            console.log(this.parent.fields.length());
+            if (this.parent.fields.length() > 1) {
+                this._R_button.style.visibility = "visible";
+            } else {
+                this._R_button.style.visibility = "hidden";
+            }
+        } else if (this._parent.previousList.ID >= 1) {
+            console.log("Field-" + this.ID + " parent is a shortlist.");
+            /* Short list, show all buttons, but hide right if < 2 fields */
+            this._X_button.style.visibility = "visible";
+            this._L_button.style.visibility = "visible";
+            if (this.parent.fields.length() > 1) {
+                this._R_button.style.visibility = "visible";
+            } else {
+                this._R_button.style.visibility = "hidden";
+            }
         }
 
         /* If in initial list */
@@ -150,7 +168,7 @@ class Field {
         // Add Right button click event
         this._R_button.onclick = function () {
             console.log("Right button on click event fired!");
-            Move.reject(field);
+            Move.promote(field);
         };
     }
 

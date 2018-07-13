@@ -8,6 +8,7 @@
  */
 class Move {
     static _rejectList: List;
+    private static _listContainer: string;
 
     /**
      *
@@ -15,7 +16,7 @@ class Move {
      * @param {List} parent
      * @returns {undefined}
      */
-    public static reject(field: Field) : any {
+    public static reject(field: Field): any {
         let parent = field.parent;
         /* If in reject list, then delete, otherwise add to the reject list */
         if (parent.previousList === null) {
@@ -28,10 +29,13 @@ class Move {
 
     /**
      *
-     * @param {List} rejectList
+     * @param {Field} field
+     * @returns {undefined}
      */
-    public static setReject(rejectList: List) {
-        this._rejectList = rejectList;
+    public static demote(field: Field): any {
+        let parent = field.parent;
+        let newParent = field.parent.previousList;
+        this.transplant(field, parent, newParent);
     }
 
 
@@ -40,20 +44,15 @@ class Move {
      * @param {Field} field
      * @returns {undefined}
      */
-    public static demote(field: Field) : any {
+    public static promote(field: Field): any {
         let parent = field.parent;
-
-
-    }
-
-
-    /**
-     *
-     * @param {Field} field
-     * @returns {undefined}
-     */
-    public static promote(field: Field) : any {
-        let parent = field.parent;
+        /* Create shortlist if one doesn't exist */
+        if (parent.nextList === null) {
+            let newList = new List(this._listContainer, parent, "Short List");
+            this.transplant(field, parent, newList);
+        } else {
+            this.transplant(field, parent, parent.nextList);
+        }
 
     }
 
@@ -78,11 +77,29 @@ class Move {
         let child = document.getElementById('field-' + field_copy.ID.toString());
         let newParent = "list-" + newList.ID.toString();
         document.getElementById(newParent).appendChild(child);
-        
+
         /* Update Field parameters */
         field_copy.setParent(newList);
-        
+
         /* Delete field from old list */
         oldList.remove(field);
+    }
+
+
+    /**
+     *
+     * @param {List} rejectList
+     */
+    public static setReject(rejectList: List) {
+        this._rejectList = rejectList;
+    }
+
+
+    /**
+     *
+     * @param {string} value
+     */
+    static set listContainer(value: string) {
+        this._listContainer = value;
     }
 }

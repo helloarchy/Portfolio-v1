@@ -28,8 +28,7 @@ class List {
         this._ID = List._globalID;
         List._globalID++;
 
-        // create HTML
-        this.createHTML()
+        this.createHTML() // create HTML
     }
 
 
@@ -54,6 +53,7 @@ class List {
         child.appendChild(fields_container);
 
         /* Make bottom buttons box */
+        //TODO: MAKE BOTTOM BUTTONS BOX! OWN CLASS?
     }
 
 
@@ -70,7 +70,7 @@ class List {
 
         /* Make and append text */
         let title_text = document.createElement('p');
-        title_text.setAttribute('id','list-' + this.ID + '-title-text');
+        title_text.setAttribute('id', 'list-' + this.ID + '-title-text');
         title_text.innerHTML = this._title; // Set value to list title
         title_box.appendChild(title_text);
     }
@@ -84,8 +84,7 @@ class List {
         let parent = document.getElementById(this._parentID);
         let child = document.getElementById("list-" + this._ID);
         parent.removeChild(child); // IE friendly
-
-        // Remove self from previous list. (Cannot be called if a next List exists)
+        // Remove self from previous list.
         this._previousList.nextList = null;
     }
 
@@ -105,6 +104,7 @@ class List {
     public addEmpty() {
         let field: Field = new Field(this);
         this._fields.add(field);
+        this._fields.showHideButtons();
     }
 
 
@@ -114,6 +114,7 @@ class List {
      */
     public addExisting(field: Field) {
         this._fields.add(field);
+        this._fields.showHideButtons();
     }
 
 
@@ -125,9 +126,9 @@ class List {
         this._fields.remove(field);
         // Delete the list if no fields left and list is a shortlist
         if (!(this._fields.length() > 0) && this._ID >= 2) {
-            console.log("Deleting list-" + this._ID + " now that it is empty.");
             this.deleteList();
         }
+        this._fields.showHideButtons();
     }
 
 

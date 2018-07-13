@@ -51,14 +51,21 @@ class FieldArray {
         // Find the choices index in the array, then delete it.
         for (let f of this._fieldArray) {
             if (f.ID === field.ID) {
-                // TODO: Test for off-by-one error!
                 this._fieldArray[index] = null;
-
-                console.log("Field-" + f.ID + " removed!"); // DEBUG
-
                 this.fixBlanks();
             }
             index++;
+        }
+    }
+
+
+    /**
+     * Go through all of the fields and evoke their ability to decide which
+     * buttons they should be showing.
+     */
+    public showHideButtons() {
+        for (let f of this._fieldArray) {
+            f.showHideButtons();
         }
     }
 
