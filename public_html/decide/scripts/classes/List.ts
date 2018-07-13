@@ -127,7 +127,7 @@ class List {
 
 
     /**
-     *
+     * Remove a field from this list only, without deleting the field instance.
      * @param {Field} field
      */
     public remove(field: Field) {
@@ -136,7 +136,21 @@ class List {
         if (!(this._fields.length() > 0) && this._ID > 1) {
             this.deleteList();
         }
-        //field.delete();
+        this._fields.showHideButtons();
+    }
+
+
+    /**
+     * Delete a field completely, including the instance of the field
+     * @param {Field} field
+     */
+    public deleteField(field: Field) {
+        this._fields.remove(field);
+        // Delete the list if no fields left and list is a shortlist
+        if (!(this._fields.length() > 0) && this._ID > 1) {
+            this.deleteList();
+        }
+        field.delete();
         this._fields.showHideButtons();
     }
 

@@ -22,9 +22,9 @@ class Move {
             //field.delete();
             parent.remove(field);
         } else {
-            // If text box blank, remove field from list
+            // If text box blank, delete field completely
             if (field.value === null || field.value === "") {
-                field.parent.remove(field);
+                field.parent.deleteField(field);
             } else {
                 this.transplant(field, parent, this._rejectList);
             }
