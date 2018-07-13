@@ -19,8 +19,7 @@ class Move {
         let parent = field.parent;
         /* If in reject list, then delete, otherwise add to the reject list */
         if (parent.previousList === null) {
-            //field.delete();
-            parent.remove(field);
+            parent.deleteField(field);
         } else {
             // If text box blank, delete field completely
             if (field.value === null || field.value === "") {

@@ -13,10 +13,10 @@ class Decide {
      * @param list
      */
     public static choose(list: List) {
-        /* Create a new array with all of the fields which are decidable. */
+        /* Create a new array with all of the fields which contain a value. */
         let decidableFields: Field[] = null;
-        for (let f of list.fields.array ) {
-            if (f.decidable) {
+        for (let f of list.fields.array) {
+            if (f.value != null && f.value != "") {
                 decidableFields.push(f);
             }
         }

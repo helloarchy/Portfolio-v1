@@ -53,8 +53,39 @@ class List {
             'list-' + this.ID + '-fields-container');
         child.appendChild(fields_container);
 
+        /* Make add empty field button if this list isn't the reject list */
+        if (this.previousList != null) {
+            this.makeAddButton(child);
+        }
+
         /* Make bottom buttons box */
-        //TODO: MAKE BOTTOM BUTTONS BOX! OWN CLASS?
+        let actionBox = new ActionBox(this);
+    }
+
+
+    /**
+     * Make the HTML and Even handlers for the Add empty field button.
+     * @param parent
+     */
+    public makeAddButton(parent) {
+        let list = this;
+
+        /* Make add empty field button container */
+        let add_container = document.createElement('div');
+        add_container.setAttribute('class', 'add-container');
+        parent.appendChild(add_container);
+
+        /* Make add empty field button */
+        let add_button = document.createElement('button');
+        add_button.setAttribute('id', 'list-' + this._ID + '-add-button');
+        add_button.innerHTML = "&plus;";
+        add_container.appendChild(add_button);
+
+        /* Attach on click event handler */
+        add_button.onclick = function () {
+            console.log("List-" + list.ID + " add field button clicked.");
+            list.addEmpty();
+        }
     }
 
 
@@ -128,11 +159,13 @@ class List {
 
     /**
      * Remove a field from this list only, without deleting the field instance.
+     * Remove the field from the FieldsArray, if no fields left and list is
+     * a shortlist then delete the list as well. Finally, update remaining
+     * fields buttons.
      * @param {Field} field
      */
     public remove(field: Field) {
         this._fields.remove(field);
-        // Delete the list if no fields left and list is a shortlist
         if (!(this._fields.length() > 0) && this._ID > 1) {
             this.deleteList();
         }
@@ -142,11 +175,13 @@ class List {
 
     /**
      * Delete a field completely, including the instance of the field
+     * Remove the field from the FieldsArray, if no fields left and list is
+     * a shortlist then delete the list as well. Finally, delete the fields
+     * HTML and then update remaining fields buttons.
      * @param {Field} field
      */
     public deleteField(field: Field) {
         this._fields.remove(field);
-        // Delete the list if no fields left and list is a shortlist
         if (!(this._fields.length() > 0) && this._ID > 1) {
             this.deleteList();
         }
