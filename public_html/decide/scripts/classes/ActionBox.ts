@@ -44,12 +44,10 @@ class ActionBox {
         this._X_button = document.getElementById('list-' + parentID +
             '-action-box-X');
 
-        /* If list is a Short List, make demote button */
-        if (this._parent.previousList.ID >= 1) {
-            this.createButton(this._L_button, child, "L", "&larr;");
-            this._L_button = document.getElementById('list-' + parentID +
-                '-action-box-L');
-        }
+        /* Make demote button */
+        this.createButton(this._L_button, child, "L", "&larr;");
+        this._L_button = document.getElementById('list-' + parentID +
+            '-action-box-L');
 
         /* Make promote button */
         this.createButton(this._R_button, child, "R", "&rarr;");
@@ -104,14 +102,11 @@ class ActionBox {
             console.log("Action-box X button click!");
             Move.reject(decided);
         };
-        /* Add Left button click event if there is a left button (list is a
-        short list) */
-        if (this._parent.previousList.ID >= 1) {
-            this._L_button.onclick = function () {
-                console.log("Action-box Left button click!");
-                Move.demote(decided);
-            };
-        }
+        /* Add Left button click event */
+        this._L_button.onclick = function () {
+            console.log("Action-box Left button click!");
+            Move.demote(decided);
+        };
         // Add Right button click event
         this._R_button.onclick = function () {
             console.log("Action-box Right click!");
@@ -133,8 +128,11 @@ class ActionBox {
         this._decided = decided;
 
         /* Banner animation */
+        // TODO: ADD SOME FANCY EFFECTS HERE
+        this._banner.innerHTML = decided.value;
 
-        /* Prompt user action */
+        /* Prompt user action after waiting  */
+        window.setTimeout(this.decisionActionPrompt, 3000);
     }
 
 
@@ -142,7 +140,8 @@ class ActionBox {
      * Handle the moving of the chosen field.
      */
     private decisionActionPrompt() {
-        /* Decision made, show all buttons */
+        /* Decision made, show all buttons depending on which list this is */
+
 
     }
 
@@ -151,10 +150,19 @@ class ActionBox {
      *
      */
     public showHide() {
-        /* If less than two fields have values show nothing */
-
-        /* At least two values, but no decision made yet, only show decide button */
-
-
+        let hideClass: string = "hide";
+        /* If there are at least 2 fields with value, then show decide button,
+         * otherwise hide everything. */
+        if (Decide.getDecidable(this._parent).length > 1) {
+            this._X_button.classList.add(hideClass);
+            this._L_button.classList.add(hideClass);
+            this._R_button.classList.add(hideClass);
+            this._decide_button.classList.remove(hideClass); // Show only me
+        } else {
+            this._X_button.classList.add(hideClass); // Hide all
+            this._L_button.classList.add(hideClass);
+            this._R_button.classList.add(hideClass);
+            this._decide_button.classList.add(hideClass);
+        }
     }
 }

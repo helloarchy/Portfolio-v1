@@ -13,6 +13,19 @@ class Decide {
      * @param actionBox
      */
     public static choose(list: List, actionBox: ActionBox) {
+        let decidableFields = this.getDecidable(list);
+        /* Choose a random item from the decidable list. */
+        let randomIndex = Math.floor(Math.random() * decidableFields.length);
+        actionBox.displayDecision(decidableFields[randomIndex]);
+    }
+
+
+    /**
+     * Remove any blank entries
+     * @param {List} list
+     * @returns {Array<Field>}
+     */
+    public static getDecidable(list: List) {
         /* Create a new array with all of the fields which contain a value. */
         let decidableFields: Array<Field> = [];
         for (let f of list.fields.array) {
@@ -20,8 +33,6 @@ class Decide {
                 decidableFields.push(f);
             }
         }
-        /* Choose a random item from the decidable list. */
-        let randomIndex = Math.floor(Math.random() * decidableFields.length);
-        actionBox.displayDecision(decidableFields[randomIndex]);
+        return decidableFields;
     }
 }

@@ -145,9 +145,7 @@ class List {
     public addEmpty() {
         let field: Field = new Field(this);
         this._fields.add(field);
-        /* Update displayed buttons and content */
-        this._fields.showHideButtons();
-        this._actionBox.showHide();
+    this.updateButtonsAndBox();
     }
 
 
@@ -158,9 +156,7 @@ class List {
     public addExisting(field: Field) {
         this._fields.add(field);
         field.setParent(this);
-        /* Update displayed buttons and content */
-        this._fields.showHideButtons();
-        this._actionBox.showHide();
+        this.updateButtonsAndBox();
     }
 
 
@@ -176,9 +172,19 @@ class List {
         if (!(this._fields.length() > 0) && this._ID > 1) {
             this.deleteList();
         }
-        /* Update displayed buttons and content */
+        this.updateButtonsAndBox();
+    }
+
+
+    /**
+     * Update the various buttons in the fields and action box
+     */
+    public updateButtonsAndBox() {
+        // Check if a Reject list as this wont have an ActionBox
+        if (this._previousList != null) {
+            this._actionBox.showHide();
+        }
         this._fields.showHideButtons();
-        this._actionBox.showHide();
     }
 
 
