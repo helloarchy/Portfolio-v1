@@ -16,6 +16,7 @@ class Field {
     private _L_button;
     private _text_box;
     private _R_button;
+    private _hide_class: string = "hide";
 
     /**
      *
@@ -37,35 +38,34 @@ class Field {
      * Determine which buttons should be on display for user to click/tap
      */
     public showHideButtons() {
-        let hideClass: string = "hide";
         /* Determine which list this is based on what the previous list is */
         if (this._parent.previousList === null) {
             console.log("Field-" + this.ID + " parent is reject list.");
             /* If in reject list, hide left arrow, show rest */
-            this._X_button.classList.remove(hideClass);
-            this._L_button.classList.add(hideClass);
-            this._R_button.classList.remove(hideClass);
+            this._X_button.classList.remove(this._hide_class);
+            this._L_button.classList.add(this._hide_class);
+            this._R_button.classList.remove(this._hide_class);
         } else if (this._parent.previousList.ID === 0) {
             console.log("Field-" + this.ID + " parent is initial list.");
             /* Initial list, so hide left arrows and only show right if > 1 field */
-            this._X_button.classList.remove(hideClass);
-            this._L_button.classList.add(hideClass);
+            this._X_button.classList.remove(this._hide_class);
+            this._L_button.classList.add(this._hide_class);
             /* Allow shortlisting if there are at least 2 fields */
             console.log("Field length = " + this.parent.fields.length());
             if (this.parent.fields.length() > 1) {
-                this._R_button.classList.remove(hideClass);
+                this._R_button.classList.remove(this._hide_class);
             } else {
-                this._R_button.classList.add(hideClass);
+                this._R_button.classList.add(this._hide_class);
             }
         } else if (this._parent.previousList.ID >= 1) {
             console.log("Field-" + this.ID + " parent is a shortlist.");
             /* Short list, show all buttons, but hide right if < 2 fields */
-            this._X_button.classList.remove(hideClass);
-            this._L_button.classList.remove(hideClass);
+            this._X_button.classList.remove(this._hide_class);
+            this._L_button.classList.remove(this._hide_class);
             if (this.parent.fields.length() > 1) {
-                this._R_button.classList.remove(hideClass);
+                this._R_button.classList.remove(this._hide_class);
             } else {
-                this._R_button.classList.add(hideClass);
+                this._R_button.classList.add(this._hide_class);
             }
         }
     }

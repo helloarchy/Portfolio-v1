@@ -16,6 +16,7 @@ class ActionBox {
     private _R_button;
     private _banner;
     private _decide_button;
+    private _hide_class: string = "hide";
 
     /**
      *
@@ -113,7 +114,7 @@ class ActionBox {
             Move.promote(decided);
         };
         // Add Decide button click event
-        this._decide_button.onclick = function() {
+        this._decide_button.onclick = function () {
             console.log("Action-box Decide-button click!");
             Decide.choose(list, actionBox);
         }
@@ -132,7 +133,8 @@ class ActionBox {
         this._banner.innerHTML = decided.value;
 
         /* Prompt user action after waiting  */
-        window.setTimeout(this.decisionActionPrompt, 3000);
+        //window.setTimeout(this.decisionActionPrompt, 3000);
+        this.decisionActionPrompt();
     }
 
 
@@ -140,9 +142,23 @@ class ActionBox {
      * Handle the moving of the chosen field.
      */
     private decisionActionPrompt() {
-        /* Decision made, show all buttons depending on which list this is */
-
-
+        /* Decision made, show all buttons depending on which list this is,
+        it is already established that a Reject list will never have an
+        action box. */
+        console.log("decisionActionPrompt parent previous id = " + this._parent.previousList.ID);
+        if (this._parent.previousList.ID === 0) {
+            /* This is an initial list, so no left arrow. */
+            this._X_button.classList.remove(this._hide_class);
+            this._L_button.classList.add(this._hide_class); // Hide
+            this._R_button.classList.remove(this._hide_class);
+            this._decide_button.classList.remove(this._hide_class);
+        } else {
+            /* show all */
+            this._X_button.classList.remove(this._hide_class); // show all
+            this._L_button.classList.remove(this._hide_class);
+            this._R_button.classList.remove(this._hide_class);
+            this._decide_button.classList.remove(this._hide_class);
+        }
     }
 
 
@@ -150,19 +166,18 @@ class ActionBox {
      *
      */
     public showHide() {
-        let hideClass: string = "hide";
         /* If there are at least 2 fields with value, then show decide button,
          * otherwise hide everything. */
         if (Decide.getDecidable(this._parent).length > 1) {
-            this._X_button.classList.add(hideClass);
-            this._L_button.classList.add(hideClass);
-            this._R_button.classList.add(hideClass);
-            this._decide_button.classList.remove(hideClass); // Show only me
+            this._X_button.classList.add(this._hide_class);
+            this._L_button.classList.add(this._hide_class);
+            this._R_button.classList.add(this._hide_class);
+            this._decide_button.classList.remove(this._hide_class); // Show only me
         } else {
-            this._X_button.classList.add(hideClass); // Hide all
-            this._L_button.classList.add(hideClass);
-            this._R_button.classList.add(hideClass);
-            this._decide_button.classList.add(hideClass);
+            this._X_button.classList.add(this._hide_class); // Hide all
+            this._L_button.classList.add(this._hide_class);
+            this._R_button.classList.add(this._hide_class);
+            this._decide_button.classList.add(this._hide_class);
         }
     }
 }
