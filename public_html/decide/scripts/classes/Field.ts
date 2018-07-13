@@ -41,30 +41,30 @@ class Field {
         if (this._parent.previousList === null) {
             console.log("Field-" + this.ID + " parent is reject list.");
             /* If in reject list, hide left arrow, show rest */
-            this._X_button.style.visibility = "visible";
-            this._L_button.style.visibility = "hidden";
-            this._R_button.style.visibility = "visible";
+            this._X_button.classList.remove("hide");
+            this._L_button.classList.add("hide");
+            this._R_button.classList.remove("hide");
         } else if (this._parent.previousList.ID === 0) {
             console.log("Field-" + this.ID + " parent is initial list.");
             /* Initial list, so hide left arrows and only show right if > 1 field */
-            this._X_button.style.visibility = "visible";
-            this._L_button.style.display = "none";
+            this._X_button.classList.remove("hide");
+            this._L_button.classList.add("hide");
             /* Allow shortlisting if there are at least 2 fields */
             console.log(this.parent.fields.length());
             if (this.parent.fields.length() > 1) {
-                this._R_button.style.visibility = "visible";
+                this._R_button.classList.remove("hide");
             } else {
-                this._R_button.style.visibility = "hidden";
+                this._R_button.classList.add("hide");
             }
         } else if (this._parent.previousList.ID >= 1) {
             console.log("Field-" + this.ID + " parent is a shortlist.");
             /* Short list, show all buttons, but hide right if < 2 fields */
-            this._X_button.style.visibility = "visible";
-            this._L_button.style.visibility = "visible";
+            this._X_button.classList.remove("hide");
+            this._L_button.classList.remove("hide");
             if (this.parent.fields.length() > 1) {
-                this._R_button.style.visibility = "visible";
+                this._R_button.classList.remove("hide");
             } else {
-                this._R_button.style.visibility = "hidden";
+                this._R_button.classList.add("hide");
             }
         }
 

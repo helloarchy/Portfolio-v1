@@ -47,6 +47,13 @@ main #lists-container {
     grid-row: 2;
 }
 
+/* Use for hiding elements without JQuery */
+.hide {
+    position: absolute !important;
+    top: -9999px !important;
+    left: -9999px !important;
+}
+
 footer {
 
 }

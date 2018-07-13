@@ -8,7 +8,7 @@
  */
 class Move {
     static _rejectList: List;
-    private static _listContainer: string;
+    private static _listParent: string;
 
     /**
      *
@@ -48,7 +48,8 @@ class Move {
         let parent = field.parent;
         /* Create shortlist if one doesn't exist */
         if (parent.nextList === null) {
-            let newList = new List(this._listContainer, parent, "Short List");
+            let newList = new List(this._listParent, parent, "Short List");
+            parent.nextList = newList;
             this.transplant(field, parent, newList);
         } else {
             this.transplant(field, parent, parent.nextList);
@@ -97,9 +98,9 @@ class Move {
 
     /**
      *
-     * @param {string} value
+     * @param {string} parent
      */
-    static set listContainer(value: string) {
-        this._listContainer = value;
+    public static setListParent(parent: string) {
+        this._listParent = parent;
     }
 }

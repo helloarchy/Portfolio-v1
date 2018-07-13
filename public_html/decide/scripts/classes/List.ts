@@ -23,6 +23,7 @@ class List {
     constructor(parentID: string, previousList: List = null, title: string) {
         this._parentID = parentID;
         this._previousList = previousList;
+        this.nextList = null;
         this._title = title;
         this._fields = new FieldArray();
         this._ID = List._globalID;
