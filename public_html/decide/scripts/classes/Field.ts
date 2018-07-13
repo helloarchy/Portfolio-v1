@@ -37,15 +37,6 @@ class Field {
      * Determine which buttons should be on display for user to click/tap
      */
     public showHideButtons() {
-        // TODO: DEBUG
-        if (this._parent.previousList === null) {
-            console.log("Field: Show/hide, list ID is null!");
-        } else {
-            console.log("Field: Show/hide, list ID is " + this._parent.previousList.ID);
-        }
-
-
-
         /* Determine which list this is based on what the previous list is */
         if (this._parent.previousList === null) {
             console.log("Field-" + this.ID + " parent is reject list.");
@@ -76,11 +67,6 @@ class Field {
                 this._R_button.classList.add("hide");
             }
         }
-
-        /* If in initial list */
-
-        /* If in shortlist */
-
     }
 
 
@@ -91,8 +77,6 @@ class Field {
         /* Create a div with the field ID, and place it inside parent div. */
         let parent = document.getElementById("list-" +
             this._parent.ID.toString() + "-fields-container");
-        /* DEBUG */
-        console.log("parent ID = list-" + this._parent.ID.toString());
         let child = document.createElement('div');
         child.setAttribute('id', 'field-' + this._ID);
         child.setAttribute('class', 'field'); // Set the class
@@ -116,7 +100,7 @@ class Field {
         this._R_button = document.getElementById('field-' + this._ID + '-R');
 
         /* Attach event listeners */
-        this.attachEvents(this);
+        this.attachEvents();
     }
 
 
@@ -155,13 +139,13 @@ class Field {
 
     /**
      * Attach all event listeners to the fields HTML elements.
-     * @param {Field} field
      */
-    private attachEvents(field: Field) {
-        let text_box = this._text_box;
+    private attachEvents() {
+        let field = this;
+
         // Add X Button click event
         this._X_button.onclick = function () {
-            console.log("X button on click event fired!");
+            console.log("X button on click event fired! Field value = " + field.value);
             Move.reject(field);
         };
         // Add Left button click event
@@ -171,8 +155,8 @@ class Field {
         };
         // Add text box value change event
         this._text_box.onchange = function () {
-            console.log("Text box change event fired!");
-            field.value = text_box.value;
+            field.value = field._text_box.value;
+            console.log("Text box change event fired! Value = " + field.value);
         };
         // Add Right button click event
         this._R_button.onclick = function () {
@@ -184,19 +168,13 @@ class Field {
 
     /**
      *
-     * @returns
-     */
-    private valueChange(): any {
-        this._value = this._text_box.value;
-    }
-
-
-    /**
-     *
      */
     public delete() {
-        let parent = document.getElementById('list-' + this._parent.ID.toString());
+        let parent = document.getElementById('list-' + this._parent.ID.toString() +
+            "-fields-container");
         let child = document.getElementById('field-' + this._ID.toString());
+        console.log("Field-" + this.ID + " deleting self. list-" + this._parent.ID.toString() +
+            " field-" + this._ID.toString());
         parent.removeChild(child);
     }
 
@@ -220,24 +198,6 @@ class Field {
 
 
     /**
-     *
-     * @returns {boolean}
-     */
-    get decidable(): boolean {
-        return this._decidable;
-    }
-
-
-    /**
-     *
-     * @param {boolean} value
-     */
-    set decidable(value: boolean) {
-        this._decidable = value;
-    }
-
-
-    /**
      * Get the fields ID
      * @returns {number}
      * @constructor
@@ -257,10 +217,19 @@ class Field {
     }
 
 
+    /**
+     *
+     * @returns {List}
+     */
     get parent(): List {
         return this._parent;
     }
 
+
+    /**
+     *
+     * @param {List} value
+     */
     set parent(value: List) {
         this._parent = value;
     }

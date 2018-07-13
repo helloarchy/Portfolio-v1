@@ -13,20 +13,19 @@ class Move {
     /**
      *
      * @param {Field} field
-     * @param {List} parent
      * @returns {undefined}
      */
     public static reject(field: Field): any {
         let parent = field.parent;
         /* If in reject list, then delete, otherwise add to the reject list */
         if (parent.previousList === null) {
-            field.delete();
+            //field.delete();
+            parent.remove(field);
         } else {
-            /* Check if only field left in list */
-            if (parent.fields.length() === 1) {
-
+            // If text box blank, remove field from list
+            if (field.value === null || field.value === "") {
+                field.parent.remove(field);
             } else {
-                /* Transplant as normal */
                 this.transplant(field, parent, this._rejectList);
             }
         }
@@ -80,8 +79,8 @@ class Move {
         newList.addExisting(field);
 
         /* Move over HTML by re-parenting */
+        let newParent = "list-" + newList.ID.toString() + "-fields-container";
         let child = document.getElementById('field-' + field.ID.toString());
-        let newParent = "list-" + newList.ID.toString();
         document.getElementById(newParent).appendChild(child);
 
         /* Update Field parameters */

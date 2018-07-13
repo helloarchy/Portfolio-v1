@@ -6,7 +6,7 @@
  * Part of the rarh.io project.
  */
 class List {
-    private readonly _previousList: List;
+    private _previousList: List;
     private _nextList: List;
     private _fields: FieldArray;
     private readonly _parentID: string;
@@ -85,8 +85,14 @@ class List {
         let parent = document.getElementById(this._parentID);
         let child = document.getElementById("list-" + this._ID);
         parent.removeChild(child); // IE friendly
-        // Remove self from previous list.
-        this._previousList.nextList = null;
+
+        /* Check if there is a next list and set links accordingly */
+        if (this._nextList != null) {
+            this.previousList.nextList = this.nextList;
+            this.nextList.previousList = this.previousList;
+        } else {
+            this._previousList.nextList = null;
+        }
     }
 
 
@@ -127,9 +133,10 @@ class List {
     public remove(field: Field) {
         this._fields.remove(field);
         // Delete the list if no fields left and list is a shortlist
-        if (!(this._fields.length() > 0) && this._ID >= 2) {
+        if (!(this._fields.length() > 0) && this._ID > 1) {
             this.deleteList();
         }
+        //field.delete();
         this._fields.showHideButtons();
     }
 
@@ -159,6 +166,15 @@ class List {
      */
     get previousList(): List {
         return this._previousList;
+    }
+
+
+    /**
+     *
+     * @param {List} value
+     */
+    set previousList(value: List) {
+        this._previousList = value;
     }
 
 
