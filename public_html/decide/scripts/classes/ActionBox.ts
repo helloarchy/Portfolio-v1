@@ -94,43 +94,38 @@ class ActionBox {
      * Attach all event listeners to the fields HTML elements.
      */
     private attachEvents() {
-        let decided = this._decided;
-        let list = this._parent;
         let actionBox = this;
 
         // Add X Button click event
         this._X_button.onclick = function () {
             console.log("Action-box X button click!");
-            Move.reject(decided);
+            Move.reject(actionBox._decided);
         };
         /* Add Left button click event */
         this._L_button.onclick = function () {
             console.log("Action-box Left button click!");
-            Move.demote(decided);
+            Move.demote(actionBox._decided);
         };
         // Add Right button click event
         this._R_button.onclick = function () {
             console.log("Action-box Right click!");
-            Move.promote(decided);
+            Move.promote(actionBox._decided);
         };
         // Add Decide button click event
         this._decide_button.onclick = function () {
             console.log("Action-box Decide-button click!");
-            Decide.choose(list, actionBox);
+            Decide.choose(actionBox._parent, actionBox);
         }
     }
 
 
     /**
      *
-     * @param {Field} decided
      */
-    public displayDecision(decided: Field) {
-        this._decided = decided;
-
+    public displayDecision() {
         /* Banner animation */
         // TODO: ADD SOME FANCY EFFECTS HERE
-        this._banner.innerHTML = decided.value;
+        this._banner.innerHTML = this._decided.value;
 
         /* Prompt user action after waiting  */
         //window.setTimeout(this.decisionActionPrompt, 3000);
@@ -179,5 +174,12 @@ class ActionBox {
             this._R_button.classList.add(this._hide_class);
             this._decide_button.classList.add(this._hide_class);
         }
+        /* Hide the banner */
+        this._banner.innerHTML = "";
+    }
+
+
+    set decided(value: Field) {
+        this._decided = value;
     }
 }
