@@ -12,11 +12,13 @@ class Field {
     private static _globalID: number = 0;
     private _value: string;
     private _decidable: boolean;
+    private _hide_class: string = "hide";
+    private _list_index: number;
     private _X_button;
     private _L_button;
     private _text_box;
     private _R_button;
-    private _hide_class: string = "hide";
+    private _label;
 
     /**
      *
@@ -28,6 +30,7 @@ class Field {
         Field._globalID++;
         this._value = null;
         this._decidable = false;
+        this._list_index = 0;
 
         // Create html
         this.createHTML();
@@ -91,6 +94,13 @@ class Field {
         this.createButton(this._L_button, child, "L", "&larr;");
         this._L_button = document.getElementById('field-' + this._ID + '-L');
 
+        /* Place label in the div and set value */
+        let label = document.createElement('label');
+        label.setAttribute('id', 'field-' + this._ID + '-label');
+        label.setAttribute('class', 'field-label');
+        child.appendChild(label);
+        this.setLabel();
+
         /* Place input text box (value field) in the div, set the value if exists */
         this.createTextBox(this._text_box, child);
         this._text_box = document.getElementById('field-' + this._ID + '-text');
@@ -116,9 +126,6 @@ class Field {
         param.setAttribute('id', 'field-' + this._ID + '-text');
         param.setAttribute('type', 'text');
         parent.appendChild(param);
-        if (this._value !== null || this._value !== "") {
-            param = this._value;
-        }
     }
 
 
@@ -215,6 +222,11 @@ class Field {
      */
     public setParent(value: List) {
         this._parent = value;
+        // Add class to X-button if in reject list to make it red.
+        console.log("Testing if reject list: " + this.parent.previousList);
+        if (this.parent.previousList === null) {
+            this._X_button.classList.add('reject-X-button');
+        }
     }
 
 
@@ -233,5 +245,33 @@ class Field {
      */
     set parent(value: List) {
         this._parent = value;
+    }
+
+
+    /**
+     *
+     * @returns {number}
+     */
+    get list_index() {
+        return this._list_index;
+    }
+
+
+    /**
+     *
+     * @param index
+     */
+    set list_index(index: number) {
+        this._list_index = index;
+        this.setLabel();
+    }
+
+
+    /**
+     * Set the value of the fields label
+     */
+    private setLabel() {
+        document.getElementById('field-' + this._ID + '-label').innerHTML
+            = this._list_index.toString();
     }
 }

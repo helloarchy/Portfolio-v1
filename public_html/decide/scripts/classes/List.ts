@@ -145,7 +145,7 @@ class List {
     public addEmpty() {
         let field: Field = new Field(this);
         this._fields.add(field);
-    this.updateButtonsAndBox();
+        this.updateButtonsAndBox();
     }
 
 

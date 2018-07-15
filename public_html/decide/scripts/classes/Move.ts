@@ -58,7 +58,6 @@ class Move {
         } else {
             this.transplant(field, parent, parent.nextList);
         }
-
     }
 
 

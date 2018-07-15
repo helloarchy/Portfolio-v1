@@ -25,11 +25,8 @@ class FieldArray {
      */
     public add(field: Field) {
         // if not unique reject!
-        if (this._fieldArray === null) {
-            this._fieldArray.push(field);
-        } else {
-            this._fieldArray[this._fieldArray.length] = field;
-        }
+        this._fieldArray.push(field);
+        this.fixBlanks(); // Set field indices
     }
 
 
@@ -72,13 +69,17 @@ class FieldArray {
 
     /**
      * Get rid of any undefined indices in the array, by writing any value
-     * found to a new array, and replacing the array with the new once.
+     * found to a new array, and replacing the array with the new once. While
+     * iterating through, give each field their index value for displaying.
      */
     private fixBlanks() {
         let newArray: Array<Field> = [];
+        let indexCounter: number = 0;
         for (let f of this._fieldArray) {
             if (f !== null) {
                 newArray.push(f);
+                f.list_index = indexCounter;
+                indexCounter++;
             }
         }
         this._fieldArray = newArray;
