@@ -226,6 +226,8 @@ class Field {
         console.log("Testing if reject list: " + this.parent.previousList);
         if (this.parent.previousList === null) {
             this._X_button.classList.add('reject-X-button');
+        } else {
+            this._X_button.classList.remove('reject-X-button');
         }
     }
 
