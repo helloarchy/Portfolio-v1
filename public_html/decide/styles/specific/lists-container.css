@@ -7,9 +7,22 @@ grid ability. Each list is styled specifically in list.css.
 Part of the rarh.io project.
  */
 #lists-container {
-    display: flex;
-    flex-direction: row; /* Stack sideways */
-    justify-content: center; /* Align horizontal*/
+    /*display: flex;*/
+    /*flex-direction: row; !* Stack sideways *!*/
+    /*justify-content: center; !* Align horizontal*!*/
     /*align-items: center; !* Align vertical *!*/
     overflow: auto;
+    grid-row: 2;
+    width: calc(100vw - 30px);
+    padding: 0 15px 0 15px;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+}
+
+/* Fix no margin bug for last list in the container. */
+#lists-container::after {
+    content: "";
+    flex: 0 0 30px
 }

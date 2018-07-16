@@ -25,5 +25,11 @@ function main() {
     initialList.addEmpty();
     initialList.addEmpty();
 
+    /* Focus the initial list */
+    //location.href = "#list-1";
+    //document.getElementById('list-' + initialList.ID).focus();
+    document.getElementById('lists-container').scrollLeft =
+        (document.getElementById('lists-container').scrollWidth - document.body.clientWidth) / 2;
+
 //let testList = new List(listParent, initialList, "Test List");
 }

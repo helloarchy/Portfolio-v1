@@ -52,6 +52,7 @@ class List {
         let fields_container = document.createElement('div');
         fields_container.setAttribute('id',
             'list-' + this.ID + '-fields-container');
+        fields_container.setAttribute('class', 'fields-container');
         child.appendChild(fields_container);
 
         // Check if list is a Reject List before adding add button and action box
@@ -60,9 +61,15 @@ class List {
             if (this.ID === 1) {
                 this.makeAddButton(child);
             }
+
             // Make action box - the box containing the decide button and decision
             this._actionBox = new ActionBox(this);
         }
+
+        // Make the spacer div for flex grow
+        let flex_spacer = document.createElement('div');
+        flex_spacer.setAttribute('class', 'list-flex-spacer');
+        child.appendChild(flex_spacer);
     }
 
 

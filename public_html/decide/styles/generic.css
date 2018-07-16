@@ -7,13 +7,14 @@ own stylesheet.
 @since 2018-07-11
 Part of the rarh.io project.
  */
-html {
-    /*width: 100%;*/
-    /*height: 100%;*/
-}
-
 body {
+    width: 100vw;
+    height: 100vh;
     text-align: center;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 header {
@@ -24,27 +25,34 @@ header {
 header h1 {
     -ms-grid-row: 1;
     grid-row: 1;
-
+    text-transform: capitalize;
+    font-family: Tangerine, serif;
+    font-size: 96px;
+    font-weight: normal;
+    margin: 5px 0 5px 0;
 }
 
 header p {
     grid-row: 2;
+    margin: 0 0 5px 0;
 }
 
 main {
-    display: grid;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 main #description {
-    grid-row: 1;
     max-width: 300px;
     text-align: left;
     margin-left: auto;
     margin-right: auto;
+    text-transform: initial;
 }
 
-main #lists-container {
-    grid-row: 2;
+footer {
+
 }
 
 /* Use for hiding elements without JQuery */
@@ -52,9 +60,5 @@ main #lists-container {
     position: absolute !important;
     top: -9999px !important;
     left: -9999px !important;
-}
-
-footer {
-
 }
 

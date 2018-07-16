@@ -223,7 +223,6 @@ class Field {
     public setParent(value: List) {
         this._parent = value;
         // Add class to X-button if in reject list to make it red.
-        console.log("Testing if reject list: " + this.parent.previousList);
         if (this.parent.previousList === null) {
             this._X_button.classList.add('reject-X-button');
         } else {
