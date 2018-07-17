@@ -125,6 +125,7 @@ class Field {
         param = document.createElement('input');
         param.setAttribute('id', 'field-' + this._ID + '-text');
         param.setAttribute('type', 'text');
+        param.setAttribute('placeholder', 'Your choice...');
         parent.appendChild(param);
     }
 

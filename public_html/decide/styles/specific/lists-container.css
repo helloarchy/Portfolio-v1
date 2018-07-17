@@ -13,13 +13,12 @@ Part of the rarh.io project.
     /*align-items: center; !* Align vertical *!*/
     overflow: auto;
     grid-row: 2;
-    width: calc(100vw - 30px);
+    max-width: calc(100vw - 30px);
     padding: 0 15px 0 15px;
     white-space: nowrap;
     display: flex;
     flex-direction: row;
     flex-grow: 1;
-    /*justify-content: center;*/
 }
 
 /* Fix no margin bug for last list in the container. */

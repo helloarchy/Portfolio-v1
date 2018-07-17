@@ -26,6 +26,8 @@ body, h1, h2, h3, h4, h5, h6 {
 header {
     display: grid;
     text-align: center;
+    background: #2e4a62;
+    color: #F0EDE5;
 }
 
 /* Header
@@ -36,7 +38,7 @@ header h1 { /* Mobile */
     grid-row: 1;
     margin: 5px 0 5px 0;
     text-transform: capitalize;
-    font-family: "Dancing Script", cursive;
+    font-family: "Dancing Script", serif;
     font-weight: normal;
     font-size: 2em;
     /* 2x body copy size = 32px */
@@ -58,7 +60,7 @@ header h1 { /* Mobile */
     header h1 {
         font-size: 3em;
         /* 3x body copy size = 48px */
-        line-height: 1.05;
+        line-height: 1.25;
         /* keep to a multiple of the 20px line height
         and something more appropriate for display headings */
     }
@@ -68,6 +70,7 @@ header h1 { /* Mobile */
 header p {
     grid-row: 2;
     margin: 0 0 5px 0;
+    font-style: italic;
 }
 
 /* Normal text sizes per device */
@@ -92,6 +95,11 @@ main {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    /*justify-content: center;*/
+    align-items: center;
+    border-top: 3px #F0EDE5 double;
+    border-bottom: 3px #F0EDE5 double;
+    background: #B4B7BA;
 }
 
 main #description {
@@ -104,7 +112,12 @@ main #description {
 }
 
 footer {
+    background: #2e4a62;
+}
 
+footer a {
+    text-decoration: none;
+    color: #F0EDE5;
 }
 
 /* Use for hiding elements without JQuery */
