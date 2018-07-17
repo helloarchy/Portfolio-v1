@@ -75,7 +75,7 @@ header p {
 
 /* Normal text sizes per device */
 p { /* Mobile */
-    font-size: 1em;
+    font-size: 0.9em;
     /* equivalent to 16px */
     line-height: 1.25;
     /* equivalent to 20px */
@@ -84,7 +84,7 @@ p { /* Mobile */
 @media (min-width: 43.75em) {
     /* Desktop */
     p {
-        font-size: 1em;
+        font-size: 0.9em;
         /* equivalent to 16px */
         line-height: 1.375;
         /* equivalent to 22px */

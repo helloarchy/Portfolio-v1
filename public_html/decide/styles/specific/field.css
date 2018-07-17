@@ -10,6 +10,10 @@ Part of the rarh.io project.
 /* When the X button is in the reject list */
 .field {
     height: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Button text sizes per device */
@@ -18,18 +22,15 @@ Part of the rarh.io project.
     border: none;
     background: none;
     cursor: pointer;
-    font-size: 1em;
+    font-size: 1.25em;
+    padding: 5px;
     /* equivalent to 16px */
-    line-height: 1.25;
-    /* equivalent to 20px */
 }
 @media (min-width: 43.75em) {
     /* Desktop */
     .field button {
         font-size: 1em;
         /* equivalent to 16px */
-        line-height: 1.375;
-        /* equivalent to 22px */
     }
 }
 
@@ -37,21 +38,14 @@ Part of the rarh.io project.
 .field-label {
     display: inline-block;
     min-width: 20px;
+    height: 28px;
     font-family: "Cormorant Garamond", serif;
+    font-weight: normal;
     font-size: 1em;
+    padding: 0 5px 0 5px;
     /* equivalent to 16px */
-    line-height: 1.25;
+    line-height: 1.5;
     /* equivalent to 20px */
-}
-
-@media (min-width: 43.75em) {
-    /* Desktop */
-    .field-label {
-        font-size: 1em;
-        /* equivalent to 16px */
-        line-height: 1.375;
-        /* equivalent to 22px */
-    }
 }
 
 /* Field input text box */
@@ -63,19 +57,19 @@ Part of the rarh.io project.
     border-top: none;
     border-radius: 0 0 0 4px;
     width: 150px;
-    padding: 2px;
+    padding: 0 0 1px 4px;
+    margin: 0 5px 0 0;
     box-sizing: border-box;
     font-family: "Dancing Script", serif;
-    font-size: 1.15em;
+    font-size: 1.25em;
     /* 1.125x body copy size = 18px */
     line-height: 1.25;
 }
 
 .field input[type=text]:focus {
     border: 1px solid #C0AB8E; /* Add a border all around */
+    border-radius: 4px;
 }
-
-
 
 
 
