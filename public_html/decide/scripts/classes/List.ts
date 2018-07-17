@@ -111,7 +111,7 @@ class List {
         parent.appendChild(title_box);
 
         /* Make and append text */
-        let title_text = document.createElement('p');
+        let title_text = document.createElement('h2');
         title_text.setAttribute('id', 'list-' + this.ID + '-title-text');
         title_text.innerHTML = this._title; // Set value to list title
         title_box.appendChild(title_text);

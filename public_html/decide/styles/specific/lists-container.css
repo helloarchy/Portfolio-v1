@@ -19,6 +19,7 @@ Part of the rarh.io project.
     display: flex;
     flex-direction: row;
     flex-grow: 1;
+    /*justify-content: center;*/
 }
 
 /* Fix no margin bug for last list in the container. */
@@ -26,3 +27,7 @@ Part of the rarh.io project.
     content: "";
     flex: 0 0 30px
 }
+/*#lists-container::before {*/
+    /*content: "";*/
+    /*flex: 0 0 30px*/
+/*}*/
