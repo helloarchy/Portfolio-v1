@@ -9,11 +9,12 @@ Part of the rarh.io project.
 
 /* When the X button is in the reject list */
 .field {
-    height: 30px;
+    height: 32px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    transition-duration: 0.3s;
 }
 
 /* Button text sizes per device */
@@ -70,7 +71,6 @@ Part of the rarh.io project.
     border: 1px solid #C0AB8E; /* Add a border all around */
     border-radius: 4px;
 }
-
 
 
 ::placeholder {

@@ -88,7 +88,7 @@ class List {
         /* Make add empty field button */
         let add_button = document.createElement('button');
         add_button.setAttribute('id', 'add-button');
-        add_button.innerHTML = "&plus;";
+        add_button.innerHTML = "<span>&plus;</span>";
         add_container.appendChild(add_button);
 
         /* Attach on click event handler */

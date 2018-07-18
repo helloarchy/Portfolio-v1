@@ -14,15 +14,11 @@ class Decide {
      */
     public static choose(list: List, actionBox: ActionBox) {
         /* Clear any blank fields */
-        let decidableFields = this.getDecidable(list);
+        actionBox.decidable_fields = this.getDecidable(list);
 
         /* Choose a random item from the decidable list. */
-        let randomIndex = Math.floor(Math.random() * decidableFields.length);
-        let decided = decidableFields[randomIndex];
-
-        /* Find field in original list */
-        console.log("Decide: chosen field is " + decided.value);
-        actionBox.decided = decided;
+        let randomIndex = Math.floor(Math.random() * actionBox.decidable_fields.length);
+        actionBox.decided = actionBox.decidable_fields[randomIndex];
         actionBox.displayDecision();
     }
 

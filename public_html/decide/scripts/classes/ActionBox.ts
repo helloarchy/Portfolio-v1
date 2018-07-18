@@ -11,6 +11,7 @@
 class ActionBox {
     private _parent: List;
     private _decided: Field;
+    private _decidable_fields: Array<Field>;
     private _X_button;
     private _L_button;
     private _R_button;
@@ -65,9 +66,10 @@ class ActionBox {
             '-action-box-banner');
 
         /* Make decide button */
-        this.createButton(this._decide_button, child, "Decide", "Decide");
+        this.createButton(this._decide_button, child, "D", "Decide");
         this._decide_button = document.getElementById('list-' + parentID +
-            '-action-box-Decide');
+            '-action-box-D');
+        this._decide_button.setAttribute('class', 'decide-button');
 
         /* Attach event listeners */
         this.attachEvents();
@@ -127,6 +129,49 @@ class ActionBox {
         // TODO: ADD SOME FANCY EFFECTS HERE
         this._banner.innerHTML = this._decided.value;
 
+        /* Pad out the list depending on how many items there are to iterate
+        * through. If only a couple, then list through them a couple times with
+        * a 0.5 second interval. If many, then display each once with a shorter
+        * interval. Always aiming for a 3-second animation. */
+        let interval_time = 500; // Milliseconds
+        let length: number = this.decidable_fields.length;
+        let banner_list: Array<Field> = [];
+        if (length <= 3) {
+            // Show each field twice with a half-second interval
+            for (let i = 0; i < 2; i++) {
+                for (let l of this.decidable_fields) {
+                    banner_list.push(l);
+                }
+            }
+        } else if (length <= 6) {
+            // Show each once with a half-second second interval
+            for (let l of this.decidable_fields) {
+                banner_list.push(l);
+            }
+        } else if (length > 6) {
+            // Show 1 out of N entries for half a second
+            let skip_n_fields = Math.floor(length / 6);
+            let counter = skip_n_fields;
+            for (let l of this.decidable_fields) {
+                if (counter === skip_n_fields) {
+                    banner_list.push(l);
+                    counter = 1;
+                }
+                counter ++;
+            }
+        }
+
+
+        /* Iterate through each element in the decision list one at a time,
+        * pausing for set interval between each to give the illusion of a banner*/
+        let display_decision = window.setInterval(function() {
+
+
+
+
+            window.clearInterval(display_decision);
+        }, 500);
+
         /* Prompt user action after waiting  */
         //window.setTimeout(this.decisionActionPrompt, 3000);
         this.decisionActionPrompt();
@@ -179,7 +224,29 @@ class ActionBox {
     }
 
 
+    /**
+     *
+     * @param {Field} value
+     */
     set decided(value: Field) {
         this._decided = value;
+    }
+
+
+    /**
+     *
+     * @returns {List}
+     */
+    get decidable_fields(): Array<Field> {
+        return this._decidable_fields;
+    }
+
+
+    /**
+     *
+     * @param fields
+     */
+    set decidable_fields(fields: Array<Field>) {
+        this._decidable_fields = fields;
     }
 }

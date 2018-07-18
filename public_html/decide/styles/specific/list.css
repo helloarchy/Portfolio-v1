@@ -47,7 +47,7 @@ Part of the rarh.io project.
 }
 
 .fields-container {
-
+    transition-duration: 0.3s;
 }
 
 /* Button text sizes per device */
@@ -60,6 +60,7 @@ Part of the rarh.io project.
     padding: 5px;
     /* equivalent to 16px */
 }
+
 @media (min-width: 43.75em) {
     /* Desktop */
     .field button {
@@ -69,31 +70,45 @@ Part of the rarh.io project.
 }
 
 .add-container {
-
+    padding-top: 20px;
+    box-sizing: content-box;
 }
 
 .add-container button {
-    margin: 15px 0 0 0;
-    width: 40px;
-    height: 40px;
-    line-height: 30px;
-    font-size: 30px;
-    color: #F0EDE5;
+    width: 35px;
+    height: 35px;
     border: none;
     border-radius: 50%;
     background: #C0AB8E;
     cursor: pointer;
-    padding: 5px;
+    text-align: center;
+    padding: 0;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    transition-duration: 0.3s;
 }
 
-@media (min-width: 43.75em) {
-    /* Desktop */
-    .add-container button {
-        font-size: 1.25em;
-        /* equivalent to 16px */
-    }
+.add-container button:hover {
+    /*border: 2px solid #C0AB8E;*/
+    background: #2e4a62;
 }
 
+.add-container button span {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    line-height: 38px;
+    font-size: 30px;
+    font-weight: normal;
+    color: #F0EDE5;
+    vertical-align: middle;
+    text-align: center;
+    text-decoration: none;
+    transform: translate(0, -3px);
+}
+
+.add-container button:hover > span {
+    color: #F0EDE5;
+}
 
 .action-box {
 
