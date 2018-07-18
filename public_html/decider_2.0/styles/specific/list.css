@@ -42,10 +42,6 @@ Part of the rarh.io project.
     }
 }
 
-.list-title-box {
-
-}
-
 .fields-container {
     transition-duration: 0.3s;
 }
@@ -108,10 +104,6 @@ Part of the rarh.io project.
 
 .add-container button:hover > span {
     color: #F0EDE5;
-}
-
-.action-box {
-
 }
 
 .list-flex-spacer {

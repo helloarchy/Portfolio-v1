@@ -38,7 +38,6 @@
     color: #2E4A62;
 }
 
-
 .action-box-top-box {
     display: flex;
     flex-direction: row;
@@ -69,23 +68,9 @@
     font-size: 0.75em;
 }
 
-
-.action-box-X-button {
-
-
-}
-
-.action-box-L-button {
-
-}
-
 /* Spacer between buttons */
 .action-box-top-spacer {
     flex-grow: 1;
-}
-
-.action-box-R-button {
-
 }
 
 .action-box-D-button {
@@ -106,6 +91,5 @@
 }
 
 .action-box-D-button:hover {
-    /*border: 2px solid #C0AB8E;*/
     background: #C0AB8E;
 }

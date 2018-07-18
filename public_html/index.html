@@ -6,7 +6,7 @@
 
     <link rel=stylesheet type="text/css" href="home/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
-        </script>
+    </script>
     <link rel=”stylesheet” id=”font-awesome-css”
           href=”http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css”
           type=”text/css” media=”screen”>
@@ -38,12 +38,25 @@ responsive to size, side bar, top menu and stack -->
 <!-- Pitiful self title -->
 <div class="title">
     <h1 class="titleBig"></h1>
-    <p class="titleCasual" style="margin: -15px auto 0px auto;
+    <p class="titleCasual" style="margin: -15px auto 0 auto;
     padding-bottom: 10px">portfolio website</p>
 </div>
 
 <!-- PORTFOLIO IMAGES -->
 <section id="portfolio">
+
+    <!-- DECIDER 2.0 -->
+    <div class="portfolioImages" onclick="location.href='decider_2.0/decider.html';"
+         style="background: url('home/images/decider2.0.png') 50% / 100%;">
+        <img src="home/images/decider2.0.png">
+        <div class="portfolioInner">
+            <div class="portfolioInnerInner">
+                <h2>Decider 2.0</h2>
+                <p>A (revised) web app for decision making. With shortlists and
+                    reject lists to help pin down the desired choice.</p>
+            </div>
+        </div>
+    </div>
 
     <!-- WORKINGS -->
     <div class="portfolioImages" onclick="location.href='workings/index.html';"
@@ -58,15 +71,15 @@ responsive to size, side bar, top menu and stack -->
         </div>
     </div>
 
-    <!-- DECIDER -->
-    <div class="portfolioImages" onclick="location.href='decider';"
+    <!-- DECIDER 1.0 -->
+    <div class="portfolioImages" onclick="location.href='decider_1.0/decider.html';"
          style="background: url('home/images/decider.png') 50% / 100%;">
         <img src="home/images/decider.png">
         <div class="portfolioInner">
             <div class="portfolioInnerInner">
-                <h2>Decider</h2>
-                <p>A web app for decision making. Add multiple choices and
-                one will be picked at random.</p>
+                <h2>Decider 1.0</h2>
+                <p>A (first attempt) web app for decision making. Add multiple
+                    choices and one will be picked at random.</p>
             </div>
         </div>
     </div>
@@ -92,7 +105,7 @@ responsive to size, side bar, top menu and stack -->
             <div class="portfolioInnerInner">
                 <h2>Amazon Order Page</h2>
                 <p>A web page illustrating use of PHP and MySQL to query a database
-                full of user order histories.</p>
+                    full of user order histories.</p>
             </div>
         </div>
     </div>
@@ -112,12 +125,13 @@ responsive to size, side bar, top menu and stack -->
     function getRandomSize(min, max) {
         return Math.round(Math.random() * (max - min) + min);
     }
+
     var PICS = 5; // number of place holder pics to add.
     var allImages = "";
     for (var i = 0; i < PICS; i++) {
         var width = getRandomSize(200, 400);
-        var height =  getRandomSize(200, 400);
-        allImages += '<img class="catImages" src="https://placekitten.com/'+width+'/'+height+'"' +
+        var height = getRandomSize(200, 400);
+        allImages += '<img class="catImages" src="https://placekitten.com/' + width + '/' + height + '"' +
             ' alt="pretty kitty">';
     }
     $('#portfolio').append(allImages);

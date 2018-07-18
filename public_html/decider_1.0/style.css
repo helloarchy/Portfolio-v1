@@ -3,6 +3,7 @@ html, body {
     padding: 0;
     height: 100%;
 }
+
 #headerBox {
     background-color: whitesmoke;
     position: relative;
@@ -11,12 +12,14 @@ html, body {
     left: 0;
     border-bottom: double 3px grey;
 }
+
 .container {
     top: 0;
     left: 0;
     height: auto;
     width: 100%;
 }
+
 .inner {
     margin-left: auto;
     margin-right: auto;
@@ -89,6 +92,7 @@ label {
     vertical-align: middle;
     text-align: center;
 }
+
 .decideButton {
     border-radius: 10%;
     height: 45px;
@@ -137,24 +141,29 @@ label {
     text-align: center;
     border-top: double 3px grey;
 }
+
 a {
     text-decoration: none;
 }
+
 .signature {
     font-family: "Dancing Script";
     font-size: 20px;
 
 }
+
 #selfTitle {
     font-family: "Playfair Display";
     font-size: 20px;
 }
+
 #webPlug {
     font-family: "Playfair Display";
     font-size: 20px;
     color: black;
     transition: 0.5s;
 }
+
 #webPlug:hover {
     color: white;
     transition: 0.5s;
