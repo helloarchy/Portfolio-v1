@@ -68,6 +68,7 @@ class Move {
      * @param newList
      */
     private static transplant(field: Field, oldList: List, newList: List) {
+
         // TODO: DEBUG
         console.log("Move: Transplanting field-" + field.ID +
             " from list-" + oldList.ID +
