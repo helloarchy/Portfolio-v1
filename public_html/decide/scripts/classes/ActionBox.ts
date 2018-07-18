@@ -41,6 +41,15 @@ class ActionBox {
         child.setAttribute('class', 'action-box');
         parent.appendChild(child);
 
+        /* Make banner */
+        let banner = document.createElement('div');
+        banner.setAttribute('id', 'list-' + parentID +
+            '-action-box-banner');
+        banner.setAttribute('class', 'action-box-banner');
+        child.appendChild(banner);
+        this._banner = document.getElementById('list-' + parentID +
+            '-action-box-banner');
+
         /* Make top buttons div */
         let top_buttons = document.createElement('div');
         top_buttons.setAttribute('class', 'action-box-top-box');
@@ -58,20 +67,16 @@ class ActionBox {
             '-action-box-L');
         this._L_button.classList.add('action-box-top-buttons');
 
+        /* Make top-buttons flex-grow spacer */
+        let top_buttons_spacer = document.createElement('div');
+        top_buttons_spacer.setAttribute('class', 'action-box-top-spacer');
+        top_buttons.appendChild(top_buttons_spacer);
+
         /* Make promote button */
         this.createButton(this._R_button, top_buttons, "R", "&rarr;", "promote");
         this._R_button = document.getElementById('list-' + parentID +
             '-action-box-R');
         this._R_button.classList.add('action-box-top-buttons');
-
-        /* Make banner */
-        let banner = document.createElement('div');
-        banner.setAttribute('id', 'list-' + parentID +
-            '-action-box-banner');
-        banner.setAttribute('class', 'action-box-banner');
-        child.appendChild(banner);
-        this._banner = document.getElementById('list-' + parentID +
-            '-action-box-banner');
 
         /* Make decide button */
         this.createButton(this._decide_button, child, "D", "Decide");

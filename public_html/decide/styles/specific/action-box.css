@@ -1,43 +1,12 @@
 .action-box {
     vertical-align: center;
+    margin-top: 10px;
 }
-
-.action-box-top-box {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Button text sizes per device */
-.action-box-top-buttons { /* Mobile */
-    color: #2E4A62;
-    border: none;
-    background: none;
-    cursor: pointer;
-    padding: 5px;
-    font-size: 1.4em;
-    /* equivalent to 16px */
-    line-height: 1.4;
-}
-
-.action-box-X-button {
-
-}
-
-.action-box-L-button {
-
-}
-
-.action-box-R-button {
-
-}
-
 
 .action-box-banner {
     transition-duration: 0.3s;
     padding: 5px 0 5px 0;
-    margin: 10px 0 10px 0;
+    margin: 10px 0 -5px 0;
     background: none;
 }
 
@@ -67,6 +36,56 @@
     /* 1.125x body copy size = 18px */
     line-height: 1.75;
     color: #2E4A62;
+}
+
+
+.action-box-top-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Button text sizes per device */
+.action-box-top-buttons { /* Mobile */
+    color: #2E4A62;
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Top button main symbol text */
+.action-box-top-buttons span:nth-child(1) {
+    font-size: 1.75em;
+}
+
+/* Top button subtitle text */
+.action-box-top-buttons span:nth-child(2) {
+    font-size: 0.75em;
+}
+
+
+.action-box-X-button {
+
+
+}
+
+.action-box-L-button {
+
+}
+
+/* Spacer between buttons */
+.action-box-top-spacer {
+    flex-grow: 1;
+}
+
+.action-box-R-button {
+
 }
 
 .action-box-D-button {

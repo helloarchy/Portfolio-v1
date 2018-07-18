@@ -31,6 +31,11 @@ class List {
         List._globalID++;
 
         this.createHTML() // create HTML
+
+        /* If reject list, don't display until a field is added */
+        if (this.previousList === null) {
+            document.getElementById('list-0').classList.add('hide');
+        }
     }
 
 
@@ -164,6 +169,10 @@ class List {
         this._fields.add(field);
         field.setParent(this);
         this.updateButtonsAndBox();
+        /* If reject list, display now an entry exists */
+        if (this.previousList === null) {
+            document.getElementById('list-0').classList.remove('hide');
+        }
     }
 
 
@@ -176,8 +185,13 @@ class List {
      */
     public remove(field: Field) {
         this._fields.remove(field);
-        if (!(this._fields.length() > 0) && this._ID > 1) {
-            this.deleteList();
+        if (!(this._fields.length() > 0) {
+            if (this._ID > 1) {
+                this.deleteList();
+            } else if (this.previousList === null) {
+                /* If reject list, display now an entry exists */
+                document.getElementById('list-0').classList.add('hide');
+            }
         }
         this.updateButtonsAndBox();
     }

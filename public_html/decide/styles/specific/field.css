@@ -35,6 +35,12 @@ Part of the rarh.io project.
     }
 }
 
+.field.reject-X-button {
+    border-radius: 50%;
+    background-color: #984B43;
+    color: #F0EDE5;
+}
+
 /* Field Labels */
 .field-label {
     display: inline-block;
