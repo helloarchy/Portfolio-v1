@@ -185,7 +185,7 @@ class List {
      */
     public remove(field: Field) {
         this._fields.remove(field);
-        if (!(this._fields.length() > 0) {
+        if (!(this._fields.length() > 0)) {
             if (this._ID > 1) {
                 this.deleteList();
             } else if (this.previousList === null) {
@@ -218,8 +218,13 @@ class List {
      */
     public deleteField(field: Field) {
         this._fields.remove(field);
-        if (!(this._fields.length() > 0) && this._ID > 1) {
-            this.deleteList();
+        if (!(this._fields.length() > 0)) {
+            if (this._ID > 1) {
+                this.deleteList();
+            } else if (this.previousList === null) {
+                /* If reject list, display now an entry exists */
+                document.getElementById('list-0').classList.add('hide');
+            }
         }
         field.delete();
         this._fields.showHideButtons();

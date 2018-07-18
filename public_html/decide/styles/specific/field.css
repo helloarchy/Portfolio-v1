@@ -35,10 +35,12 @@ Part of the rarh.io project.
     }
 }
 
-.field.reject-X-button {
+/* Apply a red circle background to the X button if its in reject list. */
+.reject-X-button {
     border-radius: 50%;
-    background-color: #984B43;
-    color: #F0EDE5;
+    background-color: #984B43 !important; /* Have to be used here :( */
+    color: #F0EDE5 !important;
+    padding: 0 5px 0 5px !important;
 }
 
 /* Field Labels */
