@@ -24,7 +24,8 @@ body, h1, h2, h3, h4, h5, h6 {
 }
 
 header {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     text-align: center;
     background: #2e4a62;
     color: #F0EDE5;
@@ -34,8 +35,6 @@ header {
  * Specific device sizes apply.
  */
 header h1 { /* Mobile */
-    -ms-grid-row: 1;
-    grid-row: 1;
     margin: 5px 0 5px 0;
     text-transform: capitalize;
     font-family: "Dancing Script", serif;
@@ -68,7 +67,6 @@ header h1 { /* Mobile */
 
 /* Header paragraph text */
 header p {
-    grid-row: 2;
     margin: 0 0 5px 0;
     font-style: italic;
 }
